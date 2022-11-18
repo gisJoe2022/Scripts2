@@ -1,0 +1,5 @@
+import arcpy from arcpy import env env.workspace = r"C:\temp\python\test.gdb"  fc = "Airports" table = "Airports__ATTACH"  # Add a field to the feature class and calculate the OBJECTIDs to this new field 
+arcpy.AddField_management(fc, "OBJECTID2", "LONG") arcpy.CalculateField_management(fc, "OBJECTID2", "!OBJECTID!", "PYTHON_9.3")  # Join the new OBJECTID2 field to the attachment table (original OBJECTID will not join) 
+arcpy.JoinField_management(table, "FK_GUID", fc, "PK_GUID", "OBJECTID2")  # Update the REL_OBJECTID field with the OBJECTID2 values rows = arcpy.UpdateCursor(table) for row in rows:     
+row.REL_OBJECTID = row.OBJECTID2     rows.updateRow(row)  del row, rows  # Delete the OBJECTID2 fields from the feature class and table arcpy.DeleteField_management(fc, "OBJECTID2") 
+arcpy.DeleteField_management(table, "OBJECTID2")
