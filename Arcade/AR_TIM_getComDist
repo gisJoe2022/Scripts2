@@ -1,0 +1,7 @@
+var getComDist = FeatureSetByName($datastore, "Commissioner Districts", ["COMMDIST"])
+var getComDistIntersect = Intersects(getComDist, $feature)
+var comDist = First(getComDistIntersect)
+
+if (comDist == null) return {"errorMessage": "Commissioner District Not Found"}
+
+return comDist.COMMDIST

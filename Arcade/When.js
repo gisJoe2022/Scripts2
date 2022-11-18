@@ -1,0 +1,3 @@
+var label = $feature.LABEL;
+var Labeler = When(label == 'UPA','Urban Planning Area', label == 'URPA', 'Urban Reserve Planning Area', label == 'AOI', 'Area of Interest', Label == 'A', 'Area A', label == 'B', 'Area B', label == 'C', 'Area C', label == 'City', ' City', label == 'URPRU', 'Urban Reserve - Planning Responsibility Undefined', label == 'URSA', 'Urban Reserve Study Area', 'No Data');
+return Labeler
