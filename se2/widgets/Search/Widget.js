@@ -61,73 +61,72 @@ define([
       _startWidth: null,
       _pointOfSpecifiedUtmCache: null,
 
-      // <-- add the getallparams reference blow to new wab versions of SE -->
-      getAllUrlParams: function() {
+// <!-- Add this line to new version of survey explorer -->
+getAllUrlParams: function() {
 
-          var url = window.location.hash.substring(1).split('/')[1];
-          // get query string from url (optional) or window
-          var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
+  var url = window.location.hash.substring(1).split('/')[1];
+  // get query string from url (optional) or window
+  var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
 
-          // we'll store the parameters here
-          var obj = {};
+  // we'll store the parameters here
+  var obj = {};
 
-          // if query string exists
-          if (queryString) {
+  // if query string exists
+  if (queryString) {
 
-              // stuff after # is not part of query string, so get rid of it
-              queryString = queryString.split('#')[0];
+      // stuff after # is not part of query string, so get rid of it
+      queryString = queryString.split('#')[0];
 
-              // split our query string into its component parts
-              var arr = queryString.split('&');
+      // split our query string into its component parts
+      var arr = queryString.split('&');
 
-              for (var i = 0; i < arr.length; i++) {
-                  // separate the keys and the values
-                  var a = arr[i].split('=');
+      for (var i = 0; i < arr.length; i++) {
+          // separate the keys and the values
+          var a = arr[i].split('=');
 
-                  // set parameter name and value (use 'true' if empty)
-                  var paramName = a[0];
-                  var paramValue = typeof(a[1]) === 'undefined' ? true : a[1];
+          // set parameter name and value (use 'true' if empty)
+          var paramName = a[0];
+          var paramValue = typeof(a[1]) === 'undefined' ? true : a[1];
 
-                  // (optional) keep case consistent
-                  // paramName = paramName.toLowerCase();
-                  // if (typeof paramValue === 'string') paramValue = paramValue.toLowerCase();
+          // (optional) keep case consistent
+          // paramName = paramName.toLowerCase();
+          // if (typeof paramValue === 'string') paramValue = paramValue.toLowerCase();
 
-                  // if the paramName ends with square brackets, e.g. colors[] or colors[2]
-                  if (paramName.match(/\[(\d+)?\]$/)) {
+          // if the paramName ends with square brackets, e.g. colors[] or colors[2]
+          if (paramName.match(/\[(\d+)?\]$/)) {
 
-                      // create key if it doesn't exist
-                      var key = paramName.replace(/\[(\d+)?\]/, '');
-                      if (!obj[key]) obj[key] = [];
+              // create key if it doesn't exist
+              var key = paramName.replace(/\[(\d+)?\]/, '');
+              if (!obj[key]) obj[key] = [];
 
-                      // if it's an indexed array e.g. colors[2]
-                      if (paramName.match(/\[\d+\]$/)) {
-                          // get the index value and add the entry at the appropriate position
-                          var index = /\[(\d+)\]/.exec(paramName)[1];
-                          obj[key][index] = paramValue;
-                      } else {
-                          // otherwise add the value to the end of the array
-                          obj[key].push(paramValue);
-                      }
-                  } else {
-                      // we're dealing with a string
-                      if (!obj[paramName]) {
-                          // if it doesn't exist, create property
-                          obj[paramName] = paramValue;
-                      } else if (obj[paramName] && typeof obj[paramName] === 'string') {
-                          // if property does exist and it's a string, convert it to an array
-                          obj[paramName] = [obj[paramName]];
-                          obj[paramName].push(paramValue);
-                      } else {
-                          // otherwise add the property
-                          obj[paramName].push(paramValue);
-                      }
-                  }
+              // if it's an indexed array e.g. colors[2]
+              if (paramName.match(/\[\d+\]$/)) {
+                  // get the index value and add the entry at the appropriate position
+                  var index = /\[(\d+)\]/.exec(paramName)[1];
+                  obj[key][index] = paramValue;
+              } else {
+                  // otherwise add the value to the end of the array
+                  obj[key].push(paramValue);
+              }
+          } else {
+              // we're dealing with a string
+              if (!obj[paramName]) {
+                  // if it doesn't exist, create property
+                  obj[paramName] = paramValue;
+              } else if (obj[paramName] && typeof obj[paramName] === 'string') {
+                  // if property does exist and it's a string, convert it to an array
+                  obj[paramName] = [obj[paramName]];
+                  obj[paramName].push(paramValue);
+              } else {
+                  // otherwise add the property
+                  obj[paramName].push(paramValue);
               }
           }
+      }
+  }
 
-          return obj;
-      },
-      // <-- get allurlparms stop here -->
+  return obj;
+},
 
       postCreate: function() {
 
@@ -137,8 +136,6 @@ define([
 
         this.listenWidgetIds.push('framework');
         this._pointOfSpecifiedUtmCache = {};
-
-  
       },
 
       startup: function() {
@@ -235,8 +232,7 @@ define([
                   }
                 }))
               );
-
-              // <-- add consolelog section to new wab version of survey explorer -->
+              // <!-- Add this line to new version of survey explorer -->
               console.log('loaded Search');
               var data = this.getAllUrlParams();
               console.log(data);
@@ -265,8 +261,7 @@ define([
                 });
 
               }
-              // <-- stops here: add consolelog section to new wab version of survey explorer -->
-
+              // <!-- stops here - Add this line to new version of survey explorer -->
 
               /*****************************************
                * Binding events about 508 accessbility
@@ -345,7 +340,6 @@ define([
               this.fetchData('framework');
             }));
           }));
-
       },
 
       _convertConfig: function(config) {
@@ -367,7 +361,13 @@ define([
               showInfoWindowOnSelect: esriLang.isDefined(this.config.showInfoWindowOnSelect) ?
                 !!this.config.showInfoWindowOnSelect : true,
               _zoomScaleOfConfigSource: source.zoomScale,
-              _panToScale: source.panToScale
+              _panToScale: source.panToScale,
+              highlightSymbol: new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, /* New highlight symbol start */
+                20,
+                new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
+                                     new Color([0, 255, 255, 0.0]),
+                                     2),
+                new Color([0, 0, 0, 1])) /* New highlight symbol end */
             };
 
             if(source.maxSuggestions === 0) {
@@ -796,10 +796,10 @@ define([
        * ******************************/
       onReceiveData: function(name, widgetId, data) {
         
-        console.log('Search'); // <-- add consolelog section to new wab version of survey explorer -->
+        console.log('Search'); // <!-- Add this line to new version of survey explorer -->
         if (name === 'framework' && widgetId === 'framework' && data && data.searchString) {
 
-          console.log(data.searchString); // <-- add consolelog section to new wab version of survey explorer -->
+          console.log(data.searchString); // <!-- Add this line to new version of survey explorer -->
           this.searchDijit.set('value', data.searchString);
           this.searchDijit.search();
         }
