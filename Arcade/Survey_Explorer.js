@@ -1,6 +1,9 @@
 
-// url parameters example
-"https://wc34926.co.washington.or.us:3344/webappbuilder/apps/2/"?query=Survey_Explorer_451,Benchmark_ID,102&showLayers=Survey_Explorer_451""
+// url parameters example - DEV
+"https://wc34926.co.washington.or.us:3344/webappbuilder/apps/2/?query=Survey_Explorer_451,Benchmark_ID,102&showLayers=Survey_Explorer_451"
+
+// Mt Bachelor url parameters
+"https://gisims.co.washington.or.us/gis/Survey/se2/SurveyExplorer.html?query=Survey_Explorer_451,Benchmark_ID,102&showLayers=Survey_Explorer_451"
 
 
 // Color Block Popup Header
@@ -160,7 +163,11 @@ IIf // dummy to remove error squigs
 "http://mtbachelor.co.washington.or.us/images/survey/CoRoads/Road_Vacation/vac" + Text($feature["Vac_num"]) + ".pdf"
 
 // plats
-"http://mtbachelor.co.washington.or.us/images/survey/dev/Plats/" + $feature.Platname + ".pdf"
+// plat names have special characters that can't be in PDF names.
+var string = Replace($feature.Platname, ':','-')
+var new = Replace(string, '/','')
+
+"https://mtbachelor.co.washington.or.us/images/survey/dev/Plats/" + new + ".pdf"
 
 // surveys
 "http://mtbachelor.co.washington.or.us/images/survey/dev/Surveys/" + $feature.SurvNum + ".pdf"
