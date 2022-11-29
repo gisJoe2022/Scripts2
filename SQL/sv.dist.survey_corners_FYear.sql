@@ -6,9 +6,9 @@
                to replace existing table with "evw0."
 # Purpose: create spatial view using tables from psqlapp1 and corners 
            feature class on distribution.
-# Author:      Joe Hayes
+# Author:      Brian Hanes/Joe Hayes
 # Updated:     2022-11-10
-# Copyright:   Joe Hayes WashCo Survey
+
 
 #### this code was replace with code below on 2022-11-10 ####
 SELECT  survey.CORNERS.Shape, survey.CORNERS.CORNER_ID, survey.V_Corners_FYear.CORNERID, survey.CORNERS.AltMon, survey.V_Corners_FYear.BT_Year, survey.V_Corners_FYear.Visit_Year, survey.V_Corners_FYear.Final_Year, survey.CORNERS.OBJECTID
