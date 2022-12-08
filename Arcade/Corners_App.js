@@ -64,3 +64,8 @@ else{
     return seven
 }
 
+// corners with prior bt popup
+<div style="padding: 5px; background-color: rgb(255, 255, 255); border: solid black; ">
+
+<font color="#000000" face="Verdana" size="3">
+<b>Corner With Prior BT</b></font></div><p style="margin: 0in;"><b>Corner ID</b>: {CORNER_ID}<br /><b>Notes</b>: {note}<br /></p>
