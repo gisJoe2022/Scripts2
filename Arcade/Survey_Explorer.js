@@ -226,3 +226,73 @@ else {
     
     return p1 + '0000' + p2
 }
+
+// main tax map
+
+// main tax map 
+// 12/20/2022
+
+// evaluates TLID to pass correct string to url 
+// to get the correct tax map.
+var tlid = $feature.TLID    // '3S1060000301'
+
+var gn = MID(tlid, 0, 7)
+var m1 = MID(tlid, 3, 2)
+var m2 = MID(tlid, 5, 2)
+var m3 = MID(tlid, 3, 4)
+var m4 = MID(tlid, 5, 1)
+var m5 = MID(tlid, 6, 1)
+
+
+var l3 = Left(tlid, 3)
+var l5 = Left(tlid, 5)
+var l6 = Left(tlid, 6)
+
+var p1 = "https://mtbachelor.co.washington.or.us/images/colortaxmaps/"
+var p2 = ".pdf"
+
+//tests for 3 char taxmaps
+if (m1 == '00'){
+    if (m3 == '000') {
+        gn = l3
+    }
+    if (m3 != '0') {
+        gn = l3 + m4
+    }
+}
+// returns 5 char taxmap if above is false
+else if (m2 == '00'){
+    gn = l5
+    //return p1 + l5 + p2
+}
+else if (m5 == '0'){
+    gn = l6
+    
+}
+return p1 + gn + p2
+
+
+
+// evaluates TLID to pass correct string to url 
+// to get the correct tax map.
+// 11/5/2022
+var num = '3S1060000301'//$feature.TLID
+var id = '3S1060000301'
+
+var v0 = MID(num, 3, 1)
+
+var l3 = Left(num, 3)
+var l5 = Left(num, 5)
+
+var p1 = "https://mtbachelor.co.washington.or.us/images/colortaxmaps/"
+var p2 = ".pdf"
+
+//tests for 3 char taxmaps
+if (v0 == '0'){
+    return p1 + l3 + p2
+}
+// returns 5 char taxmap if above is false
+else {
+    
+    return p1 + l5 + p2
+}
