@@ -1,0 +1,474 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Washington County">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Washington County - Survey Research Tool</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!-- Style Start -->
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+<link href="../core/css/boot-template.css" rel="stylesheet">
+<link href="../core/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="../core/css/buttons.dataTables.min.css" rel="stylesheet">
+<link href="../core/css/boot-forms.css" rel="stylesheet">
+<link href="../core/css/boot-checkbox.css" rel="stylesheet">
+<link href="../core/css/jquery-ui.css" rel="stylesheet">
+<link href="../core/css/main.css?ver=06222020" rel="stylesheet">
+<link href="../core/css/print.css" rel="stylesheet" media="print">
+<!-- Style End -->
+<!-- Scripts Start -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="../core/js/jquery.jsonp-2.4.0.min.js"></script>
+<script src="../core/js/jquery.dataTables.min.js"></script>
+<script src="../core/js/jquery-modal.js"></script>
+<script src="../core/js/dataTables.buttons.min.js"></script>
+<script src="../core/js/jszip.min.js"></script>
+<script src="../core/js/pdfmake.min.js"></script>
+<script src="../core/js/vfs_fonts.js"></script>
+<script src="../core/js/buttons.html5.min.js"></script>
+<script src="../core/js/buttons.colVis.min.js"></script>
+<script src="../core/js/jquery-ui.min.js"></script>
+<script src='https://www.google.com/recaptcha/api.js?onload=recaptchaLoad' async defer ></script>
+<!-- Scripts End -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-26048224-11"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-26048224-11');
+</script>
+
+    <style>
+        .row.margin-yp {
+            margin: 5px 0;
+        }
+
+        .row-margin-yp-bottom {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Modal Window Start -->
+    <div class="modal-container hidden">
+        <!-- Marker Steps -->
+        <div id="modal-window" class="modal animated fadeIn" style="display:none;">
+            <div id="modal-content">
+                <div class="popHeader"></div>
+                <div class="items"></div>
+            </div>
+            <a class="btn-primary" href="#" rel="modal:close">Close</a>
+        </div>
+    </div>
+    <!-- Modal Window End -->
+    <a id="top"></a>
+    <div id="content">
+        <!-- Header Start -->
+            <div id="header-section" class="container-fluid blue-bg">
+    <div class="container">
+        <div class="row margin-ys">
+            <div class="col-xs-12">
+            	<div><a href="https://www.co.washington.or.us/"><img alt="Washington County, Oregon" src="../core/img/wc_logo_sm.png?ver=2"></a></div>
+                <div><h1><a href="https://www.co.washington.or.us/">Washington County, OR</a></h1></div>
+            </div>
+        </div>
+    </div>
+</div>
+        <!-- Header End -->
+        <!-- Conditions Start -->
+        <div class="container-fluid white-bg">
+
+            <div class="row margin-yp">
+                <div class="col-xs-12 col-sm-9">
+                    <iframe id="map" style="width: 100%; height: 800px; overflow: hidden; border: none;" src="https://gisims.co.washington.or.us/GIS/Survey/se2/SurveyExplorer.html"></iframe>
+                </div>
+                <div class="col-xs-12 col-sm-3">
+                    <h1>Survey Research Tool</h1>
+                    <h2 class="title">Search:</h2>
+                    <p><span class="required-icon"></span> = required</p>
+                    <div class="form">
+                        <form id="surveyReport" enctype="multipart/form-data" class="ws-validate">
+                            <!-- Search By -->
+
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label for="searchby">Search For: <span class="required-icon"></span></label>
+                                        <select id="searchby" name="searchby" class="form-control">
+                                            <option value="search-survey">Surveys</option>
+                                            <option value="search-benchmark">Benchmarks</option>
+                                            <option value="search-corner">Public Land Corners</option>
+                                            <option value="search-geocontrol">Geodetic Control</option>
+                                            <option value="search-plat">Plats</option>
+                                            <option value="search-taxmap">Taxlots</option>
+                                            <option value="search-countyroad">County Road</option>
+                                            <option value="search-smaps">Section Maps</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Surveys Search -->
+                            <div class="row">
+                                <div class="input-item col-xs-12 search-survey" id="input-surveynumber">
+                                    <div class="form-group">
+                                        <label for="surveynumber">Survey #: </label>
+                                        <input class="form-control" type="text" name="surveynumber" id="surveynumber">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Benchmarks Search -->
+                            <div class="row">
+                                <div class="hidden input-item col-xs-12 search-benchmark" id="input-benchmarkid">
+                                    <div class="form-group">
+                                        <p>Please Note: Washington County Benchmarks are based on the NGVD 29 Datum.</p>
+                                        <label for="benchmarkid">Benchmark ID: </label>
+                                        <input class="form-control" type="text" name="benchmarkid" id="benchmarkid" disabled>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Geocontrol Search -->
+                            <div class="row">
+                                <div class="hidden input-item col-xs-12 search-geocontrol" id="input-controlname">
+                                    <div class="form-group">
+                                        <p>Note: Not all GC surveys are geographically represented on the map.</p>
+                                        <label for="controlname">Geodetic Control Name: </label>
+                                        <input class="form-control" type="text" name="controlname" id="controlname" disabled>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Plat Search -->
+                            <div class="row">
+                                <div class="hidden input-item col-xs-12 col-sm-6 search-plat" id="input-platname">
+                                    <div class="form-group">
+                                        <label for="platname">Plat Name/Number: </label>
+                                        <input class="form-control" type="text" name="platname" id="platname" disabled>
+                                    </div>
+                                </div>
+                                <div class="hidden input-item col-xs-12 col-sm-6 search-plat" id="input-docnumber">
+                                    <div class="form-group">
+                                        <label for="docnumber">Document Number:</label>
+                                        <input class="form-control" type="text" name="docnumber" id="docnumber" disabled>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Corners Search -->
+                            <div class="row">
+                                <div class="hidden input-item col-xs-12 search-corner" id="input-cornerid">
+                                    <div class="form-group">
+                                        <label for="cornerid">Corner ID: </label>
+                                        <input class="form-control" type="text" name="cornerid" id="cornerid" disabled>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Taxmap Search -->
+                            <div class="row">
+                                <div class="hidden input-item col-xs-12 col-sm-6 search-taxmap" id="input-tlid">
+                                    <div class="form-group">
+                                        <label for="tlid">Taxlot ID: </label>
+                                        <input class="form-control" placeholder="Ex. 2S101AA00100" type="text" name="tlid" id="tlid" disabled>
+                                    </div>
+                                </div>
+                                <div class="hidden input-item col-xs-12 col-sm-6 search-taxmap" id="input-sitestrno">
+                                    <div class="form-group">
+                                        <label for="sitestrno">Situs Address Street #: </label>
+                                        <input class="form-control" type="text" name="sitestrno" id="sitestrno" diasbled>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Section Maps Search -->
+                            <div class="row">
+                                <div class="hidden input-item col-xs-12 search-smaps">
+                                    <div class="form-group">
+                                        <p><b>Warning:</b> The section maps are used mainly for showing county road related information. We stopped updating property boundary lines and city annexation information on section maps since April 25th, 2012. The annexation boundaries on the section maps do not include annexations after that date. You may find current annexations from other county's GIS applications or from <a href="http://www.oregonmetro.gov/index.cfm/go/by.web/id=24910" target="_blank">Metro's Web site.</a></p>
+                                    </div>
+                                </div>
+                               
+                            </div>
+
+                            <!-- County Road Search -->
+                            <div class="row">
+                                <div class="hidden input-item col-xs-12 search-countyroad" id="input-cntyroadid">
+                                    
+                                    <div class="form-group">
+                                        <p>County Road Number Search Examples:</p>
+
+                                        <ul>
+                                            <li>Please add leading zeros in the following cases: using 0001 to search county road number 1; using 0010 to search county road 10, etc.</li>
+                                            <li>To search county road with a fractional number, using 1338-5 for searching 1338 1/2; A190-75 for A-190 3/4, etc</li>
+                                            <li>To search County road with "A", using 0A24 for searching A-24; 00A1-25 for A-1 1/4; A177 for A-177, etc.</li>
+                                            <li>To search county market roads, using mr21 for searching market road 21.</li>
+                                        </ul>
+
+                                        <label for="cntyroadid">County Road Number: <span class="required-icon"></span></label>
+                                        <input class="form-control" type="text" name="cntyroadid" id="cntyroadid" disabled required>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <!-- Additional Search -->
+                            <div class="row">
+                                <div class="hidden input-item col-xs-12 search-corner search-plat" id="input-bookpage">
+                                    <div class="form-group">
+                                        <label for="bookpage">Book/Page:</label>
+                                        <input class="form-control" type="text" name="bookpage" id="bookpage" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-item col-xs-12 col-sm-6 search-survey search-corner search-geocontrol search-plat" id="input-surveyornumber">
+                                    <div class="form-group">
+                                        <label for="surveyornumber">Surveyor Number: </label>
+                                        <input class="form-control" type="text" name="surveyornumber" id="surveyornumber">
+                                    </div>
+                                </div>
+                                <div class="input-item col-xs-12 col-sm-6 search-survey search-corner search-geocontrol search-plat" id="input-surveyorname">
+                                    <div class="form-group">
+                                        <label for="surveyorname">Surveyor Name: </label>
+                                        <input class="form-control" type="text" name="surveyorname" id="surveyorname">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="input-item col-xs-12 col-sm-6 search-survey" id="input-fileddatemin">
+                                    <div class="form-group">
+                                        <label for="fileddatemin">Filed From: </label>
+                                        <input placeholder="YYYY-MM-DD" class="form-control datepicker" type="text" name="fileddatemin" id="fileddatemin">
+                                    </div>
+                                </div>
+                                <div class="input-item col-xs-12 col-sm-6 search-survey" id="input-fileddatemax">
+                                    <div class="form-group">
+                                        <label for="fileddatemax">Filed To: </label>
+                                        <input placeholder="YYYY-MM-DD" class="form-control datepicker" type="text" name="fileddatemax" id="fileddatemax">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="hidden input-item col-xs-12 col-sm-6 search-plat" id="input-recordeddatemin">
+                                    <div class="form-group">
+                                        <label for="recordeddatemin">Recorded From: </label>
+                                        <input placeholder="YYYY-MM-DD" class="form-control datepicker" type="text" name="recordeddatemin" id="recordeddatemin" disabled>
+                                    </div>
+                                </div>
+                                <div class="hidden input-item col-xs-12 col-sm-6 search-plat" id="input-recordeddatemax">
+                                    <div class="form-group">
+                                        <label for="recordeddatemax">Recorded To: </label>
+                                        <input placeholder="YYYY-MM-DD" class="form-control datepicker" type="text" name="recordeddatemax" id="recordeddatemax" disabled>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="input-item col-xs-12 col-sm-6 search-survey search-plat" id="input-receiveddatemin">
+                                    <div class="form-group">
+                                        <label for="receiveddatemin">Received From: </label>
+                                        <input placeholder="YYYY-MM-DD" class="form-control datepicker" type="text" name="receiveddatemin" id="receiveddatemin">
+                                    </div>
+                                </div>
+                                <div class="input-item col-xs-12 col-sm-6 search-survey search-plat" id="input-receiveddatemax">
+                                    <div class="form-group">
+                                        <label for="receiveddatemax">Received To: </label>
+                                        <input placeholder="YYYY-MM-DD" class="form-control datepicker" type="text" name="receiveddatemax" id="receiveddatemax">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="hidden input-item col-xs-12 search-plat" id="input-declarant">
+                                    <div class="form-group">
+                                        <label for="declarant">Declarant: </label>
+                                        <input class="form-control" type="text" name="declarant" id="declarant" disabled>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="input-item col-xs-12 col-sm-4 search-survey search-benchmark search-corner search-geocontrol search-plat search-smaps" id="input-tr">
+                                    <div class="form-group">
+                                        <label for="tr">Town/Range: </label>
+                                        <select name="tr" id="tr" class="form-control">
+                                            <option selected="" value=""> -- select an option -- </option>
+                                            <option value="1N1">1N1</option>
+                                            <option value="1N2">1N2</option>
+                                            <option value="1N3">1N3</option>
+                                            <option value="1N4">1N4</option>
+                                            <option value="1N5">1N5</option>
+                                            <option value="1N6">1N6</option>
+                                            <option value="2N2">2N2</option>
+                                            <option value="2N3">2N3</option>
+                                            <option value="2N4">2N4</option>
+                                            <option value="2N5">2N5</option>
+                                            <option value="2N6">2N6</option>
+                                            <option value="3N2">3N2</option>
+                                            <option value="3N3">3N3</option>
+                                            <option value="3N4">3N4</option>
+                                            <option value="3N5">3N5</option>
+                                            <option value="3N6">3N6</option>
+                                            <option value="1S1">1S1</option>
+                                            <option value="1S2">1S2</option>
+                                            <option value="1S3">1S3</option>
+                                            <option value="1S4">1S4</option>
+                                            <option value="1S5">1S5</option>
+                                            <option value="1S6">1S6</option>
+                                            <option value="2S1">2S1</option>
+                                            <option value="2S2">2S2</option>
+                                            <option value="2S3">2S3</option>
+                                            <option value="2S4">2S4</option>
+                                            <option value="3S1">3S1</option>
+                                            <option value="3S2">3S2</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-item col-xs-12 col-sm-4 search-survey search-benchmark search-corner search-geocontrol search-plat search-smaps" id="input-sec">
+                                    <div class="form-group">
+                                        <label for="sec">Section: </label>
+                                        <select name="sec" id="sec" class="form-control">
+                                            <option selected="" value=""> -- select an option -- </option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                            <option value="13">13</option>
+                                            <option value="14">14</option>
+                                            <option value="15">15</option>
+                                            <option value="16">16</option>
+                                            <option value="17">17</option>
+                                            <option value="18">18</option>
+                                            <option value="19">19</option>
+                                            <option value="20">20</option>
+                                            <option value="21">21</option>
+                                            <option value="22">22</option>
+                                            <option value="23">23</option>
+                                            <option value="24">24</option>
+                                            <option value="25">25</option>
+                                            <option value="26">26</option>
+                                            <option value="27">27</option>
+                                            <option value="28">28</option>
+                                            <option value="29">29</option>
+                                            <option value="30">30</option>
+                                            <option value="31">31</option>
+                                            <option value="32">32</option>
+                                            <option value="33">33</option>
+                                            <option value="34">34</option>
+                                            <option value="35">35</option>
+                                            <option value="36">36</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-item col-xs-12 col-sm-4 search-survey search-benchmark search-corner search-geocontrol search-plat" id="input-city">
+                                    <div class="form-group">
+                                        <label for="qtr">QTR: </label>
+                                        <select name="qtr" id="qtr" class="form-control">
+                                            <option selected="" value=""> -- select an option -- </option>
+                                            <option value="NW">NW</option>
+                                            <option value="NE">NE</option>
+                                            <option value="SW">SW</option>
+                                            <option value="SE">SE</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-item col-xs-12 col-sm-6 search-survey" id="input-iclient">
+                                    <div class="form-group">
+                                        <label for="iclient">Client: </label>
+                                        <input class="form-control" type="text" name="iclient" id="iclient">
+                                    </div>
+                                </div>
+                                <div class="hidden input-item col-xs-12 col-sm-6 search-plat" id="input-city">
+                                    <div class="form-group">
+                                        <label for="city">City: </label>
+                                        <select name="city" id="city" class="form-control" disabled>
+                                            <option selected="" value=""> -- select an option -- </option>
+                                            <option value="Banks">Banks</option>
+                                            <option value="Beaverton">Beaverton</option>
+                                            <option value="Cornelius">Cornelius</option>
+                                            <option value="Durham">Durham</option>
+                                            <option value="Forest Grove">Forest Grove</option>
+                                            <option value="Gaston">Gaston</option>
+                                            <option value="Hillsboro">Hillsboro</option>
+                                            <option value="King City">King City</option>
+                                            <option value="North Plains">North Plains</option>
+                                            <option value="Portland">Portland</option>
+                                            <option value="Sherwood">Sherwood</option>
+                                            <option value="Tigard">Tigard</option>
+                                            <option value="Tualatin">Tualatin</option>
+                                            <option value="Washington Co.">Washington Co.</option>
+                                            <option value="Wilsonville">Wilsonville</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-item col-xs-12 col-sm-6 search-survey search-plat" id="input-businessname">
+                                    <div class="form-group">
+                                        <label for="businessname">Business: </label>
+                                        <input class="form-control" type="text" name="businessname" id="businessname">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="error-message hidden"></div>
+                                <input value="Search" id="search-submit" type="submit" class="modal-submit btn btn-primary">
+                                <input value="Clear" id="search-clear" type="button" class="clear-form btn btn-primary">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-yp-bottom">
+                <div class="col-xs-12">
+                    <h2>Results:</h2>
+                    <table id="datatable" class="datatable stripe row-border hover order-column" style="width:100%">
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <!-- Conditions End -->
+    </div>
+    <script src="../core/js/moment.js?ver=11062019"></script>
+    <!-- Footer Start -->
+        <div class="container-fluid blue-bg" id="footer-section">
+    <div class="container margin-yp">
+        <div class="row">
+            <!-- Footer Content Based on URL -->
+            <div class="col-xs-12 text-center">
+                © Copyright <span id="footeryear"></span> by <a href="https://www.co.washington.or.us/">Washington County, Oregon.</a> All rights reserved. <a href="http://www.co.washington.or.us/PrivacyStatement.cfm">Disclaimer and Privacy Statement.</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modala">
+    <div class="loader">Loading...</div>
+</div>
+<script src="../core/js/function.js?ver=08292022"></script>
+<script src="js/main.js?ver=08292022"></script>
+    <!-- Footer End -->
+    
+</body>
+
+</html>

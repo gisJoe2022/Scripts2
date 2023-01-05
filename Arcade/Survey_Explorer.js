@@ -243,7 +243,6 @@ var m3 = MID(tlid, 3, 4)
 var m4 = MID(tlid, 5, 1)
 var m5 = MID(tlid, 6, 1)
 
-
 var l3 = Left(tlid, 3)
 var l5 = Left(tlid, 5)
 var l6 = Left(tlid, 6)
@@ -253,10 +252,10 @@ var p2 = ".pdf"
 
 //tests for 3 char taxmaps
 if (m1 == '00'){
-    if (m3 == '000') {
+    if (m3 == '0000') {
         gn = l3
     }
-    if (m3 != '0') {
+    if (m3 != '0000') {
         gn = l3 + m4
     }
 }

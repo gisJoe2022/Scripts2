@@ -1,0 +1,17 @@
+#header-section, #footer-section, form, .form, iframe{
+	display: none;
+}
+
+#datatable_wrapper > div{
+	display: none;
+}
+
+#datatable_wrapper > div.dataTables_scroll{
+	display: block;
+}
+
+#datatable tr, #datatable td{
+	margin: 0 !important;
+	padding: 5px !important;
+	background-image: none !important;
+}

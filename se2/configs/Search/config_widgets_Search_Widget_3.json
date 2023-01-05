@@ -90,7 +90,7 @@
     {
       "layerId": "Survey_Explorer_6632",
       "url": "https://gispub.co.washington.or.us/server/rest/services/LUT_ETS/Survey_Explorer/MapServer/12",
-      "name": "Geodesic Control",
+      "name": "Geodetic Control",
       "placeholder": "Station Name",
       "searchFields": [
         "FULLNAME"
@@ -125,7 +125,7 @@
       "layerId": "Survey_Explorer_9254",
       "url": "https://gispub.co.washington.or.us/server/rest/services/LUT_ETS/Survey_Explorer/MapServer/2",
       "name": "DLC (Donation Land Claim)",
-      "placeholder": "ex. Doe, Jane",
+      "placeholder": "Name",
       "searchFields": [
         "BOTHNAMES"
       ],
@@ -159,7 +159,7 @@
       "layerId": "Survey_Explorer_3638",
       "url": "https://gispub.co.washington.or.us/server/rest/services/LUT_ETS/Survey_Explorer/MapServer/4",
       "name": "Plat",
-      "placeholder": "ex. Foggy Bottom",
+      "placeholder": "Plat Name",
       "searchFields": [
         "Platname"
       ],
@@ -208,7 +208,7 @@
       "layerId": "Survey_Explorer_3149",
       "url": "https://gispub.co.washington.or.us/server/rest/services/LUT_ETS/Survey_Explorer/MapServer/8",
       "name": "Tax Lot",
-      "placeholder": "ex. 1N323xxxxxxx",
+      "placeholder": "Tax Lot ID",
       "searchFields": [
         "TLID"
       ],
