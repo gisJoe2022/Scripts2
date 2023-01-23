@@ -20,7 +20,7 @@ var fields = [
 // Returns the predominant category as the alias
 // defined in the fields array. If there is a tie,
 // then both names are concatenated and used to
-// indicate the tie
+// indicate the tie3
 
 function getPredominantCategory(fieldsArray){
   var maxValue = -Infinity;

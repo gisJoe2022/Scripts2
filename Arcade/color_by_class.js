@@ -20,8 +20,10 @@ return Labeler
 // no data expression
 IIf (IsEmpty($feature.Stamping), 'No Data', Proper($feature.Stamping, 'firstword'));
 
-// pupup html                             expression inserted here
-<div style="padding: 5px; background-color: {expression/expr0};"><b style="">
-<font color="#ffffff" face="Tahoma" size="3" style="">{projName_4}</font></b></div><p style="margin: 0in;"><br /></p>
+// pupup html           expression inserted here for background color
+iv style="padding: 5px; background-color: {expression/expr4};">
+<font color="#ffffff" face="Verdana" size="3">{expression/expr5}</font><br />
+</div><p style="margin: 0in;"><b>Corner ID</b>: {CORNER_ID}<br /><b>AltMon</b>: {expression/expr0}<br />
+</p><b>Visit Year</b>: {expression/expr1}<br /><b>BT Year</b>: {expression/expr2}<br /><b>Final Year</b>: {expression/expr3}
 
 

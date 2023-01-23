@@ -227,8 +227,9 @@ else {
     return p1 + '0000' + p2
 }
 
-// main tax map
-
+// get tax map
+// evaluates TLID to pass correct string to url 
+// to get the correct tax map.
 // main tax map 
 // 12/20/2022
 
@@ -242,6 +243,7 @@ var m2 = MID(tlid, 5, 2)
 var m3 = MID(tlid, 3, 4)
 var m4 = MID(tlid, 5, 1)
 var m5 = MID(tlid, 6, 1)
+
 
 var l3 = Left(tlid, 3)
 var l5 = Left(tlid, 5)
@@ -269,29 +271,3 @@ else if (m5 == '0'){
     
 }
 return p1 + gn + p2
-
-
-
-// evaluates TLID to pass correct string to url 
-// to get the correct tax map.
-// 11/5/2022
-var num = '3S1060000301'//$feature.TLID
-var id = '3S1060000301'
-
-var v0 = MID(num, 3, 1)
-
-var l3 = Left(num, 3)
-var l5 = Left(num, 5)
-
-var p1 = "https://mtbachelor.co.washington.or.us/images/colortaxmaps/"
-var p2 = ".pdf"
-
-//tests for 3 char taxmaps
-if (v0 == '0'){
-    return p1 + l3 + p2
-}
-// returns 5 char taxmap if above is false
-else {
-    
-    return p1 + l5 + p2
-}
