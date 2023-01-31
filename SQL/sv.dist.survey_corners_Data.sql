@@ -18,5 +18,5 @@ FROM    survey.CORNERS INNER JOIN
 */
 
 SELECT  svcorn.Shape, svcorn.CORNER_ID, survey.V_Corners_Data.CORNERID, svcorn.AltMon, survey.V_Corners_Data.TopYear, svcorn.OBJECTID
-FROM    survey.CORNERS_evw0 AS svcorn INNER JOIN
+FROM    survey.CORNERS_evw AS svcorn INNER JOIN
            survey.V_Corners_Data ON svcorn.CORNER_ID = survey.V_Corners_Data.CORNERID

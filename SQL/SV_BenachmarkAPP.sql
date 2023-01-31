@@ -1,0 +1,4 @@
+SELECT  TOP (100) PERCENT survey.BENCHMKS_evw0.OBJECTID, survey.v_benchmarkApp.Benchmark_ID, survey.v_benchmarkApp.Elevation1, survey.v_benchmarkApp.Monument, survey.v_benchmarkApp.Date_Established, survey.v_benchmarkApp.Stamping, survey.v_benchmarkApp.Location, survey.v_benchmarkApp.Ref1, survey.v_benchmarkApp.Ref2, survey.v_benchmarkApp.Ref3, 
+           survey.v_benchmarkApp.Ref4, survey.v_benchmarkApp.bmPhoto, survey.v_benchmarkApp.Condition1, survey.v_benchmarkApp.Checked_On2001, survey.BENCHMKS_evw0.Shape
+FROM    survey.BENCHMKS_evw0 INNER JOIN
+           survey.v_benchmarkApp ON survey.BENCHMKS_evw0.ID = survey.v_benchmarkApp.Benchmark_ID

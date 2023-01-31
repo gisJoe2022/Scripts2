@@ -18,5 +18,5 @@ FROM    survey.CORNERS_evw0 INNER JOIN
 */
 
 SELECT  svcorn.Shape, survey.V_cornersApp.CORNER_ID, survey.V_cornersApp.GPS_ID, survey.V_cornersApp.BOOK_PAGE_ENTRY, survey.V_cornersApp.DESCRIPTION, survey.V_cornersApp.STATUSDATE, survey.V_cornersApp.BLMNO, survey.V_cornersApp.Photo_name, svcorn.OBJECTID
-FROM    survey.CORNERS_evw0 AS svcorn INNER JOIN
+FROM    survey.CORNERS_evw AS svcorn INNER JOIN
            survey.V_cornersApp ON svcorn.CORNER_ID = survey.V_cornersApp.CORNER_ID
