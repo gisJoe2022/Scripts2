@@ -17,8 +17,8 @@ import os
 print ("Copy Process Started")
 print (" ")
 
-src_dir = "//emcgis/nas/GISDATA/Workgroups/GISPlanning/Transportation_Projects/TV_HWY/Data/Shaw_Photos_All"
-dst_dir = "//emcgis/nas/GISDATA/Workgroups/GISPlanning/Transportation_Projects/TV_HWY/Data/Shaw_Photos_jpg"
+src_dir = r"//emcgis/nas/GISDATA/Workgroups/GISPlanning/Transportation_Projects/TV_HWY/Data/Shaw_Photos_All"
+dst_dir = r"//emcgis/nas/GISDATA/Workgroups/GISPlanning/Transportation_Projects/TV_HWY/Data/Shaw_Photos_jpg"
 for jpgfile in glob.iglob(os.path.join(src_dir, "*.jpg")):
     shutil.copy(jpgfile, dst_dir)
 print (" ")

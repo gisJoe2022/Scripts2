@@ -86,6 +86,10 @@ var fyear = $feature.Final_Year;
 var am = $feature.AltMon;
 var thisyear = Year(Now());
 
+var fyear = $feature.Final_Year;
+var am = $feature.AltMon;
+var thisyear = Year(Now());
+
 if (am == 'WLST'){
     '#FFDE3E'}
     else if (am == '4COR'){
@@ -95,28 +99,28 @@ if (am == 'WLST'){
         '#000000'
     }
     else if ((IsEmpty(am) && IsEmpty(fyear))){
-        '#FF7F7F'
+        '#ED5151'
     }
     else if (am == 'OTHC'){
         '#858585'
     }
     else if (fyear >= thisyear -5){
-        '#149ECE'
+        '#00C5FF'
     }
     else if ((fyear <= thisyear -6) && (fyear >= thisyear -10)){
-        '#FFDE3E'
+        '#0070FF'
     }
       else if ((fyear <= thisyear -11) && (fyear >= thisyear -20)){
-        '#A7C636'
+        '#38A800'
     }
        else if ((fyear <= thisyear -21) && (fyear >= thisyear -35)){
-        '#FC921F'
+        '#C500FF'
     }
-       else if ((fyear <= thisyear -36) && (fyear >= thisyear -150)){
-        '#9E559C'
+       else if ((fyear <= thisyear -36) && (fyear >= thisyear -250)){
+        '#FFAA00'
     }
 else
-   return '#00FFFF'
+   return 'wrong'
 
 
 
