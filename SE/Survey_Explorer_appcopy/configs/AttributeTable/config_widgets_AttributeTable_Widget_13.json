@@ -1,0 +1,648 @@
+{
+  "layerInfos": [
+    {
+      "name": "Address",
+      "id": "Web_address_6532",
+      "layer": {
+        "url": "https://pappgiswa1.co.washington.or.us/arcgispub/rest/services/LUT_ECS/Web_address/MapServer/0",
+        "fields": [
+          {
+            "name": "OBJECTID",
+            "alias": "OBJECTID",
+            "show": false
+          },
+          {
+            "name": "A_ID",
+            "alias": "A_ID",
+            "show": true,
+            "format": {
+              "places": 2,
+              "digitSeparator": true
+            }
+          },
+          {
+            "name": "SERIAL",
+            "alias": "SERIAL",
+            "show": true,
+            "format": {
+              "places": 2,
+              "digitSeparator": true
+            }
+          },
+          {
+            "name": "YEAR",
+            "alias": "YEAR",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": true
+            }
+          },
+          {
+            "name": "STATUS",
+            "alias": "STATUS",
+            "show": true
+          },
+          {
+            "name": "HOUSE_NUMBER",
+            "alias": "HOUSE_NUMBER",
+            "show": true
+          },
+          {
+            "name": "STREET_NAME",
+            "alias": "STREET_NAME",
+            "show": true
+          },
+          {
+            "name": "STREET_TYPE",
+            "alias": "STREET_TYPE",
+            "show": true
+          },
+          {
+            "name": "UNIT_NUMBER",
+            "alias": "UNIT_NUMBER",
+            "show": true
+          },
+          {
+            "name": "CITY",
+            "alias": "CITY",
+            "show": true
+          },
+          {
+            "name": "PRE_DIRECTION",
+            "alias": "PRE_DIRECTION",
+            "show": true
+          },
+          {
+            "name": "TAXLOT",
+            "alias": "TAXLOT",
+            "show": true
+          },
+          {
+            "name": "X_COORDINATE",
+            "alias": "X_COORDINATE",
+            "show": true,
+            "format": {
+              "places": 2,
+              "digitSeparator": true
+            }
+          },
+          {
+            "name": "Y_COORDINATE",
+            "alias": "Y_COORDINATE",
+            "show": true,
+            "format": {
+              "places": 2,
+              "digitSeparator": true
+            }
+          },
+          {
+            "name": "Z_COORDINATE",
+            "alias": "Z_COORDINATE",
+            "show": true,
+            "format": {
+              "places": 2,
+              "digitSeparator": true
+            }
+          },
+          {
+            "name": "FLOOR",
+            "alias": "FLOOR",
+            "show": true
+          },
+          {
+            "name": "DIRECTION",
+            "alias": "DIRECTION",
+            "show": true
+          },
+          {
+            "name": "STATE",
+            "alias": "STATE",
+            "show": true
+          },
+          {
+            "name": "ADDRESS_1",
+            "alias": "ADDRESS_1",
+            "show": true
+          },
+          {
+            "name": "ADDRESS_2",
+            "alias": "ADDRESS_2",
+            "show": true
+          },
+          {
+            "name": "ZIP",
+            "alias": "ZIP",
+            "show": true
+          },
+          {
+            "name": "COUNTRY",
+            "alias": "COUNTRY",
+            "show": true
+          },
+          {
+            "name": "COUNTY_CODE",
+            "alias": "COUNTY_CODE",
+            "show": true
+          },
+          {
+            "name": "ZIP_PLUS4",
+            "alias": "ZIP_PLUS4",
+            "show": true
+          },
+          {
+            "name": "UNIT_TYPE",
+            "alias": "UNIT_TYPE",
+            "show": true
+          },
+          {
+            "name": "BUILDING_TYPE",
+            "alias": "BUILDING_TYPE",
+            "show": true
+          },
+          {
+            "name": "BUILDING_NUMBER",
+            "alias": "BUILDING_NUMBER",
+            "show": true
+          },
+          {
+            "name": "ACCOUNT_ID",
+            "alias": "ACCOUNT_ID",
+            "show": true,
+            "format": {
+              "places": 2,
+              "digitSeparator": true
+            }
+          },
+          {
+            "name": "FULLADDRESS",
+            "alias": "FULLADDRESS",
+            "show": true
+          },
+          {
+            "name": "updated",
+            "alias": "updated",
+            "show": true,
+            "format": {
+              "dateFormat": "shortDateShortTime"
+            }
+          },
+          {
+            "name": "STATICID",
+            "alias": "STATICID",
+            "show": true,
+            "format": {
+              "places": 2,
+              "digitSeparator": true
+            }
+          },
+          {
+            "name": "Shape",
+            "alias": "Shape",
+            "show": false
+          },
+          {
+            "name": "SITUS_ID",
+            "alias": "SITUS_ID",
+            "show": true,
+            "format": {
+              "places": 2,
+              "digitSeparator": true
+            }
+          }
+        ]
+      },
+      "show": false,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "Cities",
+      "id": "Cities_1788",
+      "layer": {
+        "url": "https://services1.arcgis.com/LX1Oq2Zzv8CmxRHo/arcgis/rest/services/Cities/FeatureServer/0"
+      },
+      "show": false,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "Road vacations",
+      "id": "Web_road_vacations_611",
+      "layer": {
+        "url": "https://pappgiswa1.co.washington.or.us/arcgispub/rest/services/LUT_ECS/Web_road_vacations/FeatureServer/0"
+      },
+      "show": true,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "Dedications",
+      "id": "web_dedications_6715",
+      "layer": {
+        "url": "https://pappgiswa1.co.washington.or.us/arcgispub/rest/services/LUT_ECS/web_dedications/FeatureServer/0"
+      },
+      "show": true,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "Plats",
+      "id": "sv_plats_9931",
+      "layer": {
+        "url": "https://pappgiswa1.co.washington.or.us/arcgispub/rest/services/LUT_ECS/sv_plats/MapServer/0"
+      },
+      "show": true,
+      "showAttachments": false,
+      "sortField": "Shape",
+      "isDescending": false
+    },
+    {
+      "name": "Public Land Corners",
+      "id": "featureServer_1293",
+      "layer": {
+        "url": "https://pappgiswa1.co.washington.or.us/arcgispub/rest/services/LUT_ECS/sv_corners/featureServer/0"
+      },
+      "show": true,
+      "showAttachments": false,
+      "sortField": "CORNER_ID",
+      "isDescending": false
+    },
+    {
+      "name": "GeoControl",
+      "id": "geocontrols_1446_0",
+      "layer": {
+        "url": "https://pappgiswa1.co.washington.or.us/arcgispub/rest/services/LUT_ECS/geocontrols/MapServer/0"
+      },
+      "show": true,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "Benchmarks",
+      "id": "sv_benchmarks_7310_0",
+      "layer": {
+        "url": "https://pappgiswa1.co.washington.or.us/arcgispub/rest/services/LUT_ECS/sv_benchmarks/MapServer/0"
+      },
+      "show": true,
+      "showAttachments": false,
+      "sortField": "Shape",
+      "isDescending": false
+    },
+    {
+      "name": "County Road (grouped by number)",
+      "id": "web_county_road_2071_0",
+      "layer": {
+        "url": "https://pappgiswa1.co.washington.or.us/arcgispub/rest/services/LUT_ECS/web_county_road/MapServer/0"
+      },
+      "show": false,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "County Road (Grouped by county road number & road name)",
+      "id": "web_county_road_name_8135_0",
+      "layer": {
+        "url": "https://gispub.co.washington.or.us/server/rest/services/LUT_ETS/web_county_road_name/MapServer/0"
+      },
+      "show": false,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "Surveys",
+      "id": "sv_surveys_2271_0",
+      "layer": {
+        "url": "https://pappgiswa1.co.washington.or.us/arcgispub/rest/services/LUT_ECS/sv_surveys/MapServer/0"
+      },
+      "show": true,
+      "showAttachments": false,
+      "sortField": "Shape",
+      "isDescending": false
+    },
+    {
+      "name": "Taxlots",
+      "id": "Taxlots_SP_5631_0",
+      "layer": {
+        "url": "https://pappgiswa1.co.washington.or.us/arcgispub/rest/services/baselayers/Taxlots_SP/MapServer/0"
+      },
+      "show": false,
+      "showAttachments": false,
+      "sortField": "TLNO",
+      "isDescending": false
+    },
+    {
+      "name": "Situs Address",
+      "id": "Taxlots_SP_5631_1",
+      "layer": {
+        "url": "https://pappgiswa1.co.washington.or.us/arcgispub/rest/services/baselayers/Taxlots_SP/MapServer/1"
+      },
+      "show": false,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "Quarter Section",
+      "id": "Web_PLSS_8407_0",
+      "layer": {
+        "url": "https://pappgiswa1.co.washington.or.us/arcgispub/rest/services/LUT_ECS/Web_PLSS/MapServer/0"
+      },
+      "show": false,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "Section",
+      "id": "Web_PLSS_8407_1",
+      "layer": {
+        "url": "https://pappgiswa1.co.washington.or.us/arcgispub/rest/services/LUT_ECS/Web_PLSS/MapServer/1"
+      },
+      "show": false,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "Township",
+      "id": "Web_PLSS_8407_2",
+      "layer": {
+        "url": "https://pappgiswa1.co.washington.or.us/arcgispub/rest/services/LUT_ECS/Web_PLSS/MapServer/2"
+      },
+      "show": false,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "DLC",
+      "id": "Web_DLC_6466_0",
+      "layer": {
+        "url": "https://pappgiswa1.co.washington.or.us/arcgispub/rest/services/LUT_ECS/Web_DLC/MapServer/0"
+      },
+      "show": true,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "Street Anno",
+      "id": "Street_Anno_4210_0",
+      "layer": {
+        "url": "https://pappgiswa1.co.washington.or.us/arcgispub/rest/services/basemaps/Street_Anno/MapServer/0"
+      },
+      "show": false,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "Aerial photo 2019",
+      "id": "aerials2019_4762",
+      "layer": {
+        "url": "https://gisimg.co.washington.or.us/agsimage/rest/services/Orthos/aerials2019/ImageServer"
+      },
+      "show": false,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "Aerial photos 2017(6-inch)",
+      "id": "2017_6INCH_8368",
+      "layer": {
+        "url": "https://pappgiswa1.co.washington.or.us/arcgispub/rest/services/Orthos/2017_6INCH/ImageServer"
+      },
+      "show": false,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "Aerial photos 2016",
+      "id": "2016_MOSAIC_Countywide_209",
+      "layer": {
+        "url": "https://pappgiswa1.co.washington.or.us/arcgispub/rest/services/Orthos/2016_MOSAIC_Countywide/ImageServer"
+      },
+      "show": false,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "Aerial photos 2015",
+      "id": "MOSAIC_2015_6inch_5580",
+      "layer": {
+        "url": "https://pappgiswa1.co.washington.or.us/arcgispub/rest/services/Orthos/MOSAIC_2015_6inch/ImageServer"
+      },
+      "show": false,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "Aerial photos 2014",
+      "id": "Photos_2014_SP_855",
+      "layer": {
+        "url": "https://pappgiswa1.co.washington.or.us/arcgispub/rest/services/Orthos/Photos_2014_SP/ImageServer",
+        "fields": [
+          {
+            "name": "OBJECTID",
+            "alias": "OBJECTID",
+            "show": false,
+            "format": null
+          },
+          {
+            "name": "Name",
+            "alias": "Name",
+            "show": true,
+            "format": null
+          },
+          {
+            "name": "MinPS",
+            "alias": "MinPS",
+            "show": true,
+            "format": {
+              "places": 2,
+              "digitSeparator": true
+            }
+          },
+          {
+            "name": "MaxPS",
+            "alias": "MaxPS",
+            "show": true,
+            "format": {
+              "places": 2,
+              "digitSeparator": true
+            }
+          },
+          {
+            "name": "LowPS",
+            "alias": "LowPS",
+            "show": true,
+            "format": {
+              "places": 2,
+              "digitSeparator": true
+            }
+          },
+          {
+            "name": "HighPS",
+            "alias": "HighPS",
+            "show": true,
+            "format": {
+              "places": 2,
+              "digitSeparator": true
+            }
+          },
+          {
+            "name": "Category",
+            "alias": "Category",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": true
+            }
+          },
+          {
+            "name": "Tag",
+            "alias": "Tag",
+            "show": true,
+            "format": null
+          },
+          {
+            "name": "GroupName",
+            "alias": "GroupName",
+            "show": true,
+            "format": null
+          },
+          {
+            "name": "ProductName",
+            "alias": "ProductName",
+            "show": true,
+            "format": null
+          },
+          {
+            "name": "CenterX",
+            "alias": "CenterX",
+            "show": true,
+            "format": {
+              "places": 2,
+              "digitSeparator": true
+            }
+          },
+          {
+            "name": "CenterY",
+            "alias": "CenterY",
+            "show": true,
+            "format": {
+              "places": 2,
+              "digitSeparator": true
+            }
+          },
+          {
+            "name": "ZOrder",
+            "alias": "ZOrder",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": true
+            }
+          },
+          {
+            "name": "Shape",
+            "alias": "Shape",
+            "show": false,
+            "format": null
+          },
+          {
+            "name": "Shape.STArea()",
+            "alias": "Shape.STArea()",
+            "show": false,
+            "format": {
+              "places": 2,
+              "digitSeparator": true
+            }
+          },
+          {
+            "name": "Shape.STLength()",
+            "alias": "Shape.STLength()",
+            "show": false,
+            "format": {
+              "places": 2,
+              "digitSeparator": true
+            }
+          }
+        ]
+      },
+      "show": false,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "Boundary",
+      "id": "Web_Aerial2010_8212_1",
+      "layer": {
+        "url": "https://pappgiswa1.co.washington.or.us/arcgispub/rest/services/LUT_ECS/Web_Aerial2010/MapServer/1"
+      },
+      "show": false,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "Footprint",
+      "id": "Web_Aerial2010_8212_2",
+      "layer": {
+        "url": "https://pappgiswa1.co.washington.or.us/arcgispub/rest/services/LUT_ECS/Web_Aerial2010/MapServer/2"
+      },
+      "show": false,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "Boundary",
+      "id": "Web_Aerial2010_8212_5",
+      "layer": {
+        "url": "https://pappgiswa1.co.washington.or.us/arcgispub/rest/services/LUT_ECS/Web_Aerial2010/MapServer/5"
+      },
+      "show": false,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "Footprint",
+      "id": "Web_Aerial2010_8212_6",
+      "layer": {
+        "url": "https://pappgiswa1.co.washington.or.us/arcgispub/rest/services/LUT_ECS/Web_Aerial2010/MapServer/6"
+      },
+      "show": false,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    }
+  ],
+  "table": {
+    "pageSizeOptions": [
+      25,
+      50,
+      100,
+      1000
+    ]
+  },
+  "hideExportButton": true,
+  "initiallyExpand": false,
+  "filterByMapExtent": false,
+  "allowTextSelection": true,
+  "syncWithLayers": false
+}
