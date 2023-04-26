@@ -17,6 +17,7 @@ arcpy.env.overwriteOutput = True
 myfolder = arcpy.env.workspace
 arcpy.env.workspace = "C:/TEMP1/rest_test"
 
+
 # rest parameters
 params = {'f': 'json', 'where': '1=1', 'geometryType': 'esriGeometryPolygon', 'spatialRel': 'esriSpatialRelIntersects','outFields': '*', 'returnGeometry': 'true'}
 

@@ -1,7 +1,7 @@
 from PIL import Image, ImageSequence
 import os
 
-#tiff_path = r"\\pdoclsde1\Images\survey\Taxmaps"
+#tiff_path = r"Z:\Testing\Tiff_to_PDF"
 
 def tiff_to_pdf(tiff_path: str) -> str:
  
@@ -17,4 +17,5 @@ def tiff_to_pdf(tiff_path: str) -> str:
         images[0].save(pdf_path)
     else:
         images[0].save(pdf_path, save_all=True,append_images=images[1:])
+    
     return pdf_path
