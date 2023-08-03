@@ -1,22 +1,50 @@
-//tax map expression
-var lotid = $feature.TLID
-var fivedig = Left(lotid, 5)
-var seventest = MID(lotid, 5, 2)
-var sevendig = Left(lotid, 7)
+// get tax map
+// evaluates TLID to pass correct string to url 
+// to get the correct tax map.
+// main tax map 
+// 12/20/2022
 
-if (sevetest == "OO"){
-    return "http://mtbachelor.co.washington.or.us/images/survey/dev/TaxMapPDF/" + Left($feature.TLID, 5) + ".pdf"
+// evaluates TLID to pass correct string to url 
+// to get the correct tax map.
+var tlid = $feature.TLID    // '3S1060000301'
+
+var gn = MID(tlid, 0, 7)
+var m1 = MID(tlid, 3, 2)
+var m2 = MID(tlid, 5, 2)
+var m3 = MID(tlid, 3, 4)
+var m4 = MID(tlid, 5, 1)
+var m5 = MID(tlid, 6, 1)
+
+
+var l3 = Left(tlid, 3)
+var l5 = Left(tlid, 5)
+var l6 = Left(tlid, 6)
+
+var p1 = "https://mtbachelor.co.washington.or.us/images/colortaxmaps/"
+var p2 = ".pdf"
+
+//tests for 3 char taxmaps
+if (m1 == '00'){
+    if (m3 == '0000') {
+        gn = l3
+    }
+    if (m3 != '0000') {
+        gn = l3 + m4
+    }
 }
-else{
-    return "http://mtbachelor.co.washington.or.us/images/survey/dev/TaxMapPDF/" + Left($feature.TLID, 7) + ".pdf"
+// returns 5 char taxmap if above is false
+else if (m2 == '00'){
+    gn = l5
+    //return p1 + l5 + p2
 }
+else if (m5 == '0'){
+    gn = l6
+    
+}
+return p1 + gn + p2
 
-//new one
-var seven = "http://mtbachelor.co.washington.or.us/images/survey/dev/TaxMapPDF/" + Left($feature.TLID, 7) + ".pdf"
-var five = "http://mtbachelor.co.washington.or.us/images/survey/dev/TaxMapPDF/" + Left($feature.TLID, 5) + ".pdf"
-var lotid = $feature.TLID
-var seventest = MID(lotid, 5, 2)
 
+//____________________________________________________________________________________________
 
 
 <!---

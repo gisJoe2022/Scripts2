@@ -10,4 +10,4 @@
 */
 
 UPDATE dbo.CntyRoad_Image /* table with data */
-SET Filename = CONCAT('CR', CRoad_ID, '.pdf') /* filename is th efield to be updated with CONCAT() */
+SET Filename = CONCAT('CR', CRoad_ID, '.pdf') /* filename is the field to be updated with CONCAT() */

@@ -1,6 +1,6 @@
 /*
 ---------------------------------------------------------------------------
-# NAME: Replace.sql
+# NAME: UPDATE_wREPLACE.sql
 # Description: instantly replaces special characters.
 # Purpose: Batch data clean-up.
 # Author:      Joe Hayes
