@@ -103,11 +103,9 @@ IIf (IsEmpty($feature.Ref4),
 // plats
 "http://mtbachelor.co.washington.or.us/images/survey/dev/Plats/" + $feature.Platname + ".pdf"
 
-// surveys
-// "http://mtbachelor.co.washington.or.us/images/survey/dev/Surveys/" + $feature.SurvNum + ".pdf"
-var survnum = $feature.SurvNum
-
-//tests for 3 char taxmaps
+// surveys -----------------------------------------------------------------------------------------
+// get survey image
+var survnum = $feature.SN // or $feature.SurvNum
 if (survnum <= 5000){
    return "https://mtbachelor.co.washington.or.us/images/survey/surveys/5000/" + survnum + ".pdf"
 }

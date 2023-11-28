@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MD_Metadata xmlns="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:srv="http://www.isotc211.org/2005/srv" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<fileIdentifier gco:nilReason="missing">
+</fileIdentifier>
+<language>
+<LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="eng" codeSpace="ISO639-2">eng</LanguageCode>
+</language>
+<characterSet>
+<MD_CharacterSetCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode" codeListValue="utf8" codeSpace="ISOTC211/19115">utf8</MD_CharacterSetCode>
+</characterSet>
+<hierarchyLevel>
+<MD_ScopeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset" codeSpace="ISOTC211/19115">dataset</MD_ScopeCode>
+</hierarchyLevel>
+<contact>
+<CI_ResponsibleParty>
+<organisationName>
+<gco:CharacterString>Washington County, Oregon</gco:CharacterString>
+</organisationName>
+<contactInfo gco:nilReason="missing">
+</contactInfo>
+<role>
+<CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="custodian" codeSpace="ISOTC211/19115">custodian</CI_RoleCode>
+</role>
+</CI_ResponsibleParty>
+</contact>
+<dateStamp>
+<gco:Date>2023-10-16</gco:Date>
+</dateStamp>
+<metadataStandardName>
+<gco:CharacterString>NAP - Metadata</gco:CharacterString>
+</metadataStandardName>
+<metadataStandardVersion>
+<gco:CharacterString>1.2</gco:CharacterString>
+</metadataStandardVersion>
+<spatialRepresentationInfo>
+<MD_VectorSpatialRepresentation gco:nilReason="missing">
+</MD_VectorSpatialRepresentation>
+</spatialRepresentationInfo>
+<referenceSystemInfo gco:nilReason="missing">
+</referenceSystemInfo>
+<identificationInfo>
+<MD_DataIdentification>
+<citation>
+<CI_Citation>
+<title>
+<gco:CharacterString>Washington County Metadata Template</gco:CharacterString>
+</title>
+<date gco:nilReason="missing">
+</date>
+<citedResponsibleParty>
+<CI_ResponsibleParty>
+<organisationName>
+<gco:CharacterString>Washington County, Oregon</gco:CharacterString>
+</organisationName>
+<contactInfo gco:nilReason="missing">
+</contactInfo>
+<role>
+<CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="custodian" codeSpace="ISOTC211/19115">custodian</CI_RoleCode>
+</role>
+</CI_ResponsibleParty>
+</citedResponsibleParty>
+</CI_Citation>
+</citation>
+<abstract>
+<gco:CharacterString>Intent of this layer is to generate a metadata template to be used to start populating required metadata fields</gco:CharacterString>
+</abstract>
+<purpose>
+<gco:CharacterString>Template for populating metadata</gco:CharacterString>
+</purpose>
+<credit>
+<gco:CharacterString>Washington County, Oregon</gco:CharacterString>
+</credit>
+<status gco:nilReason="missing">
+</status>
+<pointOfContact>
+<CI_ResponsibleParty>
+<organisationName>
+<gco:CharacterString>Washington County, Oregon</gco:CharacterString>
+</organisationName>
+<contactInfo gco:nilReason="missing">
+</contactInfo>
+<role>
+<CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="custodian" codeSpace="ISOTC211/19115">custodian</CI_RoleCode>
+</role>
+</CI_ResponsibleParty>
+</pointOfContact>
+<resourceMaintenance>
+<MD_MaintenanceInformation>
+<maintenanceAndUpdateFrequency>
+<MD_MaintenanceFrequencyCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_MaintenanceFrequencyCode" codeListValue="asNeeded" codeSpace="ISOTC211/19115">asNeeded</MD_MaintenanceFrequencyCode>
+</maintenanceAndUpdateFrequency>
+</MD_MaintenanceInformation>
+</resourceMaintenance>
+<descriptiveKeywords>
+<MD_Keywords>
+<keyword>
+<gco:CharacterString>template</gco:CharacterString>
+</keyword>
+<keyword>
+<gco:CharacterString>metadata</gco:CharacterString>
+</keyword>
+</MD_Keywords>
+</descriptiveKeywords>
+<resourceConstraints>
+<MD_LegalConstraints>
+<otherConstraints>
+<gco:CharacterString>The geographic data layers produced by the Government of Washington County, Oregon
+(“Washington County”), and any associated maps and applications, are provided as a public resource. While every reasonable effort is made to ensure the accuracy and completeness of the data, Washington County makes no warranties, expressed or implied, including but not limited to any warranties of merchantability and fitness for a particular purpose concerning the accuracy, completeness or suitability of its data, and this data  should not be construed or used as a legal description of any parcel of real property.  Washington County will not assume any liability for errors, omissions, or inaccuracies in the data.
+
+Any determination of topography or contours, or any depiction of physical improvements,
+property lines or boundaries, parcel size or shape is for general information only and shall not be used for the design, modification, purchase, lease, development or construction of real property or improvements to real property, for flood plain or wetlands determination or as evidence in any legal proceeding.  
+   
+Copyright by Washington County. Except as provided herein, all rights are reserved.
+Authorization to reproduce material for internal or personal use by any user of this information is
+granted by Washington County, the copyright owner.
+
+Please email GISAppSupport@co.washington.or.us to report any errors or issues or to get more
+information about Washington County’s geospatial data, maps or applications.
+</gco:CharacterString>
+</otherConstraints>
+</MD_LegalConstraints>
+</resourceConstraints>
+<spatialRepresentationType>
+<MD_SpatialRepresentationTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_SpatialRepresentationTypeCode" codeListValue="vector" codeSpace="ISOTC211/19115">vector</MD_SpatialRepresentationTypeCode>
+</spatialRepresentationType>
+<language>
+<LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="eng" codeSpace="ISO639-2">eng</LanguageCode>
+</language>
+<characterSet>
+<MD_CharacterSetCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode" codeListValue="utf8" codeSpace="ISOTC211/19115">utf8</MD_CharacterSetCode>
+</characterSet>
+</MD_DataIdentification>
+</identificationInfo>
+<metadataMaintenance>
+<MD_MaintenanceInformation>
+<maintenanceAndUpdateFrequency>
+<MD_MaintenanceFrequencyCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_MaintenanceFrequencyCode" codeListValue="asNeeded" codeSpace="ISOTC211/19115">asNeeded</MD_MaintenanceFrequencyCode>
+</maintenanceAndUpdateFrequency>
+</MD_MaintenanceInformation>
+</metadataMaintenance>
+</MD_Metadata>

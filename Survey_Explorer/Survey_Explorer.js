@@ -1,5 +1,5 @@
 
-// url parameters example - DEV
+// url parameters example
 "https://wc34926.co.washington.or.us:3344/webappbuilder/apps/2/?query=Survey_Explorer_451,Benchmark_ID,102&showLayers=Survey_Explorer_451"
 
 // Mt Bachelor url parameters
@@ -32,10 +32,10 @@ javascript:sendImage('gc49_1','geocontrol')
 Proper($feature.DESCRIPTION, 'firstword')
 
 // corner - image
-"http://mtbachelor.co.washington.or.us/images/survey/dev/BTBooks/" + $feature["CORNER_ID"]  +  ".pdf"
+"http://mtbachelor.co.washington.or.us/images/survey/BTBooks/" + $feature["CORNER_ID"]  +  ".pdf"
 
 // corner - site photo
-"http://mtbachelor.co.washington.or.us/images/survey/BTBOOKS/SitePhoto/" + $feature["CORNER_ID"] + ".pdf"
+"http://mtbachelor.co.washington.or.us/images/survey/BTBOOKS/Site_Photo/" + $feature["CORNER_ID"] + ".pdf"
 
 // boop/page - no data
 if ($feature["BOOK_PAGE_ENTRY"] == '//'){
@@ -103,7 +103,7 @@ IIf (IsEmpty($feature.Ref4),
 <div style="padding: 5px; background-color: rgb(104, 104, 104);"><font color="#ffffff" face="Verdana" size="3"><b>Survey</b></font></div><p style="margin: 0in;"><font face="Tahoma" size="2"><b>Survey Number: </b>{SurvNum}</font></p><p style="margin: 0in;"><font face="Tahoma" size="2"><b>Image: </b></font><a href="{expression/expr0}" rel="nofollow ugc" target="_blank">PDF</a><font face="Tahoma" size="2"><b> </b></font></p><p style="margin: 0in;"><font face="Tahoma" size="2"><b>Surveyor: </b>{SurveyorName} </font></p><p style="margin: 0in;"><font face="Tahoma" size="2"><b>Client: </b></font>{Client}</p><p style="margin: 0in;"><font face="Tahoma" size="2"><b>Date of Survey: </b>{Date_Survey}</font></p><p style="margin: 0in;"><font face="Tahoma" size="2"><b>Filed Date: </b></font>{expression/expr2}<br /><b>TRS</b>: <br />{expression/expr1}</p>
 
 // survey image
-"http://mtbachelor.co.washington.or.us/images/survey/dev/Surveys/" + $feature.SurvNum + ".pdf"
+"http://mtbachelor.co.washington.or.us/images/survey/Surveys/" + $feature.SurvNum + ".pdf"
 
 
 // surveys related trs
@@ -138,7 +138,9 @@ for (var f in relatedDataSorted){
 
 }
 
-DefaultValue(popupString, 'No Data')
+DefaultValue
+
+(popupString, 'No Data')
 
 // surveys file data 'no data'
 IIf (IsEmpty($feature.Filed), 'No Data', $feature.Filed );
@@ -170,16 +172,16 @@ IIf // dummy to remove error squigs
 var string = Replace($feature.Platname, ':','-')
 var new = Replace(string, '/','')
 
-"https://mtbachelor.co.washington.or.us/images/survey/dev/Plats/" + new + ".pdf"
+"https://mtbachelor.co.washington.or.us/images/survey/Plats/" + new + ".pdf"
 
 // surveys
-"http://mtbachelor.co.washington.or.us/images/survey/dev/Surveys/" + $feature.SurvNum + ".pdf"
+"http://mtbachelor.co.washington.or.us/images/survey/Surveys/" + $feature.SurvNum + ".pdf"
 
 // dedications
 "http://mtbachelor.co.washington.or.us/images/survey/DEDICATIONS/" + $feature["DD_Num"] + ".pdf"
 
 // county roads
-"http://mtbachelor.co.washington.or.us/images/survey/dev/CountyRoad/CR" + $feature.CRNUM + ".pdf"
+"http://mtbachelor.co.washington.or.us/images/survey/CountyRoad/CR" + $feature.CRNUM + ".pdf"
 
 // ------------------------------------------------------------------------------------------------------
 // ADDRESSES --------------------------------------------------------------------------------------------

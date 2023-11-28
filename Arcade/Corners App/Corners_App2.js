@@ -25,19 +25,6 @@ label == 'No Data', 'rgb(255, 255, 255)', // No Data comes from another expressi
 'rgb(12, 0, 0)'); // other
 return Labeler
 
-
-//tax lot popup
-Tax lot: {TLID}
-Owner: {OWNERNAME}
-Site Address: {SITEADDR}
-Acres: {A_T_ACRES} 
-Land Value: {LANDVAL}
-Improvement Value: {BLDGVAL}
-Total Value: {TOTALVAL}
-Year Built: {YEARBUILT}  
-Sale Date: {SALEDATE}
-Sale Price: {SALEPRICE}
-
 //tax map expression
 // main tax map 
 // 12/20/2022
@@ -80,4 +67,3 @@ else if (m5 == '0'){
     
 }
 return p1 + gn + p2
-
