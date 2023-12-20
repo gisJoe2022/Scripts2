@@ -26,7 +26,7 @@ for (var f in relatedDataSorted){
         "TRSQTR: " +
         DefaultValue(f.TRSQTR, 'no data') + TextFormatting.NewLine +
         TextFormatting.NewLine
-        // USE if you have more than one filed to show in the popup.
+        // USE if you have more than one field to show in the popup.
 
 }
 
