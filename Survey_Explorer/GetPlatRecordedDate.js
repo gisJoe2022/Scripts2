@@ -20,8 +20,10 @@ return Max(platlist)
 //if (Val == null) return "https://mtbachelor.co.washington.or.us/images/survey/NoImage.pdf" 
 //"https://mtbachelor.co.washington.or.us/images/survey/Plats/" + Text(Val.Filename)
 
+
 //-----------------------------------------------------------------------------------
-//-----------------------------------------------------------------------------------
+
+
 
 // snipet
 var getData = FeatureSetByName($datastore, "Plat", ["Filename", "Recorded"])
@@ -41,6 +43,8 @@ return platlist
 
 
 //------------------------------------------------------------------------------
+
+
 // does not work
 var platlist = ""
 var newarray = []
@@ -58,6 +62,8 @@ return Max(newarray)
 
 
 //------------------------------------------------------
+
+
 
 // snipet
 //store SiteID as a variable so it can be used to query
@@ -103,6 +109,7 @@ Console("Site Rating: " + rating)
 
 return rating
 
+//-----------------------------------------------------------------------------------------------------------
 
 //snipet
 //bring in plats recorded field
