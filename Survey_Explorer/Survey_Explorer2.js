@@ -149,6 +149,12 @@ IIf (IsEmpty($feature["UNIT_NUMBER"]), '', ', Unit ' + $feature["UNIT_NUMBER"]);
 // address document
 "http://mtbachelor.co.washington.or.us/images/survey/AddressMaps/" + Left($feature["TAXLOT"], 3)  + 'W' + Mid($feature["TAXLOT"], 3, 2) + ".pdf"
 
+// Road Vacations
+var doc = IIf (IsEmpty($feature["Vac_num"]), $feature["Document_Number"], $feature["Vac_num"]);
+ 
+"https://mtbachelor.co.washington.or.us/images/survey/CoRoads/Road_Vacation/vac" + doc + ".pdf"
+
+
 
 // DLC
 // labels
