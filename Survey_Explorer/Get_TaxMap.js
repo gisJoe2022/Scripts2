@@ -13,7 +13,6 @@ var m3 = MID(tlid, 3, 4)
 var m4 = MID(tlid, 5, 1)
 var m5 = MID(tlid, 6, 1)
 
-
 var l3 = Left(tlid, 3)
 var l5 = Left(tlid, 5)
 var l6 = Left(tlid, 6)

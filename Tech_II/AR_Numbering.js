@@ -1,12 +1,18 @@
+// Insert TILE_NAME
+var getSec = FeatureSetByName($datastore, "Section", ["TILE_NAME"])
+var getSecInt = Intersects(getSec, $feature)
+var sec = First(getSecInt)
+
+if (sec == null) return {"errorMessage": "Section Not Found"}
+
+return sec.TILE_NAME
+
 // Calculation Attribute Rule
 // trigger: Insert
 // field: ID
 
 var seq = NextSequenceValue("SequenceName")
 return seq
-
-
-
 
 // Calculation Attribute Rule
 // trigger: Insert

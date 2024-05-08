@@ -54,5 +54,11 @@ return platlist
 var PlatDataInt = Intersects(getData, $feature)
 //var Val = PlatDataInt
 
+// ESRI Community Note
+// 1. In a for loop with an array, your variable is the index. Use parentarray[index] to access the actual contents of that item.
+// 2. You're adding the text string "$feature." to your fieldname variable, which you are then accessing with $feature.fieldname. 
+//    Written out, that would be "$feature.$feature.", 
+//    plus whatever your field name is.
+// Accessing fields with dot notation only works with literal field names, and then only if the field name has no invalid characters.
 
 
