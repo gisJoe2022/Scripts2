@@ -14,12 +14,15 @@ return sec.TILE_NAME
 var seq = NextSequenceValue("SequenceName")
 return seq
 
+// -------------------------------------------------------------------------------------
+// -----------------------------------------------
+
 // Calculation Attribute Rule
 // trigger: Insert
 // field:ID
 
 // Check if the current section meets your condition (e.g., based on some attribute)
-var meetsCondition = $feature["TILE_NUM"] == "TILE_NUM" // Replace with your actual condition
+var meetsCondition = $feature["TILE_NAME"] == "TILE_NAME" // Replace with your actual condition
 
 // get the latest feature with a ID
 var last_feature = First(OrderBy(Filter($featureset, "ID IS NOT NULL"), "OBJECTID DESC"))
