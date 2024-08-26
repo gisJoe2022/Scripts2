@@ -1,6 +1,6 @@
-// Adds the next sequencial ID for each Tile_Name (Section)
-// in the Dedication layer.
-// Developing this code fr the section map updates.
+// Adds the next sequencial ID for each Tile_Name (Section - polygon)
+// in the Dedication layer (points).
+// Developing this code for the section map updates.
 
 var intpoly = FeatureSetByName($datastore, "Section")  // load polygon dataset
 var pointvals = FeatureSetByName($datastore,"Dedication",['ID'],false)  // load point dataset

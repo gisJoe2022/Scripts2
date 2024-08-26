@@ -1,0 +1,1443 @@
+{
+  "layerInfos": [
+    {
+      "name": "Address",
+      "id": "Survey_Explorer_1375",
+      "layer": {
+        "url": "https://gispub.co.washington.or.us/server/rest/services/LUT_ETS/Survey_Explorer/MapServer/0",
+        "fields": [
+          {
+            "show": false,
+            "name": "OBJECTID",
+            "alias": "OBJECTID"
+          },
+          {
+            "show": false,
+            "name": "A_ID",
+            "alias": "A_ID"
+          },
+          {
+            "show": false,
+            "name": "SERIAL",
+            "alias": "SERIAL"
+          },
+          {
+            "show": true,
+            "name": "YEAR",
+            "alias": "YEAR"
+          },
+          {
+            "show": true,
+            "name": "STATUS",
+            "alias": "STATUS"
+          },
+          {
+            "show": false,
+            "name": "HOUSE_NUMBER",
+            "alias": "HOUSE_NUMBER"
+          },
+          {
+            "show": false,
+            "name": "STREET_NAME",
+            "alias": "STREET_NAME"
+          },
+          {
+            "show": false,
+            "name": "STREET_TYPE",
+            "alias": "STREET_TYPE"
+          },
+          {
+            "show": false,
+            "name": "UNIT_NUMBER",
+            "alias": "UNIT_NUMBER"
+          },
+          {
+            "show": true,
+            "name": "CITY",
+            "alias": "CITY"
+          },
+          {
+            "show": true,
+            "name": "PRE_DIRECTION",
+            "alias": "PRE_DIRECTION"
+          },
+          {
+            "show": true,
+            "name": "TAXLOT",
+            "alias": "TAXLOT"
+          },
+          {
+            "show": false,
+            "name": "X_COORDINATE",
+            "alias": "X_COORDINATE"
+          },
+          {
+            "show": false,
+            "name": "Y_COORDINATE",
+            "alias": "Y_COORDINATE"
+          },
+          {
+            "show": false,
+            "name": "Z_COORDINATE",
+            "alias": "Z_COORDINATE"
+          },
+          {
+            "show": true,
+            "name": "FLOOR",
+            "alias": "FLOOR"
+          },
+          {
+            "show": true,
+            "name": "DIRECTION",
+            "alias": "DIRECTION"
+          },
+          {
+            "show": true,
+            "name": "STATE",
+            "alias": "STATE"
+          },
+          {
+            "show": true,
+            "name": "ADDRESS_1",
+            "alias": "ADDRESS_1"
+          },
+          {
+            "show": true,
+            "name": "ADDRESS_2",
+            "alias": "ADDRESS_2"
+          },
+          {
+            "show": false,
+            "name": "ZIP",
+            "alias": "ZIP"
+          },
+          {
+            "show": false,
+            "name": "COUNTRY",
+            "alias": "COUNTRY"
+          },
+          {
+            "show": false,
+            "name": "COUNTY_CODE",
+            "alias": "COUNTY_CODE"
+          },
+          {
+            "show": false,
+            "name": "ZIP_PLUS4",
+            "alias": "ZIP_PLUS4"
+          },
+          {
+            "show": true,
+            "name": "UNIT_TYPE",
+            "alias": "UNIT_TYPE"
+          },
+          {
+            "show": true,
+            "name": "BUILDING_TYPE",
+            "alias": "BUILDING_TYPE"
+          },
+          {
+            "show": false,
+            "name": "BUILDING_NUMBER",
+            "alias": "BUILDING_NUMBER"
+          },
+          {
+            "show": false,
+            "name": "ACCOUNT_ID",
+            "alias": "ACCOUNT_ID"
+          },
+          {
+            "show": true,
+            "name": "FULLADDRESS",
+            "alias": "FULLADDRESS"
+          },
+          {
+            "show": true,
+            "name": "updated",
+            "alias": "updated"
+          },
+          {
+            "show": false,
+            "name": "STATICID",
+            "alias": "STATICID"
+          },
+          {
+            "show": false,
+            "name": "Shape",
+            "alias": "Shape"
+          },
+          {
+            "show": false,
+            "name": "SITUS_ID",
+            "alias": "SITUS_ID"
+          },
+          {
+            "show": false,
+            "name": "expression/expr0",
+            "alias": "unitnum"
+          },
+          {
+            "show": false,
+            "name": "expression/expr1",
+            "alias": "doc"
+          }
+        ]
+      },
+      "show": null,
+      "showAttachments": false,
+      "sortField": "FULLADDRESS",
+      "isDescending": false
+    },
+    {
+      "name": "Benchmark",
+      "id": "Survey_Explorer_451",
+      "layer": {
+        "url": "https://gispub.co.washington.or.us/server/rest/services/LUT_ETS/Survey_Explorer/MapServer/11",
+        "fields": [
+          {
+            "show": false,
+            "name": "Shape",
+            "alias": "SHAPE"
+          },
+          {
+            "show": true,
+            "name": "Benchmark_ID",
+            "alias": "benchmark ID"
+          },
+          {
+            "show": false,
+            "name": "expression/expr6",
+            "alias": "image"
+          },
+          {
+            "show": true,
+            "name": "Elevation1",
+            "alias": "Elevation1"
+          },
+          {
+            "show": true,
+            "name": "Monument",
+            "alias": "Monument"
+          },
+          {
+            "show": true,
+            "name": "Date_Established",
+            "alias": "Date Established"
+          },
+          {
+            "show": true,
+            "name": "Stamping",
+            "alias": "Stamping"
+          },
+          {
+            "show": true,
+            "name": "Location",
+            "alias": "Location"
+          },
+          {
+            "show": true,
+            "name": "Ref1",
+            "alias": "Ref1"
+          },
+          {
+            "show": true,
+            "name": "Ref2",
+            "alias": "Ref2"
+          },
+          {
+            "show": true,
+            "name": "Ref3",
+            "alias": "Ref3"
+          },
+          {
+            "show": true,
+            "name": "Ref4",
+            "alias": "Ref4"
+          },
+          {
+            "show": true,
+            "name": "bmPhoto",
+            "alias": "bmPhoto"
+          },
+          {
+            "show": true,
+            "name": "Condition1",
+            "alias": "Condition1"
+          },
+          {
+            "show": false,
+            "name": "Checked_On2001",
+            "alias": "Checked_On2001"
+          },
+          {
+            "show": false,
+            "name": "OBJECTID",
+            "alias": "OBJECTID"
+          },
+          {
+            "show": false,
+            "name": "expression/expr0",
+            "alias": "stamppropper"
+          },
+          {
+            "show": false,
+            "name": "expression/expr1",
+            "alias": "monument"
+          },
+          {
+            "show": false,
+            "name": "expression/expr2",
+            "alias": "ref1"
+          },
+          {
+            "show": false,
+            "name": "expression/expr3",
+            "alias": "ref2"
+          },
+          {
+            "show": false,
+            "name": "expression/expr4",
+            "alias": "ref3"
+          },
+          {
+            "show": false,
+            "name": "expression/expr5",
+            "alias": "ref4"
+          },
+          {
+            "show": false,
+            "name": "expression/expr7",
+            "alias": "DateEst"
+          },
+          {
+            "show": false,
+            "name": "expression/expr8",
+            "alias": "text link"
+          }
+        ]
+      },
+      "show": null,
+      "showAttachments": false,
+      "sortField": "Benchmark_ID",
+      "isDescending": false
+    },
+    {
+      "name": "Survey",
+      "id": "Survey_Explorer_569",
+      "layer": {
+        "url": "https://gispub.co.washington.or.us/server/rest/services/LUT_ETS/Survey_Explorer/MapServer/7",
+        "fields": [
+          {
+            "show": false,
+            "name": "shape",
+            "alias": "Shape"
+          },
+          {
+            "show": true,
+            "name": "SurvNum",
+            "alias": "Survey Number"
+          },
+          {
+            "show": true,
+            "name": "Surveyornumber",
+            "alias": "Surveyor Number"
+          },
+          {
+            "show": true,
+            "name": "Received",
+            "alias": "Received Date"
+          },
+          {
+            "show": true,
+            "name": "Filed",
+            "alias": "Filed Date"
+          },
+          {
+            "show": true,
+            "name": "Client",
+            "alias": "Client"
+          },
+          {
+            "show": true,
+            "name": "SurveyorName",
+            "alias": "Surveyor Name"
+          },
+          {
+            "show": true,
+            "name": "Date_Survey",
+            "alias": "Survey Date"
+          },
+          {
+            "show": false,
+            "name": "OBJECTID",
+            "alias": "OBJECTID"
+          },
+          {
+            "show": false,
+            "name": "expression/expr0",
+            "alias": "image"
+          },
+          {
+            "show": false,
+            "name": "expression/expr1",
+            "alias": "Custom"
+          },
+          {
+            "show": false,
+            "name": "expression/expr2",
+            "alias": "RecDate"
+          },
+          {
+            "show": false,
+            "name": "expression/expr3",
+            "alias": "filedate"
+          }
+        ]
+      },
+      "show": null,
+      "showAttachments": false,
+      "sortField": "SurvNum",
+      "isDescending": false
+    },
+    {
+      "name": "Public Land Corner",
+      "id": "Survey_Explorer_1564",
+      "layer": {
+        "url": "https://gispub.co.washington.or.us/server/rest/services/LUT_ETS/Survey_Explorer/MapServer/1",
+        "fields": [
+          {
+            "show": false,
+            "name": "Shape",
+            "alias": "Shape"
+          },
+          {
+            "show": true,
+            "name": "CORNER_ID",
+            "alias": "Corner ID"
+          },
+          {
+            "show": true,
+            "name": "BOOK_PAGE_ENTRY",
+            "alias": "Book/Page"
+          },
+          {
+            "show": true,
+            "name": "DESCRIPTION",
+            "alias": "Description"
+          },
+          {
+            "show": true,
+            "name": "STATUSDATE",
+            "alias": "Status Date"
+          },
+          {
+            "show": true,
+            "name": "BLMNO",
+            "alias": "BLM Num"
+          },
+          {
+            "show": true,
+            "name": "Photo_name",
+            "alias": "Photo Name"
+          },
+          {
+            "show": false,
+            "name": "OBJECTID",
+            "alias": "OBJECTID"
+          },
+          {
+            "show": true,
+            "name": "GPS_ID",
+            "alias": "GPS ID"
+          },
+          {
+            "show": false,
+            "name": "expression/expr0",
+            "alias": "descprop"
+          },
+          {
+            "show": false,
+            "name": "expression/expr1",
+            "alias": "image"
+          },
+          {
+            "show": false,
+            "name": "expression/expr2",
+            "alias": "sitephoto"
+          },
+          {
+            "show": false,
+            "name": "expression/expr3",
+            "alias": "bookpage nd"
+          },
+          {
+            "show": false,
+            "name": "expression/expr4",
+            "alias": "statusdate nd"
+          },
+          {
+            "show": false,
+            "name": "expression/expr5",
+            "alias": "bookpage2 nd"
+          }
+        ]
+      },
+      "show": null,
+      "showAttachments": false,
+      "sortField": "CORNER_ID",
+      "isDescending": false
+    },
+    {
+      "name": "Dedication",
+      "id": "Survey_Explorer_3665",
+      "layer": {
+        "url": "https://gispub.co.washington.or.us/server/rest/services/LUT_ETS/Survey_Explorer/MapServer/15",
+        "fields": [
+          {
+            "show": false,
+            "name": "OBJECTID",
+            "alias": "OBJECTID"
+          },
+          {
+            "show": true,
+            "name": "DD_Num",
+            "alias": "DD Num"
+          },
+          {
+            "show": true,
+            "name": "DD_year",
+            "alias": "DD Year"
+          },
+          {
+            "show": true,
+            "name": "Note",
+            "alias": "Note"
+          },
+          {
+            "show": true,
+            "name": "NAME",
+            "alias": "NAME"
+          },
+          {
+            "show": false,
+            "name": "GlobalID",
+            "alias": "GlobalID"
+          },
+          {
+            "show": false,
+            "name": "SHAPE",
+            "alias": "SHAPE"
+          },
+          {
+            "show": false,
+            "name": "expression/expr0",
+            "alias": "ddnum"
+          }
+        ]
+      },
+      "show": null,
+      "showAttachments": false,
+      "sortField": "DD_Num",
+      "isDescending": false
+    },
+    {
+      "name": "Geodesic Control",
+      "id": "Survey_Explorer_6632",
+      "layer": {
+        "url": "https://gispub.co.washington.or.us/server/rest/services/LUT_ETS/Survey_Explorer/MapServer/12",
+        "fields": [
+          {
+            "show": false,
+            "name": "OBJECTID",
+            "alias": "OBJECTID"
+          },
+          {
+            "show": true,
+            "name": "FULLNAME",
+            "alias": "name"
+          },
+          {
+            "show": true,
+            "name": "SERIES",
+            "alias": "SERIES"
+          },
+          {
+            "show": true,
+            "name": "STATION_NU",
+            "alias": "STATION_NU"
+          },
+          {
+            "show": true,
+            "name": "NAME",
+            "alias": "NAME"
+          },
+          {
+            "show": true,
+            "name": "LATITUDE",
+            "alias": "LATITUDE"
+          },
+          {
+            "show": true,
+            "name": "LONGITUDE",
+            "alias": "LONGITUDE"
+          },
+          {
+            "show": true,
+            "name": "NORTHFEET",
+            "alias": "NORTHFEET"
+          },
+          {
+            "show": true,
+            "name": "EASTFEET",
+            "alias": "EASTFEET"
+          },
+          {
+            "show": true,
+            "name": "NORTHMETER",
+            "alias": "NORTHMETER"
+          },
+          {
+            "show": true,
+            "name": "EASTMETER",
+            "alias": "EASTMETER"
+          },
+          {
+            "show": true,
+            "name": "OHEIGHT88",
+            "alias": "OHEIGHT88"
+          },
+          {
+            "show": true,
+            "name": "EHEIGHTM88",
+            "alias": "EHEIGHTM88"
+          },
+          {
+            "show": true,
+            "name": "GRID_SCALE",
+            "alias": "GRID_SCALE"
+          },
+          {
+            "show": true,
+            "name": "CONVERGENC",
+            "alias": "CONVERGENC"
+          },
+          {
+            "show": true,
+            "name": "COMBINED_F",
+            "alias": "COMBINED_F"
+          },
+          {
+            "show": true,
+            "name": "ELLIPSOID",
+            "alias": "ELLIPSOID"
+          },
+          {
+            "show": true,
+            "name": "GHEIGHTM88",
+            "alias": "GHEIGHTM88"
+          },
+          {
+            "show": true,
+            "name": "GOVCORN",
+            "alias": "GOVCORN"
+          },
+          {
+            "show": true,
+            "name": "DESCRIPTIO",
+            "alias": "Description"
+          },
+          {
+            "show": true,
+            "name": "METHOD",
+            "alias": "Method"
+          },
+          {
+            "show": true,
+            "name": "PROJECTION",
+            "alias": "Projection"
+          },
+          {
+            "show": true,
+            "name": "CORNER_ID",
+            "alias": "Corner ID"
+          },
+          {
+            "show": true,
+            "name": "SURVEYORNU",
+            "alias": "Surveyor Num"
+          },
+          {
+            "show": true,
+            "name": "ACCEPTED_",
+            "alias": "Accepted"
+          },
+          {
+            "show": true,
+            "name": "CONDITION",
+            "alias": "Condition"
+          },
+          {
+            "show": false,
+            "name": "Shape",
+            "alias": "Shape"
+          },
+          {
+            "show": false,
+            "name": "expression/expr0",
+            "alias": "desc"
+          },
+          {
+            "show": false,
+            "name": "expression/expr1",
+            "alias": "latnodata"
+          },
+          {
+            "show": false,
+            "name": "expression/expr2",
+            "alias": "longnd"
+          },
+          {
+            "show": false,
+            "name": "expression/expr3",
+            "alias": "convergnd"
+          }
+        ]
+      },
+      "show": null,
+      "showAttachments": false,
+      "sortField": "FULLNAME",
+      "isDescending": false
+    },
+    {
+      "name": "County Road",
+      "id": "Survey_Explorer_8530",
+      "layer": {
+        "url": "https://gispub.co.washington.or.us/server/rest/services/LUT_ETS/Survey_Explorer/MapServer/13",
+        "fields": [
+          {
+            "show": false,
+            "name": "OBJECTID",
+            "alias": "OBJECTID"
+          },
+          {
+            "show": true,
+            "name": "CRNUM",
+            "alias": "CR Number"
+          },
+          {
+            "show": false,
+            "name": "Shape",
+            "alias": "Shape"
+          },
+          {
+            "show": false,
+            "name": "Shape.STLength()",
+            "alias": "Shape.STLength()"
+          },
+          {
+            "show": true,
+            "name": "NAME",
+            "alias": "Name"
+          },
+          {
+            "show": true,
+            "name": "CRname",
+            "alias": "CR Name"
+          },
+          {
+            "show": false,
+            "name": "expression/expr0",
+            "alias": "image"
+          }
+        ]
+      },
+      "show": null,
+      "showAttachments": false,
+      "sortField": "CRNUM",
+      "isDescending": false
+    },
+    {
+      "name": "DLC (Donation Land Claim)",
+      "id": "Survey_Explorer_9254",
+      "layer": {
+        "url": "https://gispub.co.washington.or.us/server/rest/services/LUT_ETS/Survey_Explorer/MapServer/2",
+        "fields": [
+          {
+            "show": false,
+            "name": "OBJECTID",
+            "alias": "OBJECTID"
+          },
+          {
+            "show": true,
+            "name": "CLAIM",
+            "alias": "Claim Number"
+          },
+          {
+            "show": true,
+            "name": "LASTNAME",
+            "alias": "Last Name"
+          },
+          {
+            "show": true,
+            "name": "FIRSTNAME",
+            "alias": "First Name"
+          },
+          {
+            "show": true,
+            "name": "BOTHNAMES",
+            "alias": "Name (last, first)"
+          },
+          {
+            "show": false,
+            "name": "GlobalID",
+            "alias": "GlobalID"
+          },
+          {
+            "show": false,
+            "name": "Shape",
+            "alias": "SHAPE"
+          },
+          {
+            "show": false,
+            "name": "Shape.STArea()",
+            "alias": "SHAPE.STArea()"
+          },
+          {
+            "show": false,
+            "name": "Shape.STLength()",
+            "alias": "SHAPE.STLength()"
+          }
+        ]
+      },
+      "show": null,
+      "showAttachments": false,
+      "sortField": "BOTHNAMES",
+      "isDescending": false
+    },
+    {
+      "name": "Road Vacation",
+      "id": "Survey_Explorer_4505",
+      "layer": {
+        "url": "https://gispub.co.washington.or.us/server/rest/services/LUT_ETS/Survey_Explorer/MapServer/3",
+        "fields": [
+          {
+            "show": false,
+            "name": "OBJECTID",
+            "alias": "OBJECTID"
+          },
+          {
+            "show": true,
+            "name": "Vac_num",
+            "alias": "Vacation Num"
+          },
+          {
+            "show": false,
+            "name": "VacNum_TXT",
+            "alias": "VacNum_TXT"
+          },
+          {
+            "show": true,
+            "name": "DESCRIPT",
+            "alias": "DESCRIPT"
+          },
+          {
+            "show": true,
+            "name": "Document_Number",
+            "alias": "Doc Number"
+          },
+          {
+            "show": false,
+            "name": "GlobalID",
+            "alias": "GlobalID"
+          },
+          {
+            "show": true,
+            "name": "BK_PG",
+            "alias": "Book/Page"
+          },
+          {
+            "show": true,
+            "name": "FILED_DATE",
+            "alias": "File Date"
+          },
+          {
+            "show": true,
+            "name": "RO",
+            "alias": "RO"
+          },
+          {
+            "show": true,
+            "name": "DEED_BKPG",
+            "alias": "Deed BKPG"
+          },
+          {
+            "show": true,
+            "name": "TRS",
+            "alias": "TRS"
+          },
+          {
+            "show": true,
+            "name": "PAGES",
+            "alias": "Pages"
+          },
+          {
+            "show": true,
+            "name": "PLAT_NAME",
+            "alias": "Plat Name"
+          },
+          {
+            "show": true,
+            "name": "Notes",
+            "alias": "Notes"
+          },
+          {
+            "show": false,
+            "name": "SHAPE",
+            "alias": "SHAPE"
+          },
+          {
+            "show": false,
+            "name": "SHAPE.STArea()",
+            "alias": "SHAPE.STArea()"
+          },
+          {
+            "show": false,
+            "name": "SHAPE.STLength()",
+            "alias": "SHAPE.STLength()"
+          },
+          {
+            "show": false,
+            "name": "expression/expr0",
+            "alias": "vacdoc"
+          },
+          {
+            "show": false,
+            "name": "expression/expr1",
+            "alias": "desc"
+          }
+        ]
+      },
+      "show": null,
+      "showAttachments": false,
+      "sortField": "Vac_num",
+      "isDescending": false
+    },
+    {
+      "name": "Plat",
+      "id": "Survey_Explorer_3638",
+      "layer": {
+        "url": "https://gispub.co.washington.or.us/server/rest/services/LUT_ETS/Survey_Explorer/MapServer/4",
+        "fields": [
+          {
+            "show": false,
+            "name": "OBJECTID",
+            "alias": "OBJECTID"
+          },
+          {
+            "show": true,
+            "name": "Platname",
+            "alias": "Plat Name"
+          },
+          {
+            "show": true,
+            "name": "BookPage",
+            "alias": "Book/Page"
+          },
+          {
+            "show": true,
+            "name": "Recorded",
+            "alias": "Recorded"
+          },
+          {
+            "show": true,
+            "name": "DocNumber",
+            "alias": "Doc Number"
+          },
+          {
+            "show": true,
+            "name": "SurveyorName",
+            "alias": "Surveyor Name"
+          },
+          {
+            "show": true,
+            "name": "Surveyornumber",
+            "alias": "Surveyor Number"
+          },
+          {
+            "show": false,
+            "name": "Shape",
+            "alias": "Shape"
+          },
+          {
+            "show": false,
+            "name": "Shape.STArea()",
+            "alias": "Shape.STArea()"
+          },
+          {
+            "show": false,
+            "name": "Shape.STLength()",
+            "alias": "Shape.STLength()"
+          },
+          {
+            "show": false,
+            "name": "expression/expr0",
+            "alias": "platdoc"
+          },
+          {
+            "show": false,
+            "name": "expression/expr1",
+            "alias": "nddocnum"
+          },
+          {
+            "show": false,
+            "name": "expression/expr2",
+            "alias": "bookpage nd"
+          }
+        ]
+      },
+      "show": null,
+      "showAttachments": false,
+      "sortField": "Platname",
+      "isDescending": false
+    },
+    {
+      "name": "Township",
+      "id": "Survey_Explorer_5060",
+      "layer": {
+        "url": "https://gispub.co.washington.or.us/server/rest/services/LUT_ETS/Survey_Explorer/MapServer/10",
+        "fields": [
+          {
+            "show": false,
+            "name": "OBJECTID",
+            "alias": "OBJECTID"
+          },
+          {
+            "show": true,
+            "name": "TILE_NAME",
+            "alias": "Tile Name"
+          },
+          {
+            "show": false,
+            "name": "Shape",
+            "alias": "Shape"
+          },
+          {
+            "show": false,
+            "name": "GlobalID",
+            "alias": "GlobalID"
+          },
+          {
+            "show": false,
+            "name": "Shape.STArea()",
+            "alias": "Shape.STArea()"
+          },
+          {
+            "show": false,
+            "name": "Shape.STLength()",
+            "alias": "Shape.STLength()"
+          },
+          {
+            "show": false,
+            "name": "LOCATION",
+            "alias": "LOCATION"
+          },
+          {
+            "show": false,
+            "name": "PARKS",
+            "alias": "PARKS"
+          },
+          {
+            "show": false,
+            "name": "CMP",
+            "alias": "CMP"
+          },
+          {
+            "show": false,
+            "name": "VACANT92",
+            "alias": "VACANT92"
+          },
+          {
+            "show": false,
+            "name": "VACANT90",
+            "alias": "VACANT90"
+          },
+          {
+            "show": false,
+            "name": "VACANT94",
+            "alias": "VACANT94"
+          },
+          {
+            "show": false,
+            "name": "DEVEL",
+            "alias": "DEVEL"
+          },
+          {
+            "show": false,
+            "name": "VACANT95",
+            "alias": "VACANT95"
+          }
+        ]
+      },
+      "show": null,
+      "showAttachments": false,
+      "sortField": "TILE_NAME",
+      "isDescending": false
+    },
+    {
+      "name": "Section",
+      "id": "Survey_Explorer_9678",
+      "layer": {
+        "url": "https://gispub.co.washington.or.us/server/rest/services/LUT_ETS/Survey_Explorer/MapServer/9",
+        "fields": [
+          {
+            "show": false,
+            "name": "OBJECTID",
+            "alias": "OBJECTID"
+          },
+          {
+            "show": true,
+            "name": "TILE_NAME",
+            "alias": "Tile Name"
+          },
+          {
+            "show": true,
+            "name": "Section",
+            "alias": "Section"
+          },
+          {
+            "show": false,
+            "name": "Shape",
+            "alias": "Shape"
+          },
+          {
+            "show": false,
+            "name": "Shape.STArea()",
+            "alias": "Shape.STArea()"
+          },
+          {
+            "show": false,
+            "name": "Shape.STLength()",
+            "alias": "Shape.STLength()"
+          },
+          {
+            "show": false,
+            "name": "expression/expr0",
+            "alias": "sectionmap"
+          }
+        ]
+      },
+      "show": null,
+      "showAttachments": false,
+      "sortField": "TILE_NAME",
+      "isDescending": false
+    },
+    {
+      "name": "Quarter Section",
+      "id": "Survey_Explorer_6930",
+      "layer": {
+        "url": "https://gispub.co.washington.or.us/server/rest/services/LUT_ETS/Survey_Explorer/MapServer/5",
+        "fields": [
+          {
+            "show": false,
+            "name": "OBJECTID",
+            "alias": "OBJECTID"
+          },
+          {
+            "show": true,
+            "name": "TILE",
+            "alias": "Tile"
+          },
+          {
+            "show": true,
+            "name": "QTR",
+            "alias": "QTR"
+          },
+          {
+            "show": true,
+            "name": "LOCATION",
+            "alias": "Location"
+          },
+          {
+            "show": false,
+            "name": "Shape",
+            "alias": "Shape"
+          },
+          {
+            "show": false,
+            "name": "GlobalID",
+            "alias": "GlobalID"
+          },
+          {
+            "show": false,
+            "name": "Shape.STArea()",
+            "alias": "Shape.STArea()"
+          },
+          {
+            "show": false,
+            "name": "Shape.STLength()",
+            "alias": "Shape.STLength()"
+          },
+          {
+            "show": false,
+            "name": "TownRange",
+            "alias": "TownRange"
+          },
+          {
+            "show": false,
+            "name": "Section",
+            "alias": "Section"
+          },
+          {
+            "show": false,
+            "name": "Quarter",
+            "alias": "Quarter"
+          }
+        ]
+      },
+      "show": null,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "Tax Lot",
+      "id": "Survey_Explorer_3149",
+      "layer": {
+        "url": "https://gispub.co.washington.or.us/server/rest/services/LUT_ETS/Survey_Explorer/MapServer/8",
+        "fields": [
+          {
+            "show": false,
+            "name": "OBJECTID",
+            "alias": "OBJECTID"
+          },
+          {
+            "show": true,
+            "name": "TLNO",
+            "alias": "TLNO"
+          },
+          {
+            "show": false,
+            "name": "TLID",
+            "alias": "TLID"
+          },
+          {
+            "show": false,
+            "name": "SITESTRNO",
+            "alias": "SITESTRNO"
+          },
+          {
+            "show": true,
+            "name": "SITEADDR",
+            "alias": "Site Address"
+          },
+          {
+            "show": true,
+            "name": "SITECITY",
+            "alias": "Site City"
+          },
+          {
+            "show": true,
+            "name": "LANDVAL",
+            "alias": "Land Value"
+          },
+          {
+            "show": true,
+            "name": "BLDGVAL",
+            "alias": "Building Value"
+          },
+          {
+            "show": true,
+            "name": "TOTALVAL",
+            "alias": "Total Value"
+          },
+          {
+            "show": true,
+            "name": "BLDGSQFT",
+            "alias": "BLDG sqft"
+          },
+          {
+            "show": true,
+            "name": "A_T_ACRES",
+            "alias": "A&T Acres"
+          },
+          {
+            "show": true,
+            "name": "M50ASSVAL",
+            "alias": "M50 Value"
+          },
+          {
+            "show": true,
+            "name": "YEARBUILT",
+            "alias": "Year Built"
+          },
+          {
+            "show": true,
+            "name": "SALEDATE",
+            "alias": "Sale Date"
+          },
+          {
+            "show": true,
+            "name": "SALEPRICE",
+            "alias": "Sale Price"
+          },
+          {
+            "show": true,
+            "name": "LEGAL_DESCRIPTION",
+            "alias": "Legal Desc"
+          },
+          {
+            "show": false,
+            "name": "Shape",
+            "alias": "Shape"
+          },
+          {
+            "show": false,
+            "name": "expression/expr0",
+            "alias": "taxmap"
+          },
+          {
+            "show": false,
+            "name": "expression/expr1",
+            "alias": "subcolortax"
+          },
+          {
+            "show": false,
+            "name": "expression/expr2",
+            "alias": "salepricend"
+          },
+          {
+            "show": false,
+            "name": "expression/expr3",
+            "alias": "ImpValue nd"
+          },
+          {
+            "show": false,
+            "name": "expression/expr4",
+            "alias": "landval nd"
+          },
+          {
+            "show": false,
+            "name": "expression/expr5",
+            "alias": "totalval nd"
+          },
+          {
+            "show": false,
+            "name": "expression/expr6",
+            "alias": "SaleDate nd"
+          }
+        ]
+      },
+      "show": null,
+      "showAttachments": false,
+      "sortField": "TLNO",
+      "isDescending": false
+    },
+    {
+      "name": "City",
+      "id": "Survey_Explorer_8643",
+      "layer": {
+        "url": "https://gispub.co.washington.or.us/server/rest/services/LUT_ETS/Survey_Explorer/MapServer/37",
+        "fields": [
+          {
+            "show": false,
+            "name": "OBJECTID",
+            "alias": "OBJECTID"
+          },
+          {
+            "show": false,
+            "name": "rlis.RLIS.cty_fill.AREA",
+            "alias": "rlis.RLIS.cty_fill.AREA"
+          },
+          {
+            "show": true,
+            "name": "CITYNAME",
+            "alias": "City Name"
+          },
+          {
+            "show": false,
+            "name": "Shape",
+            "alias": "Shape"
+          },
+          {
+            "show": false,
+            "name": "Shape.STArea()",
+            "alias": "Shape.STArea()"
+          },
+          {
+            "show": false,
+            "name": "Shape.STLength()",
+            "alias": "Shape.STLength()"
+          }
+        ]
+      },
+      "show": null,
+      "showAttachments": false,
+      "sortField": "CITYNAME",
+      "isDescending": false
+    },
+    {
+      "name": "v_surveys_TRS",
+      "id": "Survey_Explorer_7267",
+      "layer": {
+        "url": "https://gispub.co.washington.or.us/server/rest/services/LUT_ETS/Survey_Explorer/MapServer/42",
+        "fields": [
+          {
+            "name": "SurvNum",
+            "alias": "SurvNum",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": true
+            }
+          },
+          {
+            "name": "TR",
+            "alias": "TR",
+            "show": true
+          },
+          {
+            "name": "Sec",
+            "alias": "Sec",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": true
+            }
+          },
+          {
+            "name": "QTR",
+            "alias": "QTR",
+            "show": true
+          },
+          {
+            "name": "TRSQTR",
+            "alias": "TRSQTR",
+            "show": true
+          },
+          {
+            "name": "OBJECTID",
+            "alias": "OBJECTID",
+            "show": false
+          }
+        ]
+      },
+      "show": null,
+      "showAttachments": false,
+      "sortField": "SurvNum",
+      "isDescending": false
+    }
+  ],
+  "table": {
+    "pageSizeOptions": [
+      25,
+      50,
+      100,
+      1000
+    ]
+  },
+  "hideExportButton": false,
+  "initiallyExpand": false,
+  "filterByMapExtent": true,
+  "allowTextSelection": true,
+  "syncWithLayers": true
+}

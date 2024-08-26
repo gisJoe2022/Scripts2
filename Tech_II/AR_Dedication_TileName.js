@@ -1,5 +1,5 @@
-
-
+// Inserts the TILE_NAME record the section layer into the 
+// TILE_NAME field in the Dedication layer. 
 
 var getSec = FeatureSetByName($datastore, "production.SURVEY.section", ["TILE_NAME"])
 var getSecInt = Intersects(getSec, $feature)
