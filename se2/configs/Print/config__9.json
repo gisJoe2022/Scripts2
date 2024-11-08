@@ -1,9 +1,0 @@
-{
-  "serviceURL": "https://gispub.co.washington.or.us/server/rest/services/LUT_ETS/SurveyPrinting/GPServer/Export%20Web%20Map",
-  "defaultTitle": "Survey Explorer",
-  "defaultAuthor": "Washington County",
-  "defaultCopyright": "",
-  "defaultFormat": "PDF",
-  "defaultLayout": "8.5x11 Portrait",
-  "copyrightEditable": false
-}
