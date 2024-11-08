@@ -1,0 +1,4 @@
+Select * 
+From dbo.Corner_Main
+
+WHERE STATUSDATE > '2021-06-30' AND STATUSDATE < '2022-07-01';

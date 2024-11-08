@@ -223,7 +223,6 @@ getAllUrlParams: function() {
                   }
                 }))
               );
-              // <!-- Add this line to new version of survey explorer -->
               console.log('loaded Search');
               var data = this.getAllUrlParams();
               console.log(data);

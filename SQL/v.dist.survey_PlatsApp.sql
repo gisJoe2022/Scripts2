@@ -1,14 +1,14 @@
 USE [distribution]
 GO
 
-/****** Object:  View [survey].[v_platsApp]    Script Date: 3/23/2023 10:56:01 AM ******/
+/****** Object:  View [survey].[v_platsApp1221] on washsde.distribution   Script Date: 3/23/2023 10:56:01 AM ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE VIEW [survey].[v_platsApp]
+CREATE VIEW [survey].[v_platsApp] /* remove lines 11 and 12 if creating using ESRI DB view GP Tool */
 AS
 SELECT TOP (100) PERCENT plat_main_1.Platname, plat_main_1.[Book/Page] AS BookPage, plat_main_1.Recorded, plat_main_1.DocNumber, Surveyors_1.SurveyorName, plat_main_1.Surveyornumber, plat_main_1.Reserved
 FROM     PSQLAPP1.Survey.dbo.Plat_Main AS plat_main_1 LEFT OUTER JOIN
@@ -18,7 +18,7 @@ WHERE  (plat_main_1.Reserved = 0)
 ORDER BY plat_main_1.Platname
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+/* EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
 Begin DesignProperties = 
    Begin PaneConfigurations = 
       Begin PaneConfiguration = 0
@@ -161,4 +161,4 @@ GO
 
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'survey', @level1type=N'VIEW',@level1name=N'v_platsApp'
 GO
-
+ */
