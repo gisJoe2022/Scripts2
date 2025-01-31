@@ -1,0 +1,142 @@
+
+// desc: aracde code use in the meter dashboard for the director
+// author: Joe Hayes
+// updated: 1/27/2025
+
+
+
+// Color Block Popup Header
+<div style="padding: 5px; background-color: #2f85cc;"><b style="">
+<font color="#ffffff" face="Tahoma" size="3" style="">{projName_4}</font></b></div><p style="margin: 0in;"><br /></p>
+
+
+// Compare Install_Date and RepYear
+// display the most recent year or 'No Data' if both are null
+var indate = Year($feature.Install_Date)
+var repyear = $feature.RepYear
+// Check if both fields are null or NaN
+if (IsEmpty(indate) || IsNan(indate)) {
+  indate = null
+}
+if (IsEmpty(repyear) || IsNan(repyear)) {
+  repyear = null
+}
+// Return "No Data" if both are null
+if (IsEmpty(indate) && IsEmpty(repyear)) {
+  return "No Data"
+}
+// Return the most recent year
+if (IsEmpty(indate)) {
+  return repyear
+} else if (IsEmpty(repyear)) {
+  return indate
+} else {
+  return Max(indate, repyear)
+}
+
+
+
+// address
+<div style="background-color:#000000;padding:5px;">
+    <span style="color:#ffffff;font-family:Verdana;font-size:24px;">E911 Address</span>
+</div>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><strong>Address</strong>: <span>{FULLADDR}&nbsp;</span></span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><span>{COMMUNITY}, {STATE} {ZIPCODE}&nbsp;</span></span>
+</p>
+
+// grinder pump
+<div style="background-color:#de3e3e;padding:5px;">
+    <span style="color:#ffffff;font-family:Verdana;font-size:24px;"><strong>Grinder Pump</strong></span>
+</div>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><strong>Serial Number</strong>: <span>{SERIAL_NO}</span>&nbsp;</span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><strong>Premise ID</strong>: <span>{Premise}&nbsp;</span></span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><strong>SEMS ID</strong>: <span>{SEMS_ID}</span>&nbsp;</span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><span><strong>Address</strong>: {ADDRESS}</span> &nbsp;</span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><span><strong>PAS Maintain</strong>: {PSA_Maintain}</span></span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><span><strong>Manufacturer</strong>:</span> <span>{Manufacturer}</span> .</span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><span><strong>Install Date</strong>: {Install_Date_Converted}</span>&nbsp;</span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><strong>Notes</strong>: <span>{Notes_2}</span>&nbsp;</span>
+</p>
+<p style="margin:0in;">
+    &nbsp;
+</p>
+
+// cleanout
+<div style="background-color:#0a8269;padding:5px;">
+    <span style="color:#ffffff;font-family:Verdana;font-size:24px;"><strong>Cleanout</strong></span>
+</div>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;font-size:14px;"><strong>Type</strong>: <span>{Type}</span>&nbsp;</span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;font-size:14px;"><strong>SEMS ID</strong>: <span>{SEMS_ID}</span>&nbsp;</span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;font-size:14px;"><strong>Address</strong>: <span>{Address}</span>&nbsp;</span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;font-size:14px;"><strong>Diameter</strong>: <span>{Diameter}</span>&nbsp;</span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;font-size:14px;"><strong>Material</strong>: <span>{Material}</span>&nbsp;</span>
+</p>
+<p style="margin:0in;">
+    &nbsp;
+</p>
+
+// blowoff
+<div style="background-color:#808080;padding:5px;">
+    <span style="color:#ffffff;font-size:24px;"><strong>Blowoff</strong></span>
+</div>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;font-size:14px;"><strong>SEMS ID</strong>: <span>{SEMS_ID}</span>&nbsp;</span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;font-size:14px;"><strong>Install Date</strong>: <span>{Install_Date_Converted}</span>&nbsp;</span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;font-size:14px;"><strong>Automatic</strong>: <span>{Automatic}</span>&nbsp;</span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;font-size:14px;"><strong>Notes</strong>: <span>{Entry_Notes}</span>&nbsp;</span>
+</p>
+
+// water valve
+<div style="background-color:#ed5151;padding:5px;">
+    <span style="color:#ffffff;font-family:Verdana;font-size:24px;">Water Valve</span>
+</div>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><span><strong>Type</strong>: {Diameter}</span> &nbsp;<span>{System_Valve_Type}</span>&nbsp;</span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><span><strong>SEMS ID</strong>: {SEMS_ID}</span>&nbsp;</span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><span><strong>Status</strong>: {Status}</span>&nbsp;</span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><strong>Notes</strong>: <span>{Notes}</span>&nbsp;</span>
+</p>
+<p style="margin:0in;">
+    &nbsp;
+</p>
+
+

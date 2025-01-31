@@ -4,40 +4,18 @@
 
 // joe hayes January 2023
 
+// loop through unique values t make symbol class
+var uniqueValues = Distinct($feature.RepYear3); // Get unique values from the field
+var func = funtion(value);
+ForEach(uniqueValues, func); {
+    if ($feature.RepYear3 == func); {
+        // Create a symbol based on the 'value' (e.g., color, size, etc.)
+        return  new SimpleMarkerSymbol({ 
+            color:  If(value == "Category1", Color.Red, If(value == "Category2", Color.Blue, Color.Green)), 
+            size: 10
+        });
+    }
+};
 
-// layer symbology
-var fyear = $feature.Final_Year;
-var am = $feature.AltMon;
-var thisyear = Year(Now());
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-if (am == 'WLST'){
-    'Willamette Stone'}
-    else if (am == '4COR'){
-        '4 Corner Stone'
-    }
-    else if ((am == 'NCC') && (IsEmpty(fyear))){
-        'Non-Controling Corner'
-    }
-    else if ((IsEmpty(am) && IsEmpty(fyear))){
-        'No BT Entry'
-    }
-    else if (am == 'OTHC'){
-        'Maintained By Adjacent County'
-    }
-    else if (fyear >= thisyear -5){
-        '5 Years Or Less'
-    }
-    else if ((fyear <= thisyear -6) && (fyear >= thisyear -10)){
-        '6-10 Years'
-    }
-      else if ((fyear <= thisyear -11) && (fyear >= thisyear -20)){
-        '11-20 Years'
-    }
-       else if ((fyear <= thisyear -21) && (fyear >= thisyear -35)){
-        '21-35 Years'
-    }
-       else if ((fyear <= thisyear -36) && (fyear >= thisyear -250)){
-        '>35 Years'
-    }
-else
-   return 'other'

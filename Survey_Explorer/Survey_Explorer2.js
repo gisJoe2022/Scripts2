@@ -1,6 +1,6 @@
 
 // Color Block Popup Header
-<div style="padding: 5px; background-color: rgb(170, 102, 205);"><b style="">
+<div style="padding: 5px; background-color: #0a8269;"><b style="">
 <font color="#ffffff" face="Tahoma" size="3" style="">{projName_4}</font></b></div><p style="margin: 0in;"><br /></p>
 
 // image to PDF - taxmap example
