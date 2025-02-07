@@ -1,4 +1,4 @@
-/* In the above example, replace 'related_table_name' with the name of the related 
+/* In the example, replace 'related_table_name' with the name of the related 
 table you want to retrieve features from. Replace 'attribute_name' with the name 
 of the attribute you want to use as the link text. And replace 
 'https://myserver.com/mapviewer/' with the base URL of your web application.
