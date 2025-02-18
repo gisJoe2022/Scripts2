@@ -10,9 +10,15 @@ from email.mime.base import MIMEBase
 from email import encoders
 from email.mime.text import MIMEText
 
+import report_fc_nulls
+
+layer_name = report_fc_nulls.layer_name
+output_excel = report_fc_nulls.output_excel
+output_file = report_fc_nulls.output_file
+
 def send_email(subject, body, to_emails, attachment_path):
-    from_email = "your_email@example.com"
-    from_password = "your_email_password"
+    from_email = "youremail.com"
+    from_password = "yourpassword"
     
     # Create the email
     msg = MIMEMultipart()
@@ -23,7 +29,7 @@ def send_email(subject, body, to_emails, attachment_path):
     # Attach the body with the msg instance
     msg.attach(MIMEText(body, 'plain'))
     
-    # Open the file to be sent
+    with open(attachment_path, "rb") as attachment:
     attachment = open(attachment_path, "rb")
     
     # Instance of MIMEBase and named as p
@@ -41,7 +47,7 @@ def send_email(subject, body, to_emails, attachment_path):
     msg.attach(part)
     
     # Create SMTP session for sending the mail
-    server = smtplib.SMTP('smtp.example.com', 587)  # Use your SMTP server and port
+    server = smtplib.SMTP('smtp-mail.outlook.com', 587)  # Use your SMTP server and port
     server.starttls()
     server.login(from_email, from_password)
     text = msg.as_string()
@@ -51,7 +57,7 @@ def send_email(subject, body, to_emails, attachment_path):
 # Define email details
 subject = "Null Values Report"
 body = "Please find attached the null values report."
-to_emails = ["recipient1@example.com", "recipient2@example.com"]
+to_emails = ["jhayes@brwa.com"]
 attachment_path = "null_values_report_your_feature_layer_name.xlsx"  # Update with the actual file name
 
 # Send the email
