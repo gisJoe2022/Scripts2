@@ -7,7 +7,7 @@
 ////////////////////////////////////////////////////////////////////
 
 // Color Block Popup Header
-<div style="padding: 5px; background-color: #2f85cc;"><b style=""> //jslint-ignore-line
+<div style="padding: 5px; background-color: #2f85cc;"><b style="">
 <font color="#ffffff" face="Tahoma" size="3" style="">{projName_4}</font></b></div><p style="margin: 0in;"><br /></p>
 
 

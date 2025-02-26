@@ -9,7 +9,7 @@
 <div style="padding: 5px; background-color: #2f85cc;"><b style="">
 <font color="#ffffff" face="Tahoma" size="3" style="">{projName_4}</font></b></div><p style="margin: 0in;"><br /></p>
 
-
+<script>
 // Compare Install_Date and RepYear
 // display the most recent year or 'No Data' if both are null
 var indate = Year($feature.Install_Date)
@@ -33,7 +33,7 @@ if (IsEmpty(indate)) {
 } else {
   return Max(indate, repyear)
 }
-
+</script>
 
 
 // address
@@ -139,4 +139,19 @@ if (IsEmpty(indate)) {
     &nbsp;
 </p>
 
+// water meter
 
+// show only house number from full address fields
+<Script>
+Split($feature.Full_Address, " ", 1)
+</Script> 
+
+
+// all threee warning layers
+// all three have different link field names
+<div style="background-color:#e60000;padding:5px;">
+    <span style="color:#ffffff;font-family:Verdana;font-size:24px;"><strong>Warning</strong></span>
+</div>
+<p style="margin:0in;">
+    <a href="{xxLink}"><span style="color:#0000ff;"><u>Documents</u></span></a>
+</p>
