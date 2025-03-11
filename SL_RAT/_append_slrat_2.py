@@ -11,9 +11,46 @@ import arcpy
 from arcgis.gis import GIS
 from arcgis.features import FeatureLayer
 
-# Define paths
-source_fc = r"C:\Work\test\test1.gdb\slrat_Copy_2point"  # Replace with your geodatabase path and feature class name
-target_item_id = "571b1d8fc62b418bb0a8d47763dd76d6"  # Replace with the Item ID of the hosted feature service in ArcGIS Online
+# Environment settings
+arcpy.env.overwriteOutput = True
+
+# parameters
+source_fc = r"\\nu\gis\Projects\2025_Projects\202503_SL_RAT_Data\202503_SL_RAT_Data.gdb\Forest_to_point"  # Replace with your geodatabase path and feature class name
+target_item_id = "51bf387eb5a74afa84ef2b11d8424b95"  # Replace with the Item ID of the hosted feature service in ArcGIS Online
+infield1 = "AssessInt"  # Field name in source feature class
+infield2 = "MeasDate"  # Field name in source feature class
+outfield1 = "slrat_score"  # Field name in target feature service
+outfield2 = "slrat_score_date"  # Field name in target feature service
+
+""" arcpy.management.AddField(
+    in_table="source_fc",
+    field_name="AssessInt",
+    field_type="SHORT",
+    field_precision=None,
+    field_scale=None,
+    field_length=None,
+    field_alias="",
+    field_is_nullable="NULLABLE",
+    field_is_required="NON_REQUIRED",
+    field_domain=""
+)
+arcpy.ImportToolbox(r"@\Data Management Tools.tbx")
+arcpy.management.CalculateField(
+    in_table="Source_fc",
+    field="AssessInt",
+    expression="!Assessment!",
+    expression_type="PYTHON3",
+    code_block="",
+    field_type="TEXT",
+    enforce_domains="NO_ENFORCE_DOMAINS"
+)
+arcpy.ImportToolbox(r"@\Data Management Tools.tbx")
+arcpy.management.FeatureToPoint(
+    in_features="source_fc",
+    out_feature_class=r"\\nu\gis\Projects\2025_Projects\202503_SL_RAT_Data\202503_SL_RAT_Data.gdb\Forest_to_point",
+    point_location="INSIDE"
+) """
+
 
 # ArcGIS Online credentials
 username = 'j.hayes_bedfordvagis'
@@ -54,7 +91,7 @@ print("Target layer created.")
 
 # Perform spatial selection: Select target features within 30m of source
 print("Performing spatial selection...")
-arcpy.management.SelectLayerByLocation("target_lyr", "WITHIN_A_DISTANCE", "source_lyr", 30, "NEW_SELECTION")
+arcpy.management.SelectLayerByLocation("target_lyr", "WITHIN_A_DISTANCE", "source_lyr", 10, "NEW_SELECTION")
 
 # Check the number of selected target features
 selected_count = int(arcpy.GetCount_management("target_lyr").getOutput(0))
@@ -66,14 +103,14 @@ if selected_count == 0:
 
 # Store source features in a LIST instead of a dictionary
 source_data = []
-with arcpy.da.SearchCursor("source_lyr", ["SHAPE@", "Assessment", "MeasDate"]) as source_cursor:
+with arcpy.da.SearchCursor("source_lyr", ["SHAPE@", infield1, infield2]) as source_cursor:
     for row in source_cursor:
         source_data.append((row[0], row[1], row[2]))  # (Geometry, Assessment, MeasDate)
 print(f"Stored {len(source_data)} source features for matching.")
 
 # Update target features based on spatial proximity
 updated_count = 0
-with arcpy.da.UpdateCursor("target_lyr", ["SHAPE@", "slrat_score", "slrat_score_date"]) as target_cursor:
+with arcpy.da.UpdateCursor("target_lyr", ["SHAPE@", outfield1, outfield2]) as target_cursor:
     for target_row in target_cursor:
         target_geom = target_row[0]  # Get geometry of target feature
 
@@ -89,7 +126,7 @@ with arcpy.da.UpdateCursor("target_lyr", ["SHAPE@", "slrat_score", "slrat_score_
 
 print(f"Successfully updated {updated_count} target features.")
 
-# Clean up
+# clean up
 del source_cursor
 del target_cursor
 
