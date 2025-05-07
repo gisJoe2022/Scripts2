@@ -1,11 +1,11 @@
-
-// desc: aracde code use in the meter dashboard for the director
+<!-- 
+ // desc: aracde code use in the meter dashboard for the director
 // author: Joe Hayes
-// updated: 1/27/2025
+// updated: 1/27/2025 
+-->
 
 
-
-// Color Block Popup Header
+// Color Block Popup Header sample
 <div style="padding: 5px; background-color: #2f85cc;"><b style="">
 <font color="#ffffff" face="Tahoma" size="3" style="">{projName_4}</font></b></div><p style="margin: 0in;"><br /></p>
 
@@ -36,7 +36,7 @@ if (IsEmpty(indate)) {
 </script>
 
 
-// address
+<!-- // address -->
 <div style="background-color:#000000;padding:5px;">
     <span style="color:#ffffff;font-family:Verdana;font-size:24px;">E911 Address</span>
 </div>
@@ -47,7 +47,7 @@ if (IsEmpty(indate)) {
     <span style="font-family:Verdana;"><span>{COMMUNITY}, {STATE} {ZIPCODE}&nbsp;</span></span>
 </p>
 
-// grinder pump
+<!-- // grinder pump -->
 <div style="background-color:#de3e3e;padding:5px;">
     <span style="color:#ffffff;font-family:Verdana;font-size:24px;"><strong>Grinder Pump</strong></span>
 </div>
@@ -79,7 +79,7 @@ if (IsEmpty(indate)) {
     &nbsp;
 </p>
 
-// cleanout
+<!-- // cleanout -->
 <div style="background-color:#0a8269;padding:5px;">
     <span style="color:#ffffff;font-family:Verdana;font-size:24px;"><strong>Cleanout</strong></span>
 </div>
@@ -102,7 +102,7 @@ if (IsEmpty(indate)) {
     &nbsp;
 </p>
 
-// blowoff
+<!-- // blowoff -->
 <div style="background-color:#808080;padding:5px;">
     <span style="color:#ffffff;font-size:24px;"><strong>Blowoff</strong></span>
 </div>
@@ -119,7 +119,7 @@ if (IsEmpty(indate)) {
     <span style="font-family:Verdana;font-size:14px;"><strong>Notes</strong>: <span>{Entry_Notes}</span>&nbsp;</span>
 </p>
 
-// water valve
+<!-- // water valve -->
 <div style="background-color:#ed5151;padding:5px;">
     <span style="color:#ffffff;font-family:Verdana;font-size:24px;">Water Valve</span>
 </div>
@@ -139,19 +139,89 @@ if (IsEmpty(indate)) {
     &nbsp;
 </p>
 
-// water meter
-
-// show only house number from full address fields
-<Script>
-Split($feature.Full_Address, " ", 1)
-</Script> 
-
-
-// all threee warning layers
-// all three have different link field names
-<div style="background-color:#e60000;padding:5px;">
-    <span style="color:#ffffff;font-family:Verdana;font-size:24px;"><strong>Warning</strong></span>
+<!--  water meter -->
+<div style="background-color:#7DF9FF;padding:5px;">
+    <span style="color:#36454f;font-family:Verdana;font-size:24px;"><strong>Water Meter</strong></span>
 </div>
 <p style="margin:0in;">
-    <a href="{xxLink}"><span style="color:#0000ff;"><u>Documents</u></span></a>
+    <span style="font-family:Verdana;"><strong>Meter ID</strong>: <span>{Meter_Number}</span>&nbsp;</span>
 </p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><strong>Premise ID</strong>: <span>{Premise}&nbsp;</span></span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><strong>SEMS ID</strong>: <span>{SEMS_ID}</span>&nbsp;</span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><strong>Customer</strong>: <span>{Customer}&nbsp;</span></span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><strong>Address</strong>: <span>{Full_Address}&nbsp;</span></span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><strong>Parcel Num</strong>: &nbsp;<span>{Parcel_Number}&nbsp;</span></span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><strong>Diameter</strong>: &nbsp;<span>{Diameter}</span>&nbsp;</span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><strong>Install Date</strong>: <span>{Install_Date}&nbsp;</span></span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><strong>Read Type</strong>: &nbsp;<span>{Read_Type}</span>&nbsp;</span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><strong>Comp Meter Diam</strong>: <span>{Comp_Meter_Dia}</span>&nbsp;</span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><strong>Meter Location</strong>: <span>{Meter_Location}</span>&nbsp;</span>
+</p>
+
+<!-- // force main sewer -->
+<div style="background-color:#267300;padding:5px;">
+    <span style="color:#ffffff;font-family:Verdana;font-size:24px;">Force Main Sewer</span>
+</div>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><strong>SEMS ID</strong>: <span>{SEMS_ID}</span>&nbsp;</span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><strong>Install Date</strong>: <span>{Install_Date}</span>&nbsp;</span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><strong>Material</strong>: <span>{Material}</span>&nbsp;</span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><strong>Diameter</strong>: <span>{Diameter}</span>&nbsp;</span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><strong>Notes</strong>: <span>{Entry_Notes}</span>&nbsp;</span>
+</p>
+
+<!-- // waterline projects -->
+<div style="background-color:#4d4d4d;padding:5px;">
+    <span style="color:#ffffff;font-family:Verdana;font-size:24px;">Waterline Project</span>
+</div>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><strong>Project Name</strong>:&nbsp;</span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><span>{Project}</span>&nbsp;</span>
+</p>
+<p style="margin:0in;">
+    <a href="{Link}"><span style="color:#0000ff;">Image Link</span></a>
+</p>
+
+<!-- // cip projects -->
+<div style="background-color:#f26f2e;padding:5px;">
+    <span style="color:#ffffff;font-family:Verdana;font-size:24px;">CIP Project</span>
+</div>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><strong>Project Name</strong>:</span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><span>{Name}</span>&nbsp;</span>
+</p>
+<p style="margin:0in;">
+    <span style="font-family:Verdana;"><strong>Plan</strong>: <span>{Notes_1}</span>&nbsp;</span>
+</p>
+

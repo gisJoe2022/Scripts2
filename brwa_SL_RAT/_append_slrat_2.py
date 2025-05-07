@@ -1,12 +1,20 @@
-# update the slrat_score and slrat_score_date fields in the target feature service based on the source feature class
-# using spatial selection and proximity matching within 30m
+# Updates Gravity Main Sewer Lines with SL RAT data
+# update the slrat_score and slrat_score_date fields.
+# using spatial selection and proximity matching within 10m
 # This script requires ArcPy and the ArcGIS API for Python to be installed and configured 
 # with the appropriate credentials to access the source feature class and target feature service.
-# The script assumes that the source feature class is a point feature class with fields "Assessment" and "MeasDate"
-# and the target feature service has fields "slrat_score" and "slrat_score_date" that need to be updated.
+# The script assumes that the source feature class is a point feature class with fields "AssessInt" and "MeasDate"
+# Author: Joe Hayes
+# Date: 2021-03-11
 # 
+# user must do a little data QC before converting the sl rat lines to points
+# 1.  Add a field to the source feature class called AssessInt
+# 2.  Calculate the field AssessInt to be the same as the field Assessment
+# 3.  Convert the source feature class to a point feature class
+# 4.  Add info in the parameters section
+# 5.  Run the script
 
-
+# Import
 import arcpy
 from arcgis.gis import GIS
 from arcgis.features import FeatureLayer
@@ -21,7 +29,11 @@ infield1 = "AssessInt"  # Field name in source feature class
 infield2 = "MeasDate"  # Field name in source feature class
 outfield1 = "slrat_score"  # Field name in target feature service
 outfield2 = "slrat_score_date"  # Field name in target feature service
+# ArcGIS Online credentials
+username = '<your_username>'
+password = '<your_password>'
 
+# dev code
 """ arcpy.management.AddField(
     in_table="source_fc",
     field_name="AssessInt",
@@ -51,10 +63,9 @@ arcpy.management.FeatureToPoint(
     point_location="INSIDE"
 ) """
 
-
 # ArcGIS Online credentials
-username = 'j.hayes_bedfordvagis'
-password = 'letrbuck4EO!'
+username = '<your_username>'
+password = '<your_password>'
 
 # Connect to ArcGIS Online
 gis = GIS("https://bedfordvagis.maps.arcgis.com", username=username, password=password)

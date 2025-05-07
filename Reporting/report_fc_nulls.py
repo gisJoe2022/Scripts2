@@ -16,7 +16,7 @@ from arcgis.gis import GIS
 gis = GIS("https://bedfordvagis.maps.arcgis.com", "j.hayes_bedfordvagis", "letrbuck4EO!")
 
 # Define the path to your hosted feature layer
-feature_layer = gis.content.get("51bf387eb5a74afa84ef2b11d8424b95").layers[0]  # Replace with your feature layer item ID
+feature_layer = gis.content.get("39bebc749a204e1bb976a134f5bc826b").layers[0]  # Replace with your feature layer item ID
 
 # Get the current date in yyyymmdd format
 current_date = datetime.datetime.now().strftime("%Y%m%d")
@@ -26,7 +26,7 @@ layer_name = feature_layer.properties.name
 print(layer_name)
 
 # output path for the Excel file
-output_folder = r"C:\\Work\\Data_qc\\"  # Replace with your desired folder path
+output_folder = r"S:\Projects\2025_Projects\202508_Layer_Cleanup\reports"  # Replace with your desired folder path
 
 # Create the dynamic output filename using the date and feature layer name
 output_excel = f"{current_date}_{layer_name}_null_count.xlsx"

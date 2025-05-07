@@ -62,3 +62,13 @@ var PlatDataInt = Intersects(getData, $feature)
 // Accessing fields with dot notation only works with literal field names, and then only if the field name has no invalid characters.
 
 
+// working code
+var parcels = FeatureSetByName($map, 'Town Parcels', ['Owner1'], true)
+
+for (var p in parcels) {
+    if (Intersects($feature, p)) {
+        return p.Owner1
+    }
+}
+
+return "No intersecting parcel found"
