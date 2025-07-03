@@ -5,14 +5,13 @@
 # with the appropriate credentials to access the source feature class and target feature service.
 # The script assumes that the source feature class is a point feature class with fields "AssessInt" and "MeasDate"
 # Author: Joe Hayes
-# Date: 2021-03-11
+# Date: 2025-03-11
+# Version: 1.1
 # 
 # user must do a little data QC before converting the sl rat lines to points
-# 1.  Add a field to the source feature class called AssessInt
-# 2.  Calculate the field AssessInt to be the same as the field Assessment
-# 3.  Convert the source feature class to a point feature class
-# 4.  Add info in the parameters section
-# 5.  Run the script
+# 1.  Convert the source feature class to a point feature class
+# 2.  Add info in the parameters section
+# 3.  Run the script
 
 # Import
 import arcpy
@@ -23,56 +22,53 @@ from arcgis.features import FeatureLayer
 arcpy.env.overwriteOutput = True
 
 # parameters
-source_fc = r"\\nu\gis\Projects\2025_Projects\202503_SL_RAT_Data\202503_SL_RAT_Data.gdb\Forest_to_point"  # Replace with your geodatabase path and feature class name
+
+source_fc = r"S:\\Projects\\2025_Projects\\202503_SL_RAT_Data\\202503_SL_RAT_Data.gdb\\SL_Rat_Data_20250611_point"  # Replace with your geodatabase path and feature class name
 target_item_id = "51bf387eb5a74afa84ef2b11d8424b95"  # Replace with the Item ID of the hosted feature service in ArcGIS Online
 infield1 = "AssessInt"  # Field name in source feature class
 infield2 = "MeasDate"  # Field name in source feature class
 outfield1 = "slrat_score"  # Field name in target feature service
 outfield2 = "slrat_score_date"  # Field name in target feature service
-# ArcGIS Online credentials
-username = '<your_username>'
-password = '<your_password>'
-
-# dev code
-""" arcpy.management.AddField(
-    in_table="source_fc",
-    field_name="AssessInt",
-    field_type="SHORT",
-    field_precision=None,
-    field_scale=None,
-    field_length=None,
-    field_alias="",
-    field_is_nullable="NULLABLE",
-    field_is_required="NON_REQUIRED",
-    field_domain=""
-)
-arcpy.ImportToolbox(r"@\Data Management Tools.tbx")
-arcpy.management.CalculateField(
-    in_table="Source_fc",
-    field="AssessInt",
-    expression="!Assessment!",
-    expression_type="PYTHON3",
-    code_block="",
-    field_type="TEXT",
-    enforce_domains="NO_ENFORCE_DOMAINS"
-)
-arcpy.ImportToolbox(r"@\Data Management Tools.tbx")
-arcpy.management.FeatureToPoint(
-    in_features="source_fc",
-    out_feature_class=r"\\nu\gis\Projects\2025_Projects\202503_SL_RAT_Data\202503_SL_RAT_Data.gdb\Forest_to_point",
-    point_location="INSIDE"
-) """
 
 # ArcGIS Online credentials
-username = '<your_username>'
-password = '<your_password>'
+username = 'j.hayes_bedfordvagis'  # Replace with your ArcGIS Online username
+password = 'letrbuck4EO!' # Replace with your ArcGIS Online password
+
+
+# Add AssessInt field to source_fc if it doesn't exist
+fields = [f.name for f in arcpy.ListFields(source_fc)]
+if "AssessInt" not in fields:
+    print("Adding field 'AssessInt' to source feature class...")
+    arcpy.AddField_management(source_fc, "AssessInt", "LONG")
+    print("Field 'AssessInt' added.")
+else:
+    print("Field 'AssessInt' already exists in source feature class.")
+
+    # Calculate AssessInt field from Assessment field in source_fc
+    if "Assessment" in fields:
+        print("Calculating 'AssessInt' from 'Assessment' field...")
+        arcpy.CalculateField_management(
+            source_fc,
+            field="AssessInt",
+            expression="!Assessment!",
+            expression_type="PYTHON3",
+            code_block="",
+            field_type="TEXT",
+            enforce_domains="NO_ENFORCE_DOMAINS"
+        )
+        print("'AssessInt' field calculated.")
+    else:
+        print("Field 'Assessment' does not exist in source feature class.")
+
 
 # Connect to ArcGIS Online
-gis = GIS("https://bedfordvagis.maps.arcgis.com", username=username, password=password)
+gis = GIS("https://bedfordvagis.maps.arcgis.com", username, password)
 
 # Retrieve the feature service item using the item ID
 print(f"Fetching target layer using item ID: {target_item_id}")
 target_item = gis.content.get(target_item_id)
+
+
 
 # Ensure the item is valid and is a feature service
 if target_item and target_item.type == "Feature Service":
@@ -137,8 +133,8 @@ with arcpy.da.UpdateCursor("target_lyr", ["SHAPE@", outfield1, outfield2]) as ta
 
 print(f"Successfully updated {updated_count} target features.")
 
-# clean up
+""" # clean up
 del source_cursor
-del target_cursor
+del target_cursor """
 
 print("Field update completed successfully.")

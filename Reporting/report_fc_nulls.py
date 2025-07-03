@@ -16,7 +16,7 @@ from arcgis.gis import GIS
 gis = GIS("https://bedfordvagis.maps.arcgis.com", "j.hayes_bedfordvagis", "letrbuck4EO!")
 
 # Define the path to your hosted feature layer
-feature_layer = gis.content.get("39bebc749a204e1bb976a134f5bc826b").layers[0]  # Replace with your feature layer item ID
+feature_layer = gis.content.get("cffadb288ddd4eee9ce28dd1f92e6640").layers[0]  # Replace with your feature layer item ID
 
 # Get the current date in yyyymmdd format
 current_date = datetime.datetime.now().strftime("%Y%m%d")

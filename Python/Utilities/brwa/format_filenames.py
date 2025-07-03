@@ -21,6 +21,7 @@ Oder of opperations
  """
 import os
 
+
 def remove_spaces_from_filenames(directory):
     for filename in os.listdir(directory):
         if filename.endswith(".pdf"):
