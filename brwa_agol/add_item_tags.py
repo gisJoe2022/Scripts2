@@ -1,13 +1,17 @@
 
 
+import urllib3
 from arcgis.gis import GIS
+
+# Suppress HTTPS warnings
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # Step 1: Login to AGOL
 gis = GIS("https://bedfordvagis.maps.arcgis.com", "j.hayes_bedfordvagis", "letrbuck4EO!")
 
 # Step 2: Define owners and tag
-owners = ["gisjoe2022_BedfordVAGIS"]
-tag_to_add = "brwa"
+owners = ["j.hayes_bedfordvagis"] # , "gisjoe2022_BedfordVAGIS"
+tag_to_add = ["brwa", "BRWA", "BRWA-2024", "BRWA-2025"]  # Add more tags as needed
 tag_added_count = 0
 
 # Step 3: Loop through each owner
