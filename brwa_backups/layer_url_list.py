@@ -7,8 +7,8 @@ from datetime import datetime
 username = "j.hayes_bedfordvagis"
 password = "letrbuck4EO!"
 web_map_title = "BRWA Engineering"
-target_group_layer_name = "BRWA Water"
-output_folder = r"S:\BU_Databases\2025\water"
+target_group_layer_name = "BRWA Layers"
+output_folder = r"S:\BU_Databases\2025\general"
 
 # Generate timestamp for filename
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
