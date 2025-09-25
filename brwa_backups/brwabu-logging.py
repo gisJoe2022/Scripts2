@@ -1,8 +1,11 @@
-# sewer_backup.py
-# This script creates a File Geodatabase and downloads various sewer-related feature services into it.
-# It uses the ArcPy library to handle GIS data and operations.
+# brwabu-logging.py
+# This script creates a File Geodatabase, downloads layers to gdb, and cretes a log file. 
+# Downloads a sub-set of ESRI-hosted feature services from the BRWA Layers Group in the 
+# engineering map in agol.
+# The log file captures the script's progress and any errors encountered.
+# The log file is saved in a specified directory with a timestamped filename.
 # Author: J. Hayes
-# date: 2025-08-01
+# date: 2025-09-25
 
 import arcpy
 import datetime
