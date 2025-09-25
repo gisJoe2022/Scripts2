@@ -58,7 +58,7 @@ try:
 
     # List of ESRI-hosted feature service URLs
     feature_services = [
-        "https://services3.arcgis.com/DXCmCcRcEQ793kMP/arcgis/rest/services/Sewer_Meter/FeatureServer/0",
+
         "https://services3.arcgis.com/DXCmCcRcEQ793kMP/arcgis/rest/services/Sewer_Fitting/FeatureServer/2",
         "https://services3.arcgis.com/DXCmCcRcEQ793kMP/arcgis/rest/services/Omni_Marker/FeatureServer/0",
         "https://services3.arcgis.com/DXCmCcRcEQ793kMP/arcgis/rest/services/Sewer_System_Valve/FeatureServer/0",
@@ -83,7 +83,6 @@ try:
 
     # Corresponding names for the output feature classes
     output_names = [
-        "sewer_meters",
         "Sewer_fittings",
         "omni_markers",
         "Sewer_system_valves",

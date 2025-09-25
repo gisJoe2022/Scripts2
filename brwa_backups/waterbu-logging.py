@@ -13,7 +13,7 @@ import sys
 # === Setup Logging ===
 start_time = datetime.datetime.now()
 timestamp = start_time.strftime('%Y%m%d_%H%M')
-log_dir = r"S:\BU_Databases\2025\sewer\logs"  # Change this to your desired log directory
+log_dir = r"S:\BU_Databases\2025\water\logs"  # Change this to your desired log directory
 os.makedirs(log_dir, exist_ok=True)  # Ensure the log directory exists
 log_file = os.path.join(log_dir, f"brwa_sewer_backup_{timestamp}.log")
 
