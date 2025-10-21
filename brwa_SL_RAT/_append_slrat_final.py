@@ -23,7 +23,7 @@ arcpy.env.overwriteOutput = True
 
 # parameters
 
-source_fc = r"S:\\Projects\\2025_Projects\\202503_SL_RAT_Data\\202503_SL_RAT_Data.gdb\\SL_Rat_Data_20250611_point"  # Replace with your geodatabase path and feature class name
+source_fc = r"S:\Projects\2025_Projects\202503_SL_RAT_Data\202503_SL_RAT_Data.gdb\SL_Rat_Data_2025_10_03"  # Replace with your geodatabase path and feature class name
 target_item_id = "51bf387eb5a74afa84ef2b11d8424b95"  # Replace with the Item ID of the hosted feature service in ArcGIS Online
 infield1 = "AssessInt"  # Field name in source feature class
 infield2 = "MeasDate"  # Field name in source feature class
@@ -31,8 +31,8 @@ outfield1 = "slrat_score"  # Field name in target feature service
 outfield2 = "slrat_score_date"  # Field name in target feature service
 
 # ArcGIS Online credentials
-username = 'j.hayes_bedfordvagis'  # Replace with your ArcGIS Online username
-password = 'letrbuck4EO!' # Replace with your ArcGIS Online password
+username = "brwa.sync_bedfordvagis" # Replace with your ArcGIS Online username
+password = "E&MBp^U@)4ybMWq" # Replace with your ArcGIS Online password
 
 
 # Add AssessInt field to source_fc if it doesn't exist
