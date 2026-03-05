@@ -1,0 +1,15 @@
+
+
+{
+  "parent_sde": "C:\\GIS\\Connections\\STAGING_SDE.sde",
+  "child_sde":  "C:\\GIS\\Connections\\PROD_SDE.sde",
+  "replica": "StagingToProd_OneWayReplica",
+  "target_version": "sde.DEFAULT",
+  "do_reconcile_post": true,
+  "do_compress_parent": true,
+  "do_compress_child": false
+}
+
+
+/* Run */
+"C:\Program Files\ArcGIS\Pro\bin\Python\scripts\propy.bat" nightly_replica_sync.py --config C:</span>GIS</span>replica_sync_config.json

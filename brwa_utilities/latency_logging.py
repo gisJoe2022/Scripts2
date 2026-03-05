@@ -7,7 +7,7 @@ import os
 
 # Parameters
 log_file_path = r'S:\Projects\2025_Projects\202517_Latency_Testing\log' # Log file location
-interval = 5  # Time between pings in seconds
+interval = 1  # Time between pings in seconds
 duration_minutes = 60  # Total duration to run in minutes
 timestamp1 = datetime.datetime.now().strftime('%Y-%m-%d_%H%M')  # No colons for file name
 

@@ -13,20 +13,21 @@ import os
 from arcgis.gis import GIS
 
 # Login to ArcGIS Online
-gis = GIS("https://bedfordvagis.maps.arcgis.com", "j.hayes_bedfordvagis", "letrbuck4EO!")
+gis = GIS("https://bedfordvagis.maps.arcgis.com", "brwa.sync_bedfordvagis", "E&MBp^U@)4ybMWq")
 
 # Define the path to your hosted feature layer
-feature_layer = gis.content.get("cffadb288ddd4eee9ce28dd1f92e6640").layers[0]  # Replace with your feature layer item ID
+feature_layer = gis.content.get("2d8fbc23152441b7b4d1a3695eb19ecf").layers[0]  # Replace with your feature layer item ID
 
 # Get the current date in yyyymmdd format
-current_date = datetime.datetime.now().strftime("%Y%m%d")
+current_date = datetime.datetime.now().strftime("%Y%m%d_%H%M")
 
 # Extract the feature layer name (if it's a path, extract the name from the file name)
 layer_name = feature_layer.properties.name
 print(layer_name)
 
 # output path for the Excel file
-output_folder = r"S:\Projects\2025_Projects\202508_Layer_Cleanup\reports"  # Replace with your desired folder path
+output_folder = r"\\192.168.20.14\gis\Projects\2025_Projects\202508_Layer_Cleanup\reports"
+#output_folder = r"S:\Projects\2025_Projects\202508_Layer_Cleanup\reports"  # Replace with your desired folder path
 
 # Create the dynamic output filename using the date and feature layer name
 output_excel = f"{current_date}_{layer_name}_null_count.xlsx"

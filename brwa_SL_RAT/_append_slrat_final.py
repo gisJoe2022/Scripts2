@@ -3,7 +3,7 @@
 # using spatial selection and proximity matching within 10m
 # This script requires ArcPy and the ArcGIS API for Python to be installed and configured 
 # with the appropriate credentials to access the source feature class and target feature service.
-# The script assumes that the source feature class is a point feature class with fields "AssessInt" and "MeasDate"
+# The script assumes that the source feature class is a point feature class with fields "Assessment" and "MeasDate"
 # Author: Joe Hayes
 # Date: 2025-03-11
 # Version: 1.1
@@ -12,6 +12,10 @@
 # 1.  Convert the source feature class to a point feature class
 # 2.  Add info in the parameters section
 # 3.  Run the script
+
+#-----------------------------------------------------------------------------------------------------
+#------- 3 random lines had the incorrect score when last run on 2/27/2026 ---------------------------
+#-----------------------------------------------------------------------------------------------------
 
 # Import
 import arcpy
@@ -23,9 +27,9 @@ arcpy.env.overwriteOutput = True
 
 # parameters
 
-source_fc = r"S:\Projects\2025_Projects\202503_SL_RAT_Data\202503_SL_RAT_Data.gdb\SL_Rat_Data_2025_10_03"  # Replace with your geodatabase path and feature class name
+source_fc = r"\\nu\gis\Projects\2025_Projects\202503_SL_RAT_Data\202503_SL_RAT_Data.gdb\_2026_Feb2_FeatureToPoint"  # Replace with your geodatabase path and feature class name
 target_item_id = "51bf387eb5a74afa84ef2b11d8424b95"  # Replace with the Item ID of the hosted feature service in ArcGIS Online
-infield1 = "AssessInt"  # Field name in source feature class
+infield1 = "Assessment"  # Field name in source feature class
 infield2 = "MeasDate"  # Field name in source feature class
 outfield1 = "slrat_score"  # Field name in target feature service
 outfield2 = "slrat_score_date"  # Field name in target feature service
@@ -35,28 +39,28 @@ username = "brwa.sync_bedfordvagis" # Replace with your ArcGIS Online username
 password = "E&MBp^U@)4ybMWq" # Replace with your ArcGIS Online password
 
 
-# Add AssessInt field to source_fc if it doesn't exist
+# Add Assessment field to source_fc if it doesn't exist
 fields = [f.name for f in arcpy.ListFields(source_fc)]
-if "AssessInt" not in fields:
-    print("Adding field 'AssessInt' to source feature class...")
-    arcpy.AddField_management(source_fc, "AssessInt", "LONG")
-    print("Field 'AssessInt' added.")
+if "Assessment" not in fields:
+    print("Adding field 'Assessment' to source feature class...")
+    arcpy.AddField_management(source_fc, "Assessment", "LONG")
+    print("Field 'Assessment' added.")
 else:
-    print("Field 'AssessInt' already exists in source feature class.")
+    print("Field 'Assessment' already exists in source feature class.")
 
-    # Calculate AssessInt field from Assessment field in source_fc
+    # Calculate Assessment field from Assessment field in source_fc
     if "Assessment" in fields:
-        print("Calculating 'AssessInt' from 'Assessment' field...")
+        print("Calculating 'Assessment' from 'Assessment' field...")
         arcpy.CalculateField_management(
             source_fc,
-            field="AssessInt",
+            field="Assessment",
             expression="!Assessment!",
             expression_type="PYTHON3",
             code_block="",
             field_type="TEXT",
             enforce_domains="NO_ENFORCE_DOMAINS"
         )
-        print("'AssessInt' field calculated.")
+        print("'Assessment' field calculated.")
     else:
         print("Field 'Assessment' does not exist in source feature class.")
 
@@ -98,7 +102,7 @@ print("Target layer created.")
 
 # Perform spatial selection: Select target features within 30m of source
 print("Performing spatial selection...")
-arcpy.management.SelectLayerByLocation("target_lyr", "WITHIN_A_DISTANCE", "source_lyr", 10, "NEW_SELECTION")
+arcpy.management.SelectLayerByLocation("target_lyr", "INTERSECT", "source_lyr", "20 Feet", "NEW_SELECTION")
 
 # Check the number of selected target features
 selected_count = int(arcpy.GetCount_management("target_lyr").getOutput(0))
