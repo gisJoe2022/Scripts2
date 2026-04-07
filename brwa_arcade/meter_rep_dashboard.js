@@ -6,6 +6,23 @@
 // updated: 1/27/2025
 ////////////////////////////////////////////////////////////////////
 
+// outputs fiscal year in format "FY 24/25" based on the rep_yr field.
+var repYear = $feature.rep_yr;
+var last2FY = Right(Text(repYear - 1), 2);
+var current2FY = Right(Text(repYear), 2);
+return IIf(isEmpty(repYear), NULL, "FY " + last2FY + "/" + current2FY);
+
+// outputs ending fiscal year only in format based on the Warranty End Date field (warranty_rep_yr).
+var yrEnd = Year($feature.warranty_rep_yr);
+var mthDay = Month($feature.warranty_rep_yr);
+var fiscalYear = Iif(mthDay < 7, yrEnd, yrEnd + 1);
+Concatenate("FY ", Text(fiscalYear, "0000"));
+
+
+// calulate repacement year based on install date + 10 years
+Number(Year($feature.Install_Date)) + 10
+
+
 // Color Block Popup Header
 <div style="padding: 5px; background-color: #2f85cc;"><b style="">
 <font color="#ffffff" face="Tahoma" size="3" style="">{projName_4}</font></b></div><p style="margin: 0in;"><br /></p>
@@ -13,7 +30,6 @@
 
 // Compare Install_Date and RepYear
 // display the most recent year or 'No Data' if both are null
-//
 var indate = Year($feature.Install_Date)
 var repyear = $feature.RepYear
 // Check if both fields are null or NaN

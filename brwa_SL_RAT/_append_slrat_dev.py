@@ -1,18 +1,3 @@
-# Updates Gravity Main Sewer Lines with SL RAT data
-# update the slrat_score and slrat_score_date fields.
-# using spatial selection and proximity matching within 10m
-# This script requires ArcPy and the ArcGIS API for Python to be installed and configured 
-# with the appropriate credentials to access the source feature class and target feature service.
-# The script assumes that the source feature class is a point feature class with fields "Assessment" and "MeasDate"
-# Author: Joe Hayes
-# Date: 2026-03-13
-# Version: 1.2
-# 
-# user must do a little data QC before converting the sl rat lines to points
-# 1. Snap the SLRAT lines to the gravity main seweerr lines.   
-# 2. Convert the source feature class to a point using the inside option.
-# 2. Add info in the parameters section
-# 3. Run the script
 
 
 # Import
@@ -27,7 +12,8 @@ arcpy.env.overwriteOutput = True
 
 # parameters
 
-source_fc = r"\\nu\gis\Projects\2025_Projects\202503_SL_RAT_Data\202503_SL_RAT_Data.gdb\c2026_March_FeatureToPoint"  # Replace with your geodatabase path and feature class name
+# source_fc = r"\\\\nu\\gis\\Projects\\2025_Projects\\202503_SL_RAT_Data\\SL_RAT_Data_2.gdb\\slratcurrent"  # Replace with your geodatabase path and feature class name
+source_fc = r"S:\\Projects\\2025_Projects\\202503_SL_RAT_Data\\SL_RAT_Data_2.gdb\\slratcurrent"  # Replace with your geodatabase path and feature class name
 target_item_id = "51bf387eb5a74afa84ef2b11d8424b95"  # Replace with the Item ID of the hosted feature service in ArcGIS Online
 infield1 = "Assessment"  # Field name in source feature class
 infield2 = "MeasDate"  # Field name in source feature class
@@ -37,6 +23,15 @@ outfield2 = "slrat_score_date"  # Field name in target feature service
 # ArcGIS Online credentials
 username = "brwa.sync_bedfordvagis" # Replace with your ArcGIS Online username
 password = "E&MBp^U@)4ybMWq" # Replace with your ArcGIS Online password
+
+# Convert source feature class to point feature class
+#output_directory = r"\\\\nu\\gis\\Projects\\2025_Projects\\202503_SL_RAT_Data\\SL_RAT_Data_2.gdb"
+output_directory = r"S:\\Projects\\2025_Projects\\202503_SL_RAT_Data\\SL_RAT_Data_2.gdb"
+date_time_str = datetime.now().strftime("%Y%m%d_%H%M%S")
+output_point_fc = os.path.join(output_directory, f"sl_rat_point_{date_time_str}")
+arcpy.management.FeatureToPoint(source_fc, output_point_fc, "INSIDE")
+# Update source_fc to use the new point feature class
+source_fc = output_point_fc
 
 
 # Add Assessment field to source_fc if it doesn't exist
@@ -102,7 +97,7 @@ print("Target layer created.")
 
 # Perform spatial selection: Select target features within 30m of source
 print("Performing spatial selection...")
-arcpy.management.SelectLayerByLocation("target_lyr", "INTERSECT", "source_lyr", "20 Feet", "NEW_SELECTION")
+arcpy.management.SelectLayerByLocation("target_lyr", "WITHIN_A_DISTANCE", "source_lyr", "10 Feet", "NEW_SELECTION")
 
 # Check the number of selected target features
 selected_count = int(arcpy.GetCount_management("target_lyr").getOutput(0))
