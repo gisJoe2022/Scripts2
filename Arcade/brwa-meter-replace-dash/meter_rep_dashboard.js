@@ -6,11 +6,52 @@
 // updated: 1/27/2025
 ////////////////////////////////////////////////////////////////////
 
+
+
+// Outputs fiscal year in format "FY 24/25" based on a date field
+var d = $feature.warranty_rep_yr;
+
+// Fiscal year ends the year AFTER July–December dates
+// Month() in Arcade is 0-11 (July = 6)
+var fyEndYear = Year(d) + IIf(Month(d) >= 6, 1, 0);
+var fyStartYear = fyEndYear - 1;
+
+// Last two digits of each year
+var startYY = Right(Text(fyStartYear), 2);
+var endYY = Right(Text(fyEndYear), 2);
+
+if (IsEmpty(d) || isNaN(d) || d <= Date(2024, 6, 30)) {
+    return "FY 00/24"
+}
+  else {
+    return "FY " + startYY + "/" + endYY;
+}
+
+
+
+///////////////////////////////////////////////////////////////
+
+// catagorize the rep year into categories
+var yrEnd = Year($feature.warranty_rep_yr);
+var mthDay = Month($feature.warranty_rep_yr);
+var fiscalYear = IIf(mthDay < 7, yrEnd, yrEnd + 1);
+
+// Group older fiscal years
+if (fiscalYear < 2025) {
+    return "FY 00/25";
+}
+return "FY " + Text(fiscalYear, "0000");
+
+////////////////////////////////////////////////////////////////////////
+
+
 // outputs fiscal year in format "FY 24/25" based on the rep_yr field.
 var repYear = $feature.rep_yr;
 var last2FY = Right(Text(repYear - 1), 2);
 var current2FY = Right(Text(repYear), 2);
-return IIf(isEmpty(repYear), NULL, "FY " + last2FY + "/" + current2FY);
+return IIf(isEmpty(repYear), "FY 00/25", "FY " + last2FY + "/" + current2FY);
+
+//////////////////////////////////////////////////////////////////////////
 
 // outputs ending fiscal year only in format based on the Warranty End Date field (warranty_rep_yr).
 var yrEnd = Year($feature.warranty_rep_yr);
