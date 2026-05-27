@@ -27,7 +27,7 @@ arcpy.env.overwriteOutput = True
 
 # parameters
 
-source_fc = r"\\nu\gis\Projects\2025_Projects\202503_SL_RAT_Data\202503_SL_RAT_Data.gdb\c2026_March_FeatureToPoint"  # Replace with your geodatabase path and feature class name
+source_fc = r"\\192.168.20.14\gis\Projects\2025_Projects\202503_SL_RAT_Data\SL_RAT_Data.gdb\c2026april1_FeatureToPoint"  # Replace with your geodatabase path and feature class name
 target_item_id = "51bf387eb5a74afa84ef2b11d8424b95"  # Replace with the Item ID of the hosted feature service in ArcGIS Online
 infield1 = "Assessment"  # Field name in source feature class
 infield2 = "MeasDate"  # Field name in source feature class
@@ -102,7 +102,7 @@ print("Target layer created.")
 
 # Perform spatial selection: Select target features within 30m of source
 print("Performing spatial selection...")
-arcpy.management.SelectLayerByLocation("target_lyr", "INTERSECT", "source_lyr", "20 Feet", "NEW_SELECTION")
+arcpy.management.SelectLayerByLocation("target_lyr", "HAVE_THEIR_CENTER_IN", "source_lyr", "10 Feet", "NEW_SELECTION")
 
 # Check the number of selected target features
 selected_count = int(arcpy.GetCount_management("target_lyr").getOutput(0))

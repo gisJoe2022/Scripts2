@@ -85,7 +85,7 @@ try:
     output_names = [
         "hydrant_lateral",
         "water_lateral",
-        "waterline_brwa_version",
+        "waterline_brwa_version2021",
         "water_pump_station",
         "low_pressure_zones",
         "pressure_tank",

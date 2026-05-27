@@ -1,5 +1,3 @@
-
-
 ////////////////////////////////////////////////////////////////////
 // desc: aracde code use in the meter dashboard for the director
 // author: Joe Hayes
@@ -29,35 +27,12 @@ if (IsEmpty(d) || isNaN(d) || d <= Date(2024, 6, 30)) {
 
 
 
-///////////////////////////////////////////////////////////////
-
-// catagorize the rep year into categories
-var yrEnd = Year($feature.warranty_rep_yr);
-var mthDay = Month($feature.warranty_rep_yr);
-var fiscalYear = IIf(mthDay < 7, yrEnd, yrEnd + 1);
-
-// Group older fiscal years
-if (fiscalYear < 2025) {
-    return "FY 00/25";
-}
-return "FY " + Text(fiscalYear, "0000");
-
-////////////////////////////////////////////////////////////////////////
 
 
-// outputs fiscal year in format "FY 24/25" based on the rep_yr field.
-var repYear = $feature.rep_yr;
-var last2FY = Right(Text(repYear - 1), 2);
-var current2FY = Right(Text(repYear), 2);
-return IIf(isEmpty(repYear), "FY 00/25", "FY " + last2FY + "/" + current2FY);
 
-//////////////////////////////////////////////////////////////////////////
 
-// outputs ending fiscal year only in format based on the Warranty End Date field (warranty_rep_yr).
-var yrEnd = Year($feature.warranty_rep_yr);
-var mthDay = Month($feature.warranty_rep_yr);
-var fiscalYear = Iif(mthDay < 7, yrEnd, yrEnd + 1);
-Concatenate("FY ", Text(fiscalYear, "0000"));
+
+
 
 
 // calulate repacement year based on install date + 10 years
