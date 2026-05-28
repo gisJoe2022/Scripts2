@@ -22,9 +22,11 @@ os.makedirs(ocr_folder, exist_ok=True)
 # -------------------------
 vendors = [
     "Amazon", "AMZN", "Amazon.com", "Amazon Services",
-    "Home Depot", "Homedepot",
-    "Staples",
-    "Grainger"
+    "Home Depot", "Homedepot", "business prime", "businessprime",
+    "Staples", "TIPCO", "Office Depot", "OfficeMax", "CMC Supply, inc."
+    "Grainger", "FERGUSON", "Island Creek Diesel, LLC." "FORTLINE WATERWORKS",
+    "JAMES RIVER EQUIPMENT", "JAMES RIVER", "MORRIS", "MORRIS SUPPLY", 
+    "MORRIS MATERIALS", "MORRIS SAND & GRAVEL"
 ]
 
 keywords_map = {
@@ -36,9 +38,8 @@ keywords_map = {
 }
 
 date_labels = [
-    "Order Placed:",
-    "Order Date:",
-    "Invoice Date:",
+    "Order Placed:", "Order Placed", "Order Date:", "Order Date",
+    "Invoice Date:", "Invoice Date",  "INVOICE DATE", "Date of Purchase:", "Date of Purchase",
     "Purchase Date:",
     "Transaction Date:",
     "Date Purchased:",
