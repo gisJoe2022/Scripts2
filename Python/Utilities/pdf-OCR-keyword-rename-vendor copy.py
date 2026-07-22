@@ -1,5 +1,6 @@
 
 
+
 import os
 import re
 import sys
@@ -42,7 +43,9 @@ GENERIC_KEYWORDS = {
     "lighting": ["led", "light", "lamp", "fixture", "shop light", "bulb"],
     "power": ["inverter", "battery", "generator", "charger", "sine"],
     "hose": ["hose", "jacket", "coupling", "fitting", "valve", "pump", "hydraulic"],
-    "safety": ["glove", "goggles", "helmet", "vest", "boots"]
+    "safety": ["glove", "goggles", "helmet", "vest", "boots"],
+    "industrial": ["industrial", "distributor", "tariff", "assembly", "kit"],
+    "vehicle": ["truck", "vehicle", "crew", "toolbox", "maintenance"]
 }
 
 GENERIC_IGNORE_TERMS = [
@@ -69,9 +72,10 @@ VENDOR_PROFILES = {
             r"Order Placed:\s*([A-Za-z]+ \d{1,2}, \d{4})",
             r"Order Date:\s*([A-Za-z]+ \d{1,2}, \d{4})",
             r"Order Placed:\s*(\d{2}/\d{2}/\d{4})",
+            r"Order Date:\s*(\d{2}/\d{2}/\d{4})"
         ],
         "keywords": {
-            "lighting": ["led", "shop light", "fixture", "lamp", "light"],
+            "lighting": ["led", "lamp", "fixture", "shop light", "bulb", "floodlight"],
             "power": ["inverter", "battery", "charger", "generator", "sine"],
             "network": ["ethernet", "cat6", "cat5", "switch", "router"],
             "office": ["paper", "toner", "pen", "notebook"],
@@ -83,7 +87,82 @@ VENDOR_PROFILES = {
             "payment method",
             "order summary"
         ],
+        "date_strategy": "pattern_list",
         "description_strategy": "amazon"
+    },
+
+    "TipcoTechnologies": {
+        "markers": [
+            "tipcotech.com",
+            "tipco",
+            "owings mills",
+            "cronhill",
+        ],
+        "date_patterns": [
+            r"Invoice Date[:\s]+(\d{2}/\d{2}/\d{4})", # some variations have different spacing
+            r"Invoice\s*Date\s+(\d{2}/\d{2}/\d{4})", # some variations have different spacing
+            r"Order Date[:\s]+(\d{2}/\d{2}/\d{4})" # standard MM/DD/YYYY format
+        ],
+        "keywords": {
+            "inventory": ["hose", "jacket", "double jacket", "coupling", "fitting", "valve", "pump"],
+            "industrial": ["tipco", "industrial", "import", "tariff", "distributor"],
+            "vehicle": ["truck", "vehicle", "crew", "tools"], 
+        },
+        "ignore_terms": [
+            "approved",
+            "please email",
+            "carrier",
+            "tracking #",
+            "invoice date",
+            "ship to",
+            "bill to",
+            "branch",
+            "order number",
+            "customer id",
+            "customer fulfillment member",
+            "pricing uom",
+            "extended price",
+            "unit price",
+            "discount amount",
+            "original"
+        ],
+        "date_strategy": "pattern_list",
+        "description_strategy": "table_basic"
+    },
+    
+    "Furguson": {
+        "markers": [
+            "4156 S. MILITARY HIGHWAY",
+            "407-816-6550"
+        ],
+        "date_patterns": [
+            r"Invoice Date[:\s]+(\d{2}/\d{2}/\d{4})" # standard MM/DD/YYYY format
+        ],
+        "keywords": {
+            "industrial": ["clmp", "coup", "sdl", "tracer box lid", "tracer box clamp", "tracer box coupling", 
+                           "tracer box saddle", "tracer box repair kit", "DI MJ WDG REST GLND", "MJ C153 90 BEND",
+                           "PNT SAN ANGELO DIGGING BAR", "yoke"]
+        },
+        "ignore_terms": [
+            "job name",
+            "tax code",
+            "CUSTOMER ORDER NUMBER",
+            "ITEM NUMBER",
+            "lead law warning",
+            "non-potable",
+            "buyer is solely responsible",
+            "not lead free",
+            "anticipated for human consumption",
+            "invoice sub-total",
+            "approved",
+            "remit to change",     
+            "lead law warning",
+            "non-potable",
+            "buyer is solely responsible",
+            "not lead free"
+        ],
+        "date_strategy": "pattern_list",
+        "description_strategy": "table_basic"
     },
     "CMC_Supply": {
         "markers": [
@@ -109,50 +188,13 @@ VENDOR_PROFILES = {
             "ship date",
             "unit price",
             "writer",
+            "unit price,"
+            "ext price"
 
         ],
-        "description_strategy": "generic"
+        "description_strategy": "table_basic"
     },
 
-    "TipcoTechnologies": {
-        "markers": [
-            "tipcotech.com",
-            "tipco",
-            "owings mills",
-            "cronhill",
-            "invoice date",
-            "order number"
-        ],
-        "date_patterns": [
-            r"Invoice Date[:\s]+(\d{2}/\d{2}/\d{4})",
-            r"Invoice\s*Date\s+(\d{2}/\d{2}/\d{4})",
-            r"Order Date[:\s]+(\d{2}/\d{2}/\d{4})"
-        ],
-        "keywords": {
-            "hose": ["hose", "jacket", "double jacket", "coupling", "fitting", "valve", "pump"],
-            "industrial": ["tipco", "industrial", "import", "tariff", "distributor"],
-            "vehicle": ["truck", "vehicle", "crew", "tools"]
-        },
-        "ignore_terms": [
-            "approved",
-            "please email",
-            "carrier",
-            "tracking #",
-            "invoice date",
-            "ship to",
-            "bill to",
-            "branch",
-            "order number",
-            "customer id",
-            "customer fulfillment member",
-            "pricing uom",
-            "extended price",
-            "unit price",
-            "discount amount",
-            "original"
-        ],
-        "description_strategy": "tipco"
-    }
 }
 
 # ============================================================
@@ -194,21 +236,19 @@ def write_log(stage, source_file="", ocr_file="", final_file="", status="", vend
         ])
 
 # ============================================================
-# TEXT / FILENAME HELPERS
+# HELPERS
 # ============================================================
 def clean_filename(text):
     return "".join(c for c in text if c.isalnum() or c in ("-", "_"))
-
-def normalize_spaces(text):
-    return re.sub(r"\s+", " ", text).strip()
 
 def parse_date_string(raw):
     raw = raw.strip()
     date_formats = [
         "%B %d, %Y",   # January 20, 2026
         "%m/%d/%Y",    # 02/06/2026
-        "%m-%d-%Y",
-        "%Y-%m-%d"
+        "%m-%d-%Y",    # 02-06-2026
+        "%Y-%m-%d",    # 2026-02-06
+        "%m/%d/%y"     # 02/06/26
     ]
     for fmt in date_formats:
         try:
@@ -221,9 +261,7 @@ def parse_date_string(raw):
 def is_mostly_numeric_or_price(line):
     if not line.strip():
         return True
-    if re.fullmatch(r"[\d\.\,\$\-\s/]+", line.strip()):
-        return True
-    return False
+    return bool(re.fullmatch(r"[\d\.\,\$\-\s/]+", line.strip()))
 
 def contains_ignore_term(line, ignore_terms):
     line_lower = line.lower()
@@ -234,6 +272,15 @@ def clean_description_tokens(text, max_words=6):
     words = [clean_filename(w) for w in words]
     words = [w for w in words if w]
     return "-".join(words[:max_words]) if words else "nophrase"
+
+def get_profile(vendor_name):
+    return VENDOR_PROFILES.get(vendor_name, {})
+
+def get_ignore_terms(vendor_name):
+    ignore_terms = GENERIC_IGNORE_TERMS.copy()
+    profile = get_profile(vendor_name)
+    ignore_terms.extend(profile.get("ignore_terms", []))
+    return ignore_terms
 
 # ============================================================
 # VENDOR DETECTION
@@ -253,17 +300,13 @@ def detect_vendor(text):
             best_score = score
             best_vendor = vendor_name
 
-    # Require at least one marker hit
-    if best_score == 0:
-        return "Unknown"
-
-    return best_vendor
+    return best_vendor if best_score > 0 else "Unknown"
 
 # ============================================================
-# DATE EXTRACTION
+# DATE STRATEGIES
 # ============================================================
-def extract_date_generic(text):
-    # First try labeled patterns
+def extract_date_generic(text, vendor_name=None):
+    # First: try generic labeled date patterns
     for label in GENERIC_DATE_LABELS:
         pattern1 = rf"{re.escape(label)}\s*([A-Za-z]+ \d{{1,2}}, \d{{4}})"
         m1 = re.search(pattern1, text, re.IGNORECASE)
@@ -275,7 +318,7 @@ def extract_date_generic(text):
         if m2:
             return parse_date_string(m2.group(1))
 
-    # Then try generic date search
+    # Second: generic free-form date search
     generic_patterns = [
         r"([A-Za-z]+ \d{1,2}, \d{4})",
         r"(\d{2}/\d{2}/\d{4})",
@@ -290,16 +333,30 @@ def extract_date_generic(text):
 
     return "nodate"
 
-def extract_date_for_vendor(text, vendor_name):
-    if vendor_name in VENDOR_PROFILES:
-        for pattern in VENDOR_PROFILES[vendor_name].get("date_patterns", []):
-            m = re.search(pattern, text, re.IGNORECASE)
-            if m:
-                parsed = parse_date_string(m.group(1))
-                if parsed != "nodate":
-                    return parsed
+def extract_date_from_profile_patterns(text, vendor_name):
+    profile = get_profile(vendor_name)
+    for pattern in profile.get("date_patterns", []):
+        m = re.search(pattern, text, re.IGNORECASE)
+        if m:
+            parsed = parse_date_string(m.group(1))
+            if parsed != "nodate":
+                return parsed
 
-    return extract_date_generic(text)
+    # fallback to generic if vendor patterns fail
+    return extract_date_generic(text, vendor_name)
+
+DATE_STRATEGIES = {
+    "generic": extract_date_generic,
+    "pattern_list": extract_date_from_profile_patterns
+}
+
+def extract_date(text, vendor_name):
+    strategy = "generic"
+    profile = get_profile(vendor_name)
+    strategy = profile.get("date_strategy", "generic")
+
+    extractor = DATE_STRATEGIES.get(strategy, extract_date_generic)
+    return extractor(text, vendor_name)
 
 # ============================================================
 # CATEGORY / KEYWORD EXTRACTION
@@ -307,15 +364,14 @@ def extract_date_for_vendor(text, vendor_name):
 def extract_category(text, vendor_name):
     text_lower = text.lower()
 
-    # Vendor-specific keywords first
-    if vendor_name in VENDOR_PROFILES:
-        keywords = VENDOR_PROFILES[vendor_name].get("keywords", {})
-        for category, terms in keywords.items():
-            for term in terms:
-                if term.lower() in text_lower:
-                    return category
+    profile = get_profile(vendor_name)
+    vendor_keywords = profile.get("keywords", {})
 
-    # Global fallback
+    for category, terms in vendor_keywords.items():
+        for term in terms:
+            if term.lower() in text_lower:
+                return category
+
     for category, terms in GENERIC_KEYWORDS.items():
         for term in terms:
             if term.lower() in text_lower:
@@ -324,18 +380,8 @@ def extract_category(text, vendor_name):
     return "misc"
 
 # ============================================================
-# DESCRIPTION EXTRACTION
+# DESCRIPTION STRATEGY HELPERS
 # ============================================================
-def extract_description_amazon(text, vendor_name):
-    # Look for "X of: <item description>"
-    match = re.search(r"\d+\s+of:\s*(.+)", text, re.IGNORECASE)
-    if match:
-        line = match.group(1).split("\n")[0].strip()
-        return clean_description_tokens(line, max_words=6)
-
-    # Fallback: first reasonable line
-    return extract_description_generic(text, vendor_name)
-
 def score_candidate_line(line, ignore_terms):
     score = 0
     line_strip = line.strip()
@@ -349,37 +395,171 @@ def score_candidate_line(line, ignore_terms):
     if contains_ignore_term(line_strip, ignore_terms):
         return -999
 
-    # Prefer lines with letters
     if re.search(r"[A-Za-z]", line_strip):
         score += 2
 
-    # Prefer lines with letters + digits (often useful product identifiers)
     if re.search(r"[A-Za-z]", line_strip) and re.search(r"\d", line_strip):
         score += 3
 
-    # Prefer medium length descriptive lines
     if 8 <= len(line_strip) <= 80:
         score += 2
 
-    # Penalize lines that are probably addresses or headers
     if line_strip.lower().startswith(("bill to", "ship to", "invoice", "customer", "branch")):
         score -= 5
 
-    # Penalize obvious money patterns
     if re.search(r"\$\s*\d", line_strip):
         score -= 3
 
     return score
 
+# ============================================================
+# DESCRIPTION STRATEGIES
+# ============================================================
+def extract_description_table_basic(text, vendor_name):
+    lines = [ln.strip() for ln in text.splitlines()]
+    lines = [ln for ln in lines if ln]
+
+    ignore_terms = get_ignore_terms(vendor_name)
+
+    # Common table header keywords
+    header_keywords = [
+        "description",
+        "item description",
+        "item",
+        "product",
+        "qty",
+        "quantity",
+        "unit price",
+        "extended price",
+        "amount",
+        "uom",
+        "sku"
+    ]
+
+    # Try to locate the table header region
+    header_index = None
+    for i, line in enumerate(lines):
+        line_lower = line.lower()
+        if sum(1 for keyword in header_keywords if keyword in line_lower) >= 2:
+            header_index = i
+            break
+
+    # If no obvious header found, fall back to generic extraction
+    if header_index is None:
+        return extract_description_generic(text, vendor_name)
+
+    # Look at the next several lines after the header
+    candidate_lines = lines[header_index + 1: header_index + 20]
+
+    # Helper to trim trailing price-like tokens
+    def strip_trailing_price_tokens(line):
+        tokens = line.split()
+
+        # Remove obvious trailing numeric/price tokens from the end
+        while tokens:
+            last = tokens[-1]
+            if re.fullmatch(r"[\$]?\d[\d,]*\.?\d*", last) or re.fullmatch(r"\d+\.\d{2}", last):
+                tokens.pop()
+            else:
+                break
+
+        return " ".join(tokens)
+
+    # Score candidate lines
+    scored = []
+    for idx, line in enumerate(candidate_lines):
+        line_clean = strip_trailing_price_tokens(line)
+
+        if not line_clean.strip():
+            continue
+
+        s = score_candidate_line(line_clean, ignore_terms)
+
+        # Bonus if line is shortly after the header
+        if idx < 6:
+            s += 2
+
+        # Bonus if line contains letters and numbers (common for item rows / SKUs)
+        if re.search(r"[A-Za-z]", line_clean) and re.search(r"\d", line_clean):
+            s += 2
+
+        # Penalty if line looks like a total/tax row
+        if re.search(r"\b(total|subtotal|tax|amount due)\b", line_clean, re.IGNORECASE):
+            s -= 10
+
+        if s > 0:
+            scored.append((s, idx, line_clean))
+
+    # If nothing strong found, fall back
+    if not scored:
+        return extract_description_generic(text, vendor_name)
+
+    # Pick best candidate
+    scored.sort(reverse=True, key=lambda x: x[0])
+    best_score, best_idx, best_line = scored[0]
+
+    combined = best_line
+
+    # Optional continuation line
+    if best_idx + 1 < len(candidate_lines):
+        next_line = candidate_lines[best_idx + 1].strip()
+
+        if next_line:
+            next_line_clean = strip_trailing_price_tokens(next_line)
+
+            if (
+                not contains_ignore_term(next_line_clean, ignore_terms)
+                and not is_mostly_numeric_or_price(next_line_clean)
+                and len(next_line_clean.split()) >= 2
+                and not re.search(r"\b(total|subtotal|tax|amount due)\b", next_line_clean, re.IGNORECASE)
+            ):
+                combined = f"{best_line} {next_line_clean}"
+
+    return clean_description_tokens(combined, max_words=8)
+
+def extract_description_generic(text, vendor_name):
+    lines = [ln.strip() for ln in text.splitlines()]
+    lines = [ln for ln in lines if ln]
+
+    ignore_terms = get_ignore_terms(vendor_name)
+
+    label_patterns = [
+        r"Description[:\s]+(.+)",
+        r"Item[:\s]+(.+)",
+        r"Product[:\s]+(.+)"
+    ]
+    for pattern in label_patterns:
+        m = re.search(pattern, text, re.IGNORECASE)
+        if m:
+            return clean_description_tokens(m.group(1), max_words=6)
+
+    scored = []
+    for line in lines:
+        s = score_candidate_line(line, ignore_terms)
+        if s > 0:
+            scored.append((s, line))
+
+    if scored:
+        scored.sort(reverse=True, key=lambda x: x[0])
+        return clean_description_tokens(scored[0][1], max_words=6)
+
+    return "nophrase"
+
+def extract_description_amazon(text, vendor_name):
+    match = re.search(r"\d+\s+of:\s*(.+)", text, re.IGNORECASE)
+    if match:
+        line = match.group(1).split("\n")[0].strip()
+        return clean_description_tokens(line, max_words=6)
+
+    return extract_description_generic(text, vendor_name)
+
 def extract_description_tipco(text, vendor_name):
     lines = [ln.strip() for ln in text.splitlines()]
     lines = [ln for ln in lines if ln]
 
-    ignore_terms = GENERIC_IGNORE_TERMS.copy()
-    if vendor_name in VENDOR_PROFILES:
-        ignore_terms.extend(VENDOR_PROFILES[vendor_name].get("ignore_terms", []))
+    ignore_terms = get_ignore_terms(vendor_name)
 
-    # 1) Try to find the item description section
+    # Try item description section first
     header_index = None
     for i, line in enumerate(lines):
         line_lower = line.lower()
@@ -387,7 +567,6 @@ def extract_description_tipco(text, vendor_name):
             header_index = i
             break
 
-    # If found, search the next several lines for the best descriptive candidate
     if header_index is not None:
         candidate_lines = lines[header_index + 1: header_index + 15]
 
@@ -401,7 +580,6 @@ def extract_description_tipco(text, vendor_name):
             scored.sort(reverse=True, key=lambda x: x[0])
             best_line = scored[0][1]
 
-            # Possible continuation line
             best_index = candidate_lines.index(best_line)
             combined = best_line
 
@@ -416,52 +594,81 @@ def extract_description_tipco(text, vendor_name):
 
             return clean_description_tokens(combined, max_words=8)
         
-    def extract_description_cmc(text, vendor_name):
-        lines = [ln.strip() for ln in text.splitlines()]
-        lines = [ln for ln in lines if ln]
+def extract_description_ferguson(text, vendor_name):
+    lines = [ln.strip() for ln in text.splitlines()]
+    lines = [ln for ln in lines if ln]
 
-        ignore_terms = GENERIC_IGNORE_TERMS.copy()
-        if vendor_name in VENDOR_PROFILES:
-            ignore_terms.extend(VENDOR_PROFILES[vendor_name].get("ignore_terms", []))
+    ignore_terms = get_ignore_terms(vendor_name)
 
-        # 1) Try to find the item description section
-        header_index = None
-        for i, line in enumerate(lines):
-            line_lower = line.lower()
-            if ("item description" in line_lower) or ("item id" in line_lower and "description" in line_lower):
-                header_index = i
-                break
+    # Find the invoice item table header
+    header_index = None
+    for i, line in enumerate(lines):
+        line_lower = line.lower()
+        if "item number" in line_lower and "description" in line_lower:
+            header_index = i
+            break
 
-        # If found, search the next several lines for the best descriptive candidate
-        if header_index is not None:
-            candidate_lines = lines[header_index + 1: header_index + 15]
+    if header_index is None:
+        return extract_description_table_basic(text, vendor_name)
 
-            scored = []
-            for line in candidate_lines:
-                s = score_candidate_line(line, ignore_terms)
-                if s > 0:
-                    scored.append((s, line))
+    candidate_lines = lines[header_index + 1: header_index + 8]
 
-            if scored:
-                scored.sort(reverse=True, key=lambda x: x[0])
-                best_line = scored[0][1]
+    def strip_leading_row_fields(line):
+        # Remove leading quantity / shipped / item number patterns
+        # Example OCR line might look like:
+        # 2 2 RCB6304 6X8-12 SWR SDL 6.28-6.30 216.415 EA 432.83
+        line = re.sub(r'^\s*\d+\s+\d+\s+[A-Z0-9-]+\s+', '', line)
+        return line
 
-                # Possible continuation line
-                best_index = candidate_lines.index(best_line)
-                combined = best_line
+    def strip_trailing_price_fields(line):
+        # Remove trailing "216.415 EA 432.83" style fields
+        line = re.sub(r'\s+\d+(?:\.\d+)?\s+[A-Z]{1,3}\s+\d+(?:\.\d+)?\s*$', '', line)
+        return line
 
-                if best_index + 1 < len(candidate_lines):
-                    next_line = candidate_lines[best_index + 1]
-                    if (
-                        not contains_ignore_term(next_line, ignore_terms)
-                        and not is_mostly_numeric_or_price(next_line)
-                        and len(next_line.split()) >= 2
-                    ):
-                        combined = f"{best_line} {next_line}"
+    scored = []
+    for idx, line in enumerate(candidate_lines):
+        if contains_ignore_term(line, ignore_terms):
+            continue
 
-                return clean_description_tokens(combined, max_words=8)
+        candidate = strip_leading_row_fields(line)
+        candidate = strip_trailing_price_fields(candidate)
+        candidate = candidate.strip()
 
-    # 2) Secondary fallback: scan whole document for descriptive product-like lines
+        if not candidate:
+            continue
+
+        if is_mostly_numeric_or_price(candidate):
+            continue
+
+        score = 0
+
+        # Strong bonus for being right after the header
+        if idx < 3:
+            score += 6
+
+        # Bonus for mixed letters/numbers (common in item descriptions)
+        if re.search(r"[A-Za-z]", candidate) and re.search(r"\d", candidate):
+            score += 4
+
+        # Penalize warning/legal language
+        if re.search(r"(non-potable|lead law warning|buyer is solely responsible|not lead free)", candidate, re.IGNORECASE):
+            score -= 20
+
+        # Bonus for sewer/waterworks terms
+        if re.search(r"(swr|saddle|sewer|pipe|romac)", candidate, re.IGNORECASE):
+            score += 4
+
+        if score > 0:
+            scored.append((score, candidate))
+
+    if scored:
+        scored.sort(reverse=True, key=lambda x: x[0])
+        return clean_description_tokens(scored[0][1], max_words=8)
+
+    return extract_description_table_basic(text, vendor_name)
+
+
+    # Fallback: global best candidate line
     scored = []
     for line in lines:
         s = score_candidate_line(line, ignore_terms)
@@ -472,52 +679,23 @@ def extract_description_tipco(text, vendor_name):
         scored.sort(reverse=True, key=lambda x: x[0])
         return clean_description_tokens(scored[0][1], max_words=8)
 
-    # 3) Final fallback
     return "nophrase"
 
-def extract_description_generic(text, vendor_name):
-    lines = [ln.strip() for ln in text.splitlines()]
-    lines = [ln for ln in lines if ln]
-
-    ignore_terms = GENERIC_IGNORE_TERMS.copy()
-    if vendor_name in VENDOR_PROFILES:
-        ignore_terms.extend(VENDOR_PROFILES[vendor_name].get("ignore_terms", []))
-
-    # Look for labeled fields first
-    label_patterns = [
-        r"Description[:\s]+(.+)",
-        r"Item[:\s]+(.+)",
-        r"Product[:\s]+(.+)"
-    ]
-    for pattern in label_patterns:
-        m = re.search(pattern, text, re.IGNORECASE)
-        if m:
-            return clean_description_tokens(m.group(1), max_words=6)
-
-    # Score all lines and take best candidate
-    scored = []
-    for line in lines:
-        s = score_candidate_line(line, ignore_terms)
-        if s > 0:
-            scored.append((s, line))
-
-    if scored:
-        scored.sort(reverse=True, key=lambda x: x[0])
-        return clean_description_tokens(scored[0][1], max_words=6)
-
-    return "nophrase"
+DESCRIPTION_STRATEGIES = {
+    "generic": extract_description_generic,
+    "amazon": extract_description_amazon,
+    "tipco": extract_description_tipco,
+    "table_basic": extract_description_table_basic,
+    "ferguson": extract_description_ferguson
+}
 
 def extract_description(text, vendor_name):
-    strategy = None
-    if vendor_name in VENDOR_PROFILES:
-        strategy = VENDOR_PROFILES[vendor_name].get("description_strategy")
+    strategy = "generic"
+    profile = get_profile(vendor_name)
+    strategy = profile.get("description_strategy", "generic")
 
-    if strategy == "amazon":
-        return extract_description_amazon(text, vendor_name)
-    elif strategy == "tipco":
-        return extract_description_tipco(text, vendor_name)
-    else:
-        return extract_description_generic(text, vendor_name)
+    extractor = DESCRIPTION_STRATEGIES.get(strategy, extract_description_generic)
+    return extractor(text, vendor_name)
 
 # ============================================================
 # OCR STEP
@@ -529,7 +707,6 @@ def run_ocr():
     print(f"Found {len(pdf_files)} PDF file(s) in input folder.")
 
     for file in pdf_files:
-        # Skip files that already look renamed
         if file.startswith("nodate_") or re.match(r"\d{4}-\d{2}-\d{2}_", file):
             print(f"Skipping already processed file: {file}")
             write_log(
@@ -658,29 +835,21 @@ def rename_ocr_files():
             )
             continue
 
-        text = normalize_spaces(text).replace("  ", " ")
-        text_lower = text.lower()
+        # keep newlines for line-based parsing; just normalize spaces/tabs
+        text = re.sub(r"[ \t]+", " ", text)
 
-        # Detect vendor
         vendor_name = detect_vendor(text)
         safe_vendor = clean_filename(vendor_name) if vendor_name != "Unknown" else "Unknown"
 
-        # Date
-        date_part = extract_date_for_vendor(text, vendor_name)
-
-        # Category
+        date_part = extract_date(text, vendor_name)
         category = extract_category(text, vendor_name)
-
-        # Description
         description = extract_description(text, vendor_name)
         description = clean_filename(description)
 
-        # Final base filename
         base_name = f"{date_part}_{safe_vendor}_{category}_{description}"
         base_name = clean_filename(base_name)
         base_name = base_name[:140]
 
-        # Skip useless names
         if base_name in ("nodate_Unknown_misc_nophrase", "nodate_Unknown_misc_"):
             print(f"Skipping low-confidence file: {file}")
             write_log(
@@ -698,7 +867,6 @@ def rename_ocr_files():
         new_name = base_name + ".pdf"
         new_path = os.path.join(ocr_folder, new_name)
 
-        # Prevent overwrite collisions
         counter = 1
         while os.path.exists(new_path) and os.path.abspath(new_path) != os.path.abspath(path):
             new_name = f"{base_name}_{counter}.pdf"
@@ -746,7 +914,7 @@ def main():
     print(f"Input folder exists: {os.path.isdir(input_folder)}")
     print(f"OCR folder exists:   {os.path.isdir(ocr_folder)}")
     print(f"Log file:            {log_file}")
-    print("-" * 65)
+    print("-" * 70)
 
     run_ocr()
     rename_ocr_files()

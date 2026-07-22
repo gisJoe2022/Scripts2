@@ -6,9 +6,9 @@
 var d = $feature.Diameter
 
 if (IsEmpty(d)){
-  250
+  315
 } else if (d == 5/8) {
-  250
+  315
 } else if (d == 3/4){
   566
 } else if (d == 1){
@@ -25,6 +25,6 @@ if (IsEmpty(d)){
   6800
 } else if (d == 8){
   9000
-}else if (d == 10){
+} else if (d == 10){
   10900
 }

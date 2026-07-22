@@ -75,7 +75,6 @@ try:
         "https://services3.arcgis.com/DXCmCcRcEQ793kMP/arcgis/rest/services/Abandoned_Water_Sewer_Lines/FeatureServer/0",
         "https://services3.arcgis.com/DXCmCcRcEQ793kMP/arcgis/rest/services/Well/FeatureServer/0",
         "https://services3.arcgis.com/DXCmCcRcEQ793kMP/arcgis/rest/services/Control_Box/FeatureServer/2",
-        "https://services3.arcgis.com/DXCmCcRcEQ793kMP/arcgis/rest/services/Air_Release/FeatureServer/0",
         "https://services3.arcgis.com/DXCmCcRcEQ793kMP/arcgis/rest/services/Blowoff/FeatureServer/0",
         "https://services3.arcgis.com/DXCmCcRcEQ793kMP/arcgis/rest/services/Control_Valve/FeatureServer/0",
         "https://services3.arcgis.com/DXCmCcRcEQ793kMP/arcgis/rest/services/Water_Meter_2021/FeatureServer/0"
@@ -101,7 +100,6 @@ try:
         "abandoned_water_sewer_lines",
         "well",
         "control_box",
-        "air_release",
         "blowoff",
         "control_valve",
         "water_meter_2021"

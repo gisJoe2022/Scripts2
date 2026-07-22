@@ -8,8 +8,7 @@
 var oci = $feature.estimatedOCI;
 //var ty = Year(Now());
 
-if (oci <25 || IsEmpty(oci)
-){
+if (oci <25){
     1
     }
     else if (oci >= 25 && oci < 50){
