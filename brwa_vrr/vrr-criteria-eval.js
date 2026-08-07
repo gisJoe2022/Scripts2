@@ -23,7 +23,7 @@ var ageYear = currentYear + Max(0, (15 - yearOld));
 // MILEAGE PROJECTION
 // ====================================
 
-var mileageTarget = IIF(fuelType == "DIESEL", 200000, 150000);
+var mileageTarget = IIF(fuelType == "Diesel", 200000, 150000);
 var mileageYear = 9999;
 
 if (currentMileage >= mileageTarget) {

@@ -4,6 +4,7 @@
 
 
 var d = $feature.Diameter
+var ind = $feature.installed_date
 
 if (IsEmpty(d)){
   315

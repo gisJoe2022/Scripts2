@@ -18,8 +18,8 @@ var fyStartYear = fyEndYear - 1;
 var startYY = Right(Text(fyStartYear), 2);
 var endYY = Right(Text(fyEndYear), 2);
 
-if (IsEmpty(d) || isNaN(d) || d <= Date(2024, 6, 30)) {
-    return "FY 00/24"
+if (IsEmpty(d) || isNaN(d) || d <= Date(2026, 6, 30)) {
+    return "FY 26/27"
 }
   else {
     return "FY " + startYY + "/" + endYY;

@@ -60,7 +60,7 @@ if (earliestYear == ageYear) {
 }
 
 if (earliestYear == mileageYear) {
-    if (fuelType == "DIESEL") {
+    if (fuelType == "Diesel") {
         return "Vehicle Mileage Exceeds 200,000 Miles (Diesel)";
     }
     return "Vehicle Mileage Exceeds 150,000 Miles (Gas)";
