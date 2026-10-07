@@ -8,16 +8,33 @@
 var oci = $feature.estimatedOCI;
 //var ty = Year(Now());
 
-if (oci <25){
+if (oci <10){
     1
     }
-    else if (oci >= 25 && oci < 50){
+    else if (oci >= 10 && oci < 20){
       2
     }
-    else if (oci >= 50 && oci < 75){
+    else if (oci >= 20 && oci < 30){
       3
     }
-    else if (oci >= 75 && oci < 100){
+    else if (oci >= 30 && oci < 40){
       4
     }
-   
+     else if (oci >= 40 && oci < 50){
+      5
+    }
+     else if (oci >= 50 && oci < 60){
+      6
+    }
+     else if (oci >= 60 && oci < 70){
+      7
+    }
+     else if (oci >= 70 && oci < 80){
+      8
+    }
+     else if (oci >= 80 && oci < 90){
+      9
+    }
+    else {
+      10
+    }

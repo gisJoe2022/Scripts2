@@ -13,7 +13,7 @@ import sys
 # === Setup Logging ===
 start_time = datetime.datetime.now()
 timestamp = start_time.strftime('%Y%m%d_%H%M')
-log_dir = r"S:\BU_Databases\2025\sewer\logs"  # Change this to your desired log directory
+log_dir = r"\\192.168.20.14\gis\BU_Databases\2026\brwa_layers\logs"  # Change this to your desired log directory
 os.makedirs(log_dir, exist_ok=True)  # Ensure the log directory exists
 log_file = os.path.join(log_dir, f"brwa_sewer_backup_{timestamp}.log")
 
@@ -48,7 +48,7 @@ try:
     arcpy.SignInToPortal(portal_url, username, password)
     print("Signed in to ArcGIS Online.")
 
-    base_dir = r"S:\BU_Databases\2025\sewer"
+    base_dir = r"\\192.168.20.14\gis\BU_Databases\2026\sewer"
     today_str = start_time.strftime('%Y%m%d_%H%M')
     gdb_name = f"brwa_sewer_backup_{today_str}.gdb"
     gdb_path = os.path.join(base_dir, gdb_name)
@@ -78,7 +78,8 @@ try:
         "https://services3.arcgis.com/DXCmCcRcEQ793kMP/arcgis/rest/services/Slope_Anchors/FeatureServer/2",
         "https://services3.arcgis.com/DXCmCcRcEQ793kMP/arcgis/rest/services/Sewer_Pump2/FeatureServer/2879",
         "https://services3.arcgis.com/DXCmCcRcEQ793kMP/arcgis/rest/services/Sewer_Air_Valve/FeatureServer/0",
-        "https://services3.arcgis.com/DXCmCcRcEQ793kMP/arcgis/rest/services/Wet_Well/FeatureServer/2"
+        "https://services3.arcgis.com/DXCmCcRcEQ793kMP/arcgis/rest/services/Wet_Well/FeatureServer/2",
+        "https://services3.arcgis.com/DXCmCcRcEQ793kMP/arcgis/rest/services/Grinder_Pump/FeatureServer/6"
     ]
 
     # Corresponding names for the output feature classes
@@ -102,7 +103,8 @@ try:
         "slope_anchors",
         "Sewer_pump2",
         "Sewer_air_valves",
-        "wet_wells"
+        "wet_wells",
+        "SGP_installation_Form"
     ]
 
     for url, name in zip(feature_services, output_names):
