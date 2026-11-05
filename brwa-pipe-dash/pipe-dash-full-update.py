@@ -6,6 +6,8 @@ import os
 from datetime import datetime
 from arcgis.gis import GIS
 
+# orange/force - ed4e33, Green Gravity - 6ef032, blue/water - 1d8ccc
+
 # ============================================================
 # CONFIGURATION
 # ============================================================
@@ -28,9 +30,11 @@ WATER_LINES_URL = (
 COMBINED_PIPES = (
     r"\\nu\gis\Projects\2026_Projects\2026-07-Pipe-Raplcement-Dashboard\2026-05-Pipe-Raplcement-Dashboard.gdb\Combined_Pipes_fc"
 )
-
 # Log Folder
 LOG_FOLDER = r"\\nu\gis\Projects\2026_Projects\2026-07-Pipe-Raplcement-Dashboard\scripts\logs"
+
+# Backup File Geodatabase
+BACKUP_GDB = r"\\nu\gis\Projects\2026_Projects\2026-07-Pipe-Raplcement-Dashboard\backups\pipes_backups.gdb"
 
 # ============================================================
 # LOGGING SETUP
@@ -40,7 +44,7 @@ os.makedirs(LOG_FOLDER, exist_ok=True)
 
 LOG_FILE = os.path.join(
     LOG_FOLDER,
-    f"CombinedPipes_{datetime.now():%Y-%m-%d_%H-%M-%S}.log"
+    f"COMBINED_PIPES_{datetime.now():%Y-%m-%d_%H-%M-%S}.log"
 )
 
 logging.basicConfig(
@@ -125,12 +129,88 @@ try:
     )
 
     # --------------------------------------------------------
+    # Backup Existing Combined Pipes
+    # --------------------------------------------------------
+
+    logger.info("Starting backup process...")
+
+    try:
+
+        # Verify backup geodatabase exists
+        if not arcpy.Exists(BACKUP_GDB):
+            raise Exception(
+                f"Backup geodatabase does not exist: {BACKUP_GDB}"
+            )
+
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+        backup_fc_name = (
+            f"Combined_Pipes_{timestamp}"
+        )
+
+        backup_fc = os.path.join(
+            BACKUP_GDB,
+            backup_fc_name
+        )
+
+        logger.info(
+            f"Creating backup: {backup_fc}"
+        )
+
+        arcpy.management.CopyFeatures(
+            COMBINED_PIPES,
+            backup_fc
+        )
+
+        # Verify backup was created
+        if not arcpy.Exists(backup_fc):
+            raise Exception(
+                "Backup feature class was not created."
+            )
+
+        source_count = get_count(COMBINED_PIPES)
+        backup_count = get_count(backup_fc)
+
+        logger.info(
+            f"Source count: {source_count}"
+        )
+
+        logger.info(
+            f"Backup count: {backup_count}"
+        )
+
+        # Verify record counts match
+        if source_count != backup_count:
+            raise Exception(
+                "Backup validation failed. "
+                f"Source count ({source_count}) "
+                f"does not match backup count ({backup_count})."
+            )
+
+        logger.info(
+            "Backup validation passed."
+        )
+
+    except Exception as ex:
+
+        logger.error(
+            f"BACKUP FAILED: {str(ex)}"
+        )
+
+        raise Exception(
+            "Backup creation failed. "
+            "Process aborted before deleting records."
+        )
+
+    # --------------------------------------------------------
     # Delete Existing Records
     # --------------------------------------------------------
 
     logger.info("Deleting existing records...")
 
-    arcpy.management.DeleteRows(COMBINED_PIPES)
+    arcpy.management.DeleteRows(
+        COMBINED_PIPES
+    )
 
     logger.info("Delete completed.")
 
@@ -150,8 +230,8 @@ try:
         schema_type="NO_TEST",
 
         # INSERT YOUR FIELD MAPPING STRING HERE
-        field_mapping='SEMS_ID "SEMS ID" true true false 50 Text 0 0,First,#,Force_Main_Sewer,SEMS_ID,0,49,Gravity Main Sewer,SEMS_ID,0,49,Waterline_BRWA_Version 2021,SEMS_ID,0,49;Type "Type" true true false 50 Text 0 0,First,#;Diamter "Diameter" true true false 8 Double 0 0,First,#,Force_Main_Sewer,Diameter,-1,-1,Gravity Main Sewer,Diameter,-1,-1,Waterline_BRWA_Version 2021,Diameter,-1,-1;Material "Material" true true false 50 Text 0 0,First,#,Force_Main_Sewer,Material,0,49,Gravity Main Sewer,Material,0,49,Waterline_BRWA_Version 2021,Material,0,49;Install_Date "Install Date" true true false 8 Date 0 0,First,#,Force_Main_Sewer,Installed_Date,-1,-1,Gravity Main Sewer,Installed_Date,-1,-1,Waterline_BRWA_Version 2021,Installed_Date,-1,-1;ServicveAreaGen "Service Area Gen." true true false 120 Text 0 0,First,#,Force_Main_Sewer,ServiceAreaGen,0,119,Gravity Main Sewer,ServiceAreaGen,0,119,Waterline_BRWA_Version 2021,ServiceAreaGen,0,119;estimatedOCI "Estimated OCI" true true false 8 Double 0 0,First,#,Force_Main_Sewer,estimatedOCI,-1,-1,Gravity Main Sewer,estimatedOCI,-1,-1,Waterline_BRWA_Version 2021,estimatedOCI,-1,-1;ActivityCost "Activity Cost" true true false 8 Double 0 0,First,#,Force_Main_Sewer,ActivityCost,-1,-1,Gravity Main Sewer,ActivityCost,-1,-1,Waterline_BRWA_Version 2021,ActivityCost,-1,-1;oci_class "OCI Class" true true false 2 Short 0 0,First,#,Force_Main_Sewer,oci_class,-1,-1,Gravity Main Sewer,oci_class,-1,-1,Waterline_BRWA_Version 2021,oci_class,-1,-1;GlobalID "GlobalID" false false true 38 GlobalID 0 0,First,#,Force_Main_Sewer,GlobalID,-1,-1,Gravity Main Sewer,GlobalID,-1,-1,Waterline_BRWA_Version 2021,GlobalID,-1,-1;created_user "created_user" true true true 255 Text 0 0,First,#,Force_Main_Sewer,created_user,0,254,Gravity Main Sewer,created_user,0,254,Waterline_BRWA_Version 2021,created_user,0,254;created_date "created_date" true true true 8 Date 0 1,First,#,Force_Main_Sewer,created_date,-1,-1,Gravity Main Sewer,created_date,-1,-1,Waterline_BRWA_Version 2021,created_date,-1,-1;last_edited_user "last_edited_user" true true true 255 Text 0 0,First,#,Force_Main_Sewer,last_edited_date,-1,-1,Gravity Main Sewer,last_edited_date,-1,-1,Waterline_BRWA_Version 2021,last_edited_date,-1,-1;last_edited_date "last_edited_date" true true true 8 Date 0 0,First,#,Force_Main_Sewer,last_edited_user,0,254,Gravity Main Sewer,last_edited_user,0,254,Waterline_BRWA_Version 2021,last_edited_user,0,254;Installed_Date "Installed Date" true true false 8 DateOnly 0 0,First,#,Force_Main_Sewer,Installed_Date,-1,-1,Gravity Main Sewer,Installed_Date,-1,-1,Waterline_BRWA_Version 2021,Installed_Date,-1,-1',
-
+        field_mapping=r'SEMS_ID "SEMS ID" true true false 50 Text 0 0,First,#,Force_Main_Sewer,SEMS_ID,0,49,Gravity Main Sewer,SEMS_ID,0,49,Waterline_BRWA_Version 2021,SEMS_ID,0,49;Type "Type" true true false 50 Text 0 0,First,#;Material "Material" true true false 50 Text 0 0,First,#,Force_Main_Sewer,Material,0,49,Gravity Main Sewer,Material,0,49,Waterline_BRWA_Version 2021,Material,0,49;service_area "service_area" true true false 120 Text 0 0,First,#,Gravity Main Sewer,Service_Area,0,49,Waterline_BRWA_Version 2021,Service_Area,0,49,Force_Main_Sewer,ServiceArea,0,99;ServiceAreaGen "ServiceAreaGen" true true false 512 Text 0 0,First,#;estimatedOCI "Estimated OCI" true true false 8 Double 0 0,First,#,Force_Main_Sewer,estimatedOCI,-1,-1,Gravity Main Sewer,estimatedOCI,-1,-1,Waterline_BRWA_Version 2021,estimatedOCI,-1,-1;oci_class "OCI Class" true true false 2 Short 0 0,First,#;ActivityCost "Activity Cost" true true false 8 Double 0 0,First,#;Diamter "Diameter" true true false 8 Double 0 0,First,#,Force_Main_Sewer,Diameter,-1,-1,Gravity Main Sewer,Diameter,-1,-1,Waterline_BRWA_Version 2021,Diameter,-1,-1;Installed_Date "Installed Date" true true false 8 DateOnly 0 0,First,#,Force_Main_Sewer,Installed_Date,-1,-1,Gravity Main Sewer,Installed_Date,-1,-1,Waterline_BRWA_Version 2021,Installed_Date,-1,-1;GlobalID "GlobalID" false false true 38 GlobalID 0 0,First,#;created_user "created_user" true true true 255 Text 0 0,First,#,Force_Main_Sewer,created_user,0,254,Gravity Main Sewer,created_user,0,254,Waterline_BRWA_Version 2021,created_user,0,254;created_date "created_date" true true true 8 Date 0 1,First,#,Force_Main_Sewer,created_date,-1,-1,Gravity Main Sewer,created_date,-1,-1,Waterline_BRWA_Version 2021,created_date,-1,-1;last_edited_user "last_edited_user" true true true 255 Text 0 0,First,#,Force_Main_Sewer,last_edited_user,0,254,Gravity Main Sewer,last_edited_user,0,254,Waterline_BRWA_Version 2021,last_edited_user,0,254;last_edited_date "last_edited_date" true true true 8 Date 0 1,First,#,Force_Main_Sewer,last_edited_date,-1,-1,Gravity Main Sewer,last_edited_date,-1,-1,Waterline_BRWA_Version 2021,last_edited_date,-1,-1;Water_Type "Water_Type" true true false 255 Text 0 0,First,#,https:\\services3.arcgis.com\DXCmCcRcEQ793kMP\arcgis\rest\services\Waterline_BRWA_Version2021\FeatureServer\2,Water_Type,0,49',
+        subtype="",
         feature_service_mode="USE_FEATURE_SERVICE_MODE",
         enforce_domains="NO_ENFORCE_DOMAINS",
         update_geometry="UPDATE_GEOMETRY"
@@ -203,20 +283,54 @@ else {
     logger.info("Calculating Service Area Gen field...")
 
     service_area_exp = """
-var id = $feature.SEMS_ID;
+var sa = $feature.Service_Area;
+//var ty = Year(Now());
 
-if (Left(id, 2) == "GM") {
-    return "Gravity Main";
-}
-else if (Left(id, 2) == "FM") {
-    return "Force Main";
-}
-else if (Left(id, 2) == "WL") {
-    return "Water Line";
-}
-else {
-    return $feature.Type;
-}
+if (sa == "Central"){
+    "Central"
+    }
+    else if (sa == "Central Water Distribution"){
+          "Central"
+    }
+    else if (Find("Forest", sa)> -1){
+      "Forest"
+    }
+    else if (Find("Cedar", sa)> -1){
+      "Cedar Rock"
+    }
+     else if (Find("Montvale", sa)> -1){
+      "Montvale"
+    }
+     else if (Find("Mountain", sa)> -1){
+      "Mt. View Shores"
+    }
+    else if (Find("Paradise Point", sa)> -1){
+      "Paradise Point"
+    }
+    else if (Find("SML Central", sa)> -1){
+      "SML"
+    }
+    else if (Find("Stewartsville", sa)> -1){
+      "Stewartsville"
+    }
+    else if (Find("Valley Mills", sa)> -1){
+      "Valley Mills"
+    }
+    else if (Find("Central Sewer", sa)> -1){
+    "Central"
+    }
+    else if (Find("Mariners Landing", sa)> -1){
+      "Mariners Landing"
+    }
+    else if (Find("Moneta", sa)> -1){
+      "Moneta"
+    }
+     else if (Find("Montvale", sa)> -1){
+      "Montvale"
+    }
+    else {
+      'Other'
+    }
 """
 
     arcpy.management.CalculateField(
@@ -290,10 +404,10 @@ var type = $feature.Type
 var len = $feature.Shape_Length
 
 if (type == "Gravity Main"){
-    len*300
+    (len*300)/1000
 }
 else {
-  len*160
+  (len*160)/1000
 }
 """
 
@@ -306,6 +420,32 @@ else {
     )
 
     logger.info("Activity Cost field calculation completed.")
+
+# --------------------------------------------------------
+    # Calculate Uknown Diameter
+    # --------------------------------------------------------
+
+    logger.info("Calculating Unknown Diameter field...")
+
+    unknown_diameter_exp = """
+var diam = $feature.Diamter
+
+if (IsEmpty(diam))
+  0
+  else {
+    diam
+  }
+"""
+
+    arcpy.management.CalculateField(
+        in_table=COMBINED_PIPES,
+        field="Diamter",
+        expression=unknown_diameter_exp,
+        expression_type="ARCADE",
+        field_type="TEXT"
+    )
+
+    logger.info("Unknown Diameter field calculation completed.")
 
     # --------------------------------------------------------
     # Final Validation
